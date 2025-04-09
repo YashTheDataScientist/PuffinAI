@@ -236,6 +236,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import PollenPage from './pages/PollenPage';
 import TestPage from './pages/TestPage';
+import PlantPage from './pages/Allergyplantpage';
 
 
 
@@ -246,6 +247,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/pollen" element={<PollenPage />} />
+        <Route path="/scan" element={<PlantPage />} />
       </Routes>
     </>
   );
