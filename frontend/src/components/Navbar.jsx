@@ -1,6 +1,6 @@
 import React from 'react';
 import './Navbar.css';
-import logo from '../assets/PuffinAiLogo.png';
+import logo from '../assets/puffin_ai_logo.png';
 import { Link } from 'react-router-dom';
 
 
