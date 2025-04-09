@@ -20,7 +20,8 @@ const Navbar = () => {
         <Link to="/pollen">Pollen</Link>
 
 
-        <a href="/scan">Scan</a>
+        <Link to="/scan">Scan</Link>
+
         <a href="#section5">Tips</a>
       </div>
     </nav>
