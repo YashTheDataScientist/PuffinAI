@@ -4,6 +4,9 @@ import './PollenPage.css';
 import PollenMap from '../components/PollenMap';
 
 import PollenForecast from "../components/PollenForecast";
+import TempPollenChart from '../components/TempPollenChart';
+import HeatPollenmap from '../components/HeatPollenmap';
+import RainPollenChart from '../components/RainPollenChart';
 
 
 
@@ -19,7 +22,15 @@ export default function PollenPage() {
         <h1 style={{ textAlign: 'center' }}>Live Pollen Map of Victoria</h1>
         <PollenForecast />
         </div>
-
+        <div>
+          <TempPollenChart />
+        </div>
+        <div>
+          <HeatPollenmap />
+        </div>
+        <div>
+          <RainPollenChart />
+        </div>
         <div className="subscribe-section">
         <div className="subscribe-content">
             <div className="subscribe-text">

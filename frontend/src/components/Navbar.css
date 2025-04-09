@@ -38,7 +38,8 @@
 
 .nav-right {
   display: flex;
-  gap: 150px; /* ✅ More spacing between nav links */
+  gap: 80px; /* ✅ More spacing between nav links */
+  margin-right: 100px;
 }
 
 .nav-right a {

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Navbar.css';
-import logo from '../assets/puffin_ai_logo.png';
+import logo from '../assets/logo2.png';
 import { Link } from 'react-router-dom';
 
 
@@ -15,14 +15,12 @@ const Navbar = () => {
       </div>
 
       <div className="nav-right">
-        <a href="#section1">Home</a>
-        <a href="#section2">Why</a>
-        <Link to="/pollen">Pollen</Link>
-
-
-        <Link to="/scan">Scan</Link>
-
-        <a href="#section5">Tips</a>
+        <Link to="/">Home</Link>
+        <Link to="/pollen_watch">Pollen Watch</Link>
+        <Link to="/know_your_plants">Know Your Plants </Link>
+        <Link to="/pollen">Pollen 101</Link>
+        <Link to="/scan">Allergy Shield</Link>
+        <Link to="/scan">Health Impact </Link>
       </div>
     </nav>
   );

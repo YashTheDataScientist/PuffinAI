@@ -246,8 +246,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/pollen" element={<PollenPage />} />
-        <Route path="/scan" element={<PlantPage />} />
+        <Route path="/pollen_watch" element={<PollenPage />} />
+        <Route path="/know_your_plants" element={<PlantPage />} />
       </Routes>
     </>
   );

@@ -1,0 +1,74 @@
+[
+  {
+    "Month":1,
+    "Maximum temperature (Degree C)":25.32,
+    "Total_Pollen_Sum":899.3,
+    "Total_Pollen_Avg":149.88
+  },
+  {
+    "Month":2,
+    "Maximum temperature (Degree C)":26.45,
+    "Total_Pollen_Sum":163.2,
+    "Total_Pollen_Avg":40.8
+  },
+  {
+    "Month":3,
+    "Maximum temperature (Degree C)":25.07,
+    "Total_Pollen_Sum":59.5,
+    "Total_Pollen_Avg":14.88
+  },
+  {
+    "Month":4,
+    "Maximum temperature (Degree C)":19.11,
+    "Total_Pollen_Sum":103.7,
+    "Total_Pollen_Avg":25.92
+  },
+  {
+    "Month":5,
+    "Maximum temperature (Degree C)":17.3,
+    "Total_Pollen_Sum":164.9,
+    "Total_Pollen_Avg":32.98
+  },
+  {
+    "Month":6,
+    "Maximum temperature (Degree C)":14.23,
+    "Total_Pollen_Sum":168.3,
+    "Total_Pollen_Avg":42.08
+  },
+  {
+    "Month":7,
+    "Maximum temperature (Degree C)":13.41,
+    "Total_Pollen_Sum":112.2,
+    "Total_Pollen_Avg":28.05
+  },
+  {
+    "Month":8,
+    "Maximum temperature (Degree C)":18.25,
+    "Total_Pollen_Sum":5679.7,
+    "Total_Pollen_Avg":1135.94
+  },
+  {
+    "Month":9,
+    "Maximum temperature (Degree C)":17.77,
+    "Total_Pollen_Sum":3048.1,
+    "Total_Pollen_Avg":762.02
+  },
+  {
+    "Month":10,
+    "Maximum temperature (Degree C)":20.76,
+    "Total_Pollen_Sum":9589.7,
+    "Total_Pollen_Avg":1917.94
+  },
+  {
+    "Month":11,
+    "Maximum temperature (Degree C)":23.88,
+    "Total_Pollen_Sum":10718.5,
+    "Total_Pollen_Avg":2679.62
+  },
+  {
+    "Month":12,
+    "Maximum temperature (Degree C)":26.49,
+    "Total_Pollen_Sum":5467.2,
+    "Total_Pollen_Avg":1366.8
+  }
+]
