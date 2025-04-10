@@ -277,7 +277,7 @@ export default function HomePage() {
             <p className="section-subtitle">
               Get practical, science-backed tips to avoid triggers and protect yourself year-round.
             </p>
-            <button onClick={() => window.location.href = '/prevention'}>View Prevention Tips</button>
+            <button>View Prevention Tips</button>
           </div>
         </ParallaxLayer>
       </Parallax>
