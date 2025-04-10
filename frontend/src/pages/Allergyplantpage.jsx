@@ -8,6 +8,8 @@ import CountUp from 'react-countup';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
+
+
 // 添加渐变动画样式
 const gradientAnimationStyle = `
   @keyframes gradientShift {
@@ -50,6 +52,12 @@ const iconMap = {
     })
   };
   
+  const userLocationIcon = new L.Icon({
+    iconUrl: '/icons/locationmarker.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+  });
 const speciesImages = {
     'Platanus': [
       '/images/platanus1.jpg',
@@ -512,7 +520,12 @@ export default function AllergyPlantPage() {
               >
                 <FlyToCenter center={mapCenter} />
                 <TileLayer attribution='&copy; OpenStreetMap contributors' url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-                {userLocation && (<Marker position={[userLocation.lat, userLocation.lng]}><Popup>Your Location</Popup></Marker>)}
+                {userLocation && (
+                  <Marker position={[userLocation.lat, userLocation.lng]} icon={userLocationIcon}>
+                    <Popup>You Are Here</Popup>
+                  </Marker>
+                )}
+
                 {filteredMarkers.map((item, index) => (
                   <Marker key={index} position={[item.lat, item.lng]} icon={iconMap[item.species] || iconMap['Platanus']}>
                     <Popup minWidth={250}>
