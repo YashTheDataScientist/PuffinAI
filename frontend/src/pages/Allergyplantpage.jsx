@@ -232,7 +232,7 @@ const reverseGeocode = async (lat, lng) => {
               padding: '20px',
               background: '#fffaf0',
               borderRadius: '12px',
-              border: '1px solid #feebc8'
+              border: '1px solidrgb(135, 111, 68)'
             }}>
               <h4 style={{ color: '#d97706', marginBottom: '15px', display: 'flex', alignItems: 'center' }}>
                 <span style={{ marginRight: '8px' }}>⚠️</span> Medium Risk
@@ -286,7 +286,7 @@ const reverseGeocode = async (lat, lng) => {
         <div style={{ fontSize: '36px', color: '#4caf50', fontWeight: 'bold' }}>
           <CountUp end={value} duration={1.5} />
         </div>
-        <div style={{ fontSize: '16px', marginTop: '5px' }}>{label}</div>
+        <div style={{ fontSize: '16px', marginTop: '5px', color: '#333333' }}>{label}</div>
       </div>
     );
   }
@@ -484,6 +484,7 @@ export default function AllergyPlantPage() {
                           style={{
                             padding: '8px 10px',
                             cursor: 'pointer',
+                            color: '#333333',
                             hover: { backgroundColor: '#f0f0f0' }
                           }}
                         >
@@ -552,7 +553,7 @@ export default function AllergyPlantPage() {
                     <img src={plant.image} alt={plant.species} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px' }} />
                     <div style={{ display: 'flex', alignItems: 'center', marginTop: '8px' }}>
                       <img src={plant.icon} alt="icon" style={{ width: '24px', height: '24px', marginRight: '8px' }} />
-                      <span style={{ fontWeight: '500' }}>{plant.species}</span>
+                      <span style={{ fontWeight: '500', color: '#333333' }}>{plant.species}</span>
                     </div>
                   </div>
                 ))}
@@ -580,9 +581,9 @@ export default function AllergyPlantPage() {
     
               {selectedPlant && (
                 <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: '#f4f5d5', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.2)', zIndex: 1000, maxWidth: '400px' }}>
-                  <h3>{selectedPlant.species}</h3>
-                  <p><strong>Pollen Level:</strong> {selectedPlant.pollenLevel}</p>
-                  <p><strong>Description:</strong> {selectedPlant.description}</p>
+                  <h3 style={{ color: '#333333' }}>{selectedPlant.species}</h3>
+                  <p style={{ color: '#333333' }}><strong>Pollen Level:</strong> {selectedPlant.pollenLevel}</p>
+                  <p style={{ color: '#333333' }}><strong>Description:</strong> {selectedPlant.description}</p>
                   <button onClick={() => setSelectedPlant(null)} style={{ marginTop: '15px', padding: '8px 16px', backgroundColor: '#2cb835', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Close</button>
                 </div>
               )}
