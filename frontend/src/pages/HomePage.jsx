@@ -143,6 +143,7 @@ import AnalyticsSVG from '../assets/analytics-animate.svg';
 import ForestSVG from '../assets/forest-animate.svg';
 import ThesisSVG from '../assets/thesis-animate.svg';
 import './HomePage.css';
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   const parallaxRef = useRef();
@@ -232,7 +233,9 @@ export default function HomePage() {
               Explore live pollen maps, 5-day forecasts, and key insights on what drive allergy risks in your area.
             </p>
             <div className="button-group">
-              <button onClick={() => window.location.href = '/pollen_watch'}>View Pollen Forecast</button>
+              <Link to="/pollen_watch">
+                <button>View Pollen Forecast</button>
+              </Link>
               <button onClick={() => parallaxRef.current.scrollTo(3)}>Next: Scan Your Plants</button>
             </div>
           </div>
@@ -252,7 +255,10 @@ export default function HomePage() {
               Learn about local plants in Victoria, discover which ones trigger allergies, and scan your own plants to find out if they're safe.
             </p>
             <div className="button-group">
-              <button onClick={() => window.location.href = '/know_your_plants'}>Explore & Scan Plants</button>
+              <Link to="/know_your_plants">
+                <button>View Pollen Forecast</button>
+              </Link>
+              
               <button onClick={() => parallaxRef.current.scrollTo(4)}>Final Tip: Prevention</button>
             </div>
           </div>

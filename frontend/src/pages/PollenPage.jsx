@@ -70,21 +70,7 @@ export default function PollenPage() {
           <h1 className="section-heading">Live Pollen Map of Victoria</h1>
           <PollenMap />
         </div>
-        <div className="map-description">
-          <h2>How to read the map?</h2>
-          <p>
-            This live interactive map displays pollen levels across Victoria. The regions are color-coded based on the <strong>Universal Pollen Index (UPI)</strong>:
-          </p>
-          <ul>
-            <li><strong style={{ color: '#4caf50' }}>Green</strong>: Very Low Pollen</li>
-            <li><strong style={{ color: '#cddc39' }}>Yellow</strong>: Low</li>
-            <li><strong style={{ color: '#ff9800' }}>Orange</strong>: Moderate</li>
-            <li><strong style={{ color: '#f44336' }}>Red</strong>: High to Extreme</li>
-          </ul>
-          <p>
-            Use this tool to plan outdoor activities and avoid allergy hotspots in real-time.
-          </p>
-        </div>
+
       </div>
 
       {/* SECTION 2: POLLEN FORECAST */}
