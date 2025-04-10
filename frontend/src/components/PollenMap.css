@@ -1,9 +1,10 @@
 .map-container {
     height: 70vh;
-    width: 70%;
+    
     position: relative;
     z-index: 15;
     margin-left: 30px;
+    margin-right: 30px;
     border-radius: 14px;
     
   }

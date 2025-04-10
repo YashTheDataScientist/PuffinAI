@@ -1,3 +1,7 @@
+body {
+  padding-top: 80px; /* if navbar is fixed */
+}
+
 /* Headings */
 .section-heading {
   text-align: center;
@@ -11,7 +15,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  margin-top: 80px;
+  
   padding: 0 2rem;
 }
 

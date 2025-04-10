@@ -65,6 +65,11 @@
   transition: transform 0.3s ease;
 }
 
+.nav-right a.active {
+  color: #00b4ff; /* Teal or whatever your highlight color is */
+
+}
+
 .nav-right a:hover {
   color: #00b4ff;
 }

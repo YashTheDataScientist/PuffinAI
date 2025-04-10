@@ -5,7 +5,6 @@ body {
   background-color: #fff;
 }
 
-
 /* Shared image/text layers */
 .image-layer,
 .text-layer {
@@ -36,19 +35,23 @@ body {
   justify-content: center;
 }
 
+.text-layer.left,
+.text-layer.right {
+  flex-direction: column;
+  justify-content: center;
+}
+
 .text-layer.left {
   left: 0;
-  justify-content: center;
-  flex-direction: column;
+  align-items: flex-start;
 }
 
 .text-layer.right {
   right: 0;
-  justify-content: center;
-  flex-direction: column;
+  align-items: flex-start;
 }
 
-/* SECTION 2 Specific Layout */
+/* Section 2 */
 .section2-image {
   position: absolute;
   top: 0;
@@ -92,7 +95,6 @@ body {
 
 .section2-content .insight-card {
   background-color: white;
-  
   padding: 1.2rem 1.5rem;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -107,7 +109,6 @@ body {
 
 .section2-content .insight-card h2 {
   font-size: 2rem;
-  
   color: #1a73e8;
   margin-bottom: 0.5rem;
   font-weight: 700;
@@ -115,48 +116,73 @@ body {
 
 .section2-content .insight-card p {
   font-size: 0.95rem;
-  color: #333;
+  color: #444;
   margin: 0;
 }
 
-/* Headings + Button (used globally) */
+/* Headings + Subtitle */
 .section-title {
   font-size: 3rem;
   font-weight: 700;
-  color: #1e1e1e;
+  color: #222;
   margin-bottom: 1rem;
 }
 
 .section-subtitle {
   font-size: 1.5rem;
-  color: #333;
+  color: #555;
   margin-bottom: 2rem;
   max-width: 500px;
 }
 
+/* Buttons (accent per section) */
 button {
-  align-self: center;
-  padding: 12px 28px;
-  font-size: 1rem;
-  background-color: #e6dafe;
-  color: #1e1e1e;
+  margin: 10px;
+  align-self: flex-start;
+  padding: 14px 32px;
+  font-size: 1.05rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
   transition: background-color 0.3s ease;
-  margin-top: 1rem;
 }
 
-button:hover {
-  background-color: #cdbef2;
+.section1 button {
+  background-color: #7E57C2; /* Lavender accent */
+  color: #ffffff;
 }
 
-.button-group {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
+.section2-content button {
+  background-color: #5485FB; /* Light blue */
+  color: #ffffff;
 }
+
+.section3 button {
+  background-color: #FF725E; /* Super soft peach */
+  color: #ffffff;
+}
+
+.section4 button {
+  background-color: #128200; /* Soft mint */
+  color: #ffffff;
+}
+
+.section5 button {
+  background-color: #DDB333; /* Light yellow */
+  color: #ffffff;
+}
+
+.section1 button:hover,
+.section2-content button:hover,
+.section3 button:hover,
+.section4 button:hover,
+.section5 button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Back to Top */
 .scroll-top-btn {
   position: fixed;
   bottom: 20px;
@@ -175,7 +201,8 @@ button:hover {
 }
 
 .scroll-top-btn:hover {
-  background-color: #155ab6;
+  background-color: #1f69ca;
+  color: #fff;
 }
 
 @keyframes fadeIn {
@@ -188,8 +215,6 @@ button:hover {
     transform: translateY(0);
   }
 }
-
-
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -223,7 +248,8 @@ button:hover {
   .section2-image img {
     width: 80%;
   }
+
+  button {
+    align-self: center;
+  }
 }
-
-
-

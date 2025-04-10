@@ -1,0 +1,24 @@
+.season-banner {
+    width: 70%;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 8px;
+    margin: 2rem auto -1rem auto; /* center horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .season-banner.off {
+    background-color: #e8f5e9; /* soft green background */
+    color: #1b5e20;            /* rich green text */
+  }
+  
+  .season-banner.on {
+    background-color: #fff3e0;
+    color: #e65100;
+  }
+  

@@ -60,10 +60,14 @@ import PollenForecast from "../components/PollenForecast";
 import TempPollenChart from '../components/TempPollenChart';
 import HeatPollenmap from '../components/HeatPollenmap';
 import RainPollenChart from '../components/RainPollenChart';
+import SeasonBanner from '../components/SeasonBanner';
+
 
 export default function PollenPage() {
   return (
     <>
+    
+
       {/* SECTION 1: LIVE POLLEN MAP */}
       <div className="live-map-wrapper">
         <div className="map-column">
@@ -72,7 +76,7 @@ export default function PollenPage() {
         </div>
 
       </div>
-
+      <SeasonBanner status="off-season" />
       {/* SECTION 2: POLLEN FORECAST */}
       <div className="live-map-wrapper">
         <div className="map-column">
