@@ -1,5 +1,6 @@
 body {
   padding-top: 80px; /* if navbar is fixed */
+  background: #f1f1f1;
 }
 
 /* Headings */
@@ -15,7 +16,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  
+  align-items: center; /* 👈 centers vertically */
   padding: 0 2rem;
 }
 
@@ -112,4 +113,51 @@ body {
   .subscribe-text p {
     font-size: 1rem;
   }
+}
+
+/* 🖤 Clean All-Black Scroll Prompt */
+.scroll-prompt {
+  background: #0b0b0b;
+  border-radius: 14px;
+  padding: 1.8rem 1.5rem;
+  max-width: 320px;
+  margin-top: 1rem;
+  color: white;
+  text-align: center;
+  box-shadow: inset 0 0 0.5px #333, 0 8px 18px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  transition: box-shadow 0.3s ease;
+}
+
+.scroll-prompt h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.7rem;
+}
+
+.scroll-prompt p {
+  font-size: 0.95rem;
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+/* 🔘 Clean black button with glow */
+.scroll-button {
+  margin-top: 1.2rem;
+  padding: 0.7rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 500; 
+  background: linear-gradient(to right, #111 0%, #000 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scroll-button:hover {
+  background: linear-gradient(to right, #1a1a1a, #000);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
 }

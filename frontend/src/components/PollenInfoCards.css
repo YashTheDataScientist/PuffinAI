@@ -1,0 +1,51 @@
+.pollen-info-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  margin-top: 1rem;
+}
+
+.info-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  padding: 1.8rem;
+  border-radius: 16px;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.info-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #dddddd;
+}
+
+/* Card color variations (if needed for status) */
+.info-card.off {
+  border-left: 5px solid #81c784; /* green for off-season */
+}
+
+.info-card.on {
+  border-left: 5px solid #ffb74d; /* orange for on-season */
+}
+
+.info-card.neutral {
+  border-left: 5px solid #90a4ae; /* soft blue-gray */
+}
+
+/* Hover effect */
+.info-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}

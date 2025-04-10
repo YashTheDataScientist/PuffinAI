@@ -60,7 +60,7 @@ import PollenForecast from "../components/PollenForecast";
 import TempPollenChart from '../components/TempPollenChart';
 import HeatPollenmap from '../components/HeatPollenmap';
 import RainPollenChart from '../components/RainPollenChart';
-import SeasonBanner from '../components/SeasonBanner';
+import SeasonBanner from '../components/PollenInfoCards';
 
 
 export default function PollenPage() {
@@ -80,24 +80,21 @@ export default function PollenPage() {
       {/* SECTION 2: POLLEN FORECAST */}
       <div className="live-map-wrapper">
         <div className="map-column">
-          <h1 className="section-heading">5-Day Pollen Forecast</h1>
           <PollenForecast />
         </div>
-        <div className="map-description">
-          <h2>Why it matters</h2>
+
+        <div className="map-description scroll-prompt">
+          <h2>Curious why pollen changes?</h2>
           <p>
-            The 5-day forecast helps you plan ahead based on predicted pollen levels in your area. Each day's data includes:
+            Scroll down to see how <strong>temperature</strong>, <strong>humidity</strong>, and <strong>wind</strong> influence daily pollen levels.
           </p>
-          <ul>
-            <li>Tree, grass, and weed pollen levels</li>
-            <li>Temperature, wind, humidity</li>
-            <li>General allergy risk index</li>
-          </ul>
-          <p>
-            This information is essential for people with asthma, hay fever, or other respiratory issues.
-          </p>
+          <button className="scroll-button" onClick={() => window.scrollBy({ top: 600, behavior: 'smooth' })}>
+            ⬇ Scroll to Insights
+          </button>
         </div>
       </div>
+
+
 
       {/* SECTION 3: TEMP + POLLEN RELATIONSHIP */}
       <div className="live-map-wrapper">

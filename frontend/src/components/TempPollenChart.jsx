@@ -24,7 +24,7 @@ const TempPollenChart = () => {
         // Transform raw data to fit chart structure
         const processed = json.map(item => ({
           // Create a label for X-axis using month number
-          MonthLabel: `Month ${item.Month}`,
+          MonthLabel: `${item.Month}`,
           // Convert temperature value to number
           MaxTemp: Number(item["Maximum temperature (Degree C)"]),
           // Convert pollen average value to number
@@ -39,7 +39,6 @@ const TempPollenChart = () => {
 
   return (
     <div style={{ margin: "2rem auto", width: "90%" }}>
-      <h2>Monthly Avg Temperature vs Pollen Concentration</h2>
 
       {/* Responsive container ensures the chart scales with screen size */}
       <ResponsiveContainer width="100%" height={400}>
