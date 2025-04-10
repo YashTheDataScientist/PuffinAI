@@ -396,16 +396,20 @@ export default function AllergyPlantPage() {
           flexDirection: 'column',
           height: '100vh',
           width: '100%',
+          
           padding: '10px',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
+          marginTop: '120px'
         }}>
           <div style={{
             background: 'linear-gradient(-45deg,rgb(72, 170, 72), #a6c1a6,rgb(147, 195, 58))',
             backgroundSize: '400% 400%',
             animation: 'gradientShift 10s ease infinite',
             color: 'white',
+            
             padding: '30px',
             borderRadius: '10px',
+            
             marginBottom: '20px',
             boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
             textAlign: 'center'

@@ -5,7 +5,7 @@
   top: 0;
   width: 100%;
   height: 100px;
-  background: transparent;
+  background: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -72,3 +72,5 @@
 .nav-right a:hover::after {
   transform: scaleX(1);
 }
+
+
