@@ -199,7 +199,7 @@ const reverseGeocode = async (lat, lng) => {
             textAlign: 'center',
             fontWeight: '600'
           }}>
-            ______________________ What Should I Do? ______________________
+            What Should I Do?
           </h3>
           
           <div style={{
@@ -458,7 +458,8 @@ export default function AllergyPlantPage() {
               flexDirection: 'column',
               minHeight: '500px'
             }}>
-              <div style={{ marginBottom: '10px' }}>
+              <div style={{ marginBottom: '10px', color: '#000' }}>
+
                 <label><strong>Search suburb: </strong></label>
                 <div style={{ position: 'relative', display: 'inline-block' }}>
                   <input

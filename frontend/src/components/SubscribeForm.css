@@ -18,6 +18,17 @@
   }
   
 
+  /* Fix autofill styles (Chrome, Edge, etc.) */
+  .subscribe-form-inline input:-webkit-autofill,
+  .subscribe-form-inline input:-webkit-autofill:hover,
+  .subscribe-form-inline input:-webkit-autofill:focus,
+  .subscribe-form-inline input:-internal-autofill-selected {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+    -webkit-text-fill-color: #000000 !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
   .subscribe-form-inline button {
     padding: 16px 24px;
     font-size: 1.1rem;
@@ -82,8 +93,8 @@
   }
   
   .popup-action {
-    background-color: #ffffff;
-    color: #1e1e1e;
+    background-color: #6cc3e9;
+    color: #ffffff;
     padding: 12px 24px;
     font-size: 1rem;
     border: none;
