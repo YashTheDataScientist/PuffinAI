@@ -221,8 +221,9 @@ const PollenMap = () => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/dark-v11',
-      center: [144.9631, -37.8136],
-      zoom: 1, // Initial zoom set to far away for zoom-in effect
+      center: [144.408, -36.650],
+
+      zoom: 1.5, // Initial zoom set to far away for zoom-in effect
     });
 
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
@@ -230,8 +231,9 @@ const PollenMap = () => {
     map.current.on('load', () => {
       // Zoom-in animation
       map.current.flyTo({
-        center: [144.9631, -37.8136],
-        zoom: 6.5,
+        center: [144.408, -36.650],
+
+        zoom: 6,
         speed: 0.8,
         curve: 1.42,
         easing: (t) => t,
