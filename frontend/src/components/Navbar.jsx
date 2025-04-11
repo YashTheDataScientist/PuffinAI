@@ -43,10 +43,12 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-left">
-        <img src={logo} alt="PuffinAI Logo" className="logo" />
-        <span className="brand">
-          Puffin<span className="highlight">AI</span>
-        </span>
+        <Link to="/" className="nav-logo-link">
+          <img src={logo} alt="PuffinAI Logo" className="logo" />
+          <span className="brand">
+            Puffin<span className="highlight">AI</span>
+          </span>
+        </Link>
       </div>
 
       <div className="nav-right">

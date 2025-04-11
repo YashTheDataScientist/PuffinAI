@@ -10,23 +10,19 @@
   .subscribe-form-inline input {
     flex: 1;
     padding: 16px 20px;
-    border: 2px solid #ccc;
+    border: 2px solid #1d1c1c;
     border-radius: 12px;
     font-size: 1.1rem;
     outline: none;
     min-width: 200px;
   }
   
-  .subscribe-form-inline input:focus {
-    
-    box-shadow: 0 0 0 3px rgba(142, 119, 244, 0.2);
-  }
-  
+
   .subscribe-form-inline button {
     padding: 16px 24px;
     font-size: 1.1rem;
-    background-color: #f9a825; /* 🟡 Bold yellow-orange */
-    color: #1e1e1e;
+    background-color: #00b4ff; /* 🟡 Bold yellow-orange */
+    color: #ffffff;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -35,7 +31,7 @@
   }
   
   .subscribe-form-inline button:hover {
-    background-color: #f57f17;
+    background-color: #00b4ff;
   }
   .subscribe-message {
     font-size: 1rem;
@@ -52,7 +48,7 @@
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #1e1e1e;
+    background-color: #ffffff;
     color: #fff;
     padding: 1.5rem 2rem;
     border-radius: 16px;
@@ -67,13 +63,13 @@
   }
   
   .popup-text {
-    margin: 0 0 1rem;
-    font-size: 1.1rem;
-    color: #e7e7e7;
-    line-height: 1.5;
-    padding-top: 30px;
+    margin: 0 0 1.2rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #f1f1f1; /* Bright, not pure white */
+    line-height: 1.6;
+    padding-top: 20px;
   }
-  
   .popup-close {
     position: absolute;
     top: 8px;
@@ -98,7 +94,8 @@
   }
   
   .popup-action:hover {
-    background-color: #dddddd;
+    background-color: #1ab4f7;
+    color: #fff;
   }
   
   @keyframes slideUp {

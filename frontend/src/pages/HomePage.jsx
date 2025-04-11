@@ -304,7 +304,7 @@ export default function HomePage() {
             <p className="section-subtitle">
               Get practical, science-backed tips to avoid triggers and protect yourself year-round.
             </p>
-            <button>View Prevention Tips</button>
+            <button>Feature coming soon!</button>
           </div>
         </ParallaxLayer>
       </Parallax>

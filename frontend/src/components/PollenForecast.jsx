@@ -496,10 +496,14 @@ const PollenForecast = () => {
       </div>
 
       <div className="forecast-button-wrapper">
-  <button className="toggle-button">
-    Show Advanced Forecast
+  <button
+    className="toggle-button"
+    onClick={() => setShowAdvanced(!showAdvanced)}
+  >
+    {showAdvanced ? "Hide Advanced Forecast" : "Show Advanced Forecast"}
   </button>
 </div>
+
 
       </div>
   );

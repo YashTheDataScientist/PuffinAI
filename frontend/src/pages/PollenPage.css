@@ -48,14 +48,17 @@ body {
   color: #444;
 }
 
-/* Subscribe Section */
-.subscribe-section {
-  width: 100%;
-  background-color: #f9f9f9;
-  padding: 6rem 2rem;
-  display: flex;
-  justify-content: center;
+
+.map-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
+
+
+/* Subscribe Section */
 
 .subscribe-content {
   display: grid;
@@ -89,6 +92,25 @@ body {
   display: block;
   margin: 0 auto;
 }
+
+.section-divider {
+  border: 0;
+  height: 2px;
+  background: linear-gradient(to right, #ccc, #aaa, #ccc);
+  margin: 3rem auto;
+  width: 90%;
+  
+  border-radius: 2px;
+}
+
+.subscribe-section {
+  width: 100%;
+  background: #1f1f1f;; /* soft blue background */
+  padding: 6rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {

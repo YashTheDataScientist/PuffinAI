@@ -14,16 +14,27 @@
   font-family: 'Outfit', sans-serif;
 }
 
+/* Left side with logo and brand */
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 14px;
 }
 
+/* Make logo + brand clickable but clean */
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none; /* ✅ Removes underline */
+  color: inherit; /* ✅ Prevents default blue/purple link colors */
+}
+
+/* Logo image */
 .logo {
   height: 60px;
 }
 
+/* Brand text */
 .brand {
   font-size: 2.6rem;
   font-weight: 700;
@@ -36,9 +47,10 @@
   font-weight: 700;
 }
 
+/* Right nav links */
 .nav-right {
   display: flex;
-  gap: 80px; /* ✅ More spacing between nav links */
+  gap: 80px;
   margin-right: 100px;
 }
 
@@ -66,8 +78,7 @@
 }
 
 .nav-right a.active {
-  color: #00b4ff; /* Teal or whatever your highlight color is */
-
+  color: #00b4ff;
 }
 
 .nav-right a:hover {
@@ -77,5 +88,3 @@
 .nav-right a:hover::after {
   transform: scaleX(1);
 }
-
-

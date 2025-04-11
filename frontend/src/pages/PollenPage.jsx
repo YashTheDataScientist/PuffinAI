@@ -77,6 +77,9 @@ export default function PollenPage() {
 
       </div>
       <SeasonBanner status="off-season" />
+
+      <hr className="section-divider" />
+
       {/* SECTION 2: POLLEN FORECAST */}
       <div className="live-map-wrapper">
         <div className="map-column">
@@ -94,86 +97,88 @@ export default function PollenPage() {
         </div>
       </div>
 
+     
 
-
-      {/* SECTION 3: TEMP + POLLEN RELATIONSHIP */}
-      <div className="live-map-wrapper">
-        <div className="map-column">
-          <h1 className="section-heading">Monthly Temperature vs Pollen Levels</h1>
-          <TempPollenChart />
-        </div>
-        <div className="map-description">
-          <h2>What this shows</h2>
-          <p>
-            This chart explores how temperature impacts pollen concentration throughout the year. 
-            You’ll typically notice:
-          </p>
-          <ul>
-            <li>Pollen spikes in spring & early summer</li>
-            <li>Temperature rises before pollen does</li>
-            <li>High pollen persists until temperature drops</li>
-          </ul>
-          <p>
-            It's a strong indicator of seasonal triggers for allergy sufferers.
-          </p>
-        </div>
-      </div>
 
       {/* SECTION 4: HEATMAP */}
-      <div className="live-map-wrapper">
-        <div className="map-column">
-          <h1 className="section-heading">Pollen Heatmap (2024)</h1>
-          <HeatPollenmap />
-        </div>
-        <div className="map-description">
-          <h2>Why it's useful</h2>
-          <p>
-            This heatmap visualizes the average monthly pollen concentration using color intensity. 
-            Darker shades represent higher exposure. You can quickly:
-          </p>
-          <ul>
-            <li>Spot high-risk months (e.g. Oct–Nov)</li>
-            <li>Compare seasonal variation</li>
-            <li>Plan protective measures accordingly</li>
-          </ul>
-        </div>
+      <div className="map-section">
+  <div className="live-map-wrapper">
+    <div className="map-column">
+      <div className="map-card">
+        <HeatPollenmap />
       </div>
+    </div>
+    <div className="map-description">
+      <h2>Pollen Heatmap Insights</h2>
+      <p>
+        This heatmap illustrates how pollen levels vary month-to-month across the year.
+        Pollen exposure peaks in October and November, making these the most high-risk periods for allergy sufferers.
+        Levels are lowest during winter (June to August), offering some seasonal relief.
+        These trends help reveal when symptoms are most likely to flare up.
+      </p>
+    </div>
+  </div>
+</div>
 
-      {/* SECTION 5: RAINFALL VS POLLEN */}
-      <div className="live-map-wrapper">
-        <div className="map-column">
-          <h1 className="section-heading">Rainfall vs Pollen Levels</h1>
-          <RainPollenChart />
-        </div>
-        <div className="map-description">
-          <h2>Interesting insights</h2>
-          <p>
-            Rain can both suppress and trigger pollen dispersal. This dual-axis chart shows:
-          </p>
-          <ul>
-            <li>Months with low rainfall often have higher pollen</li>
-            <li>Heavy rain can clear the air temporarily</li>
-            <li>Light rain may increase airborne allergens</li>
-          </ul>
-        </div>
-      </div>
 
-      {/* SECTION 6: SUBSCRIBE */}
-      <div className="subscribe-section">
+
+
+ {/* SECTION 4: TEMP VS POLLEN */}
+<div className="map-section">
+  <div className="live-map-wrapper">
+    <div className="map-column">
+      <TempPollenChart />
+    </div>
+    <div className="map-description">
+      <h2>How Temperature Affects Pollen</h2>
+      <p>
+        Warmer temperatures lead to more pollen in the air — but not instantly.
+        In early spring, temperature begins to rise before pollen does. As heat builds up, plants enter their pollination phase, 
+        leading to a sharp spike in pollen levels during October and November.
+        Interestingly, even when temperatures start dropping, pollen may remain high for a while, showing a lag in response. 
+        Understanding this pattern helps predict allergy risks before symptoms begin.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+{/* SECTION 5: RAINFALL VS POLLEN */}
+<div className="map-section">
+  <div className="live-map-wrapper">
+    <div className="map-column">
+      <RainPollenChart />
+    </div>
+    <div className="map-description">
+      <h2>How Rainfall Influences Pollen</h2>
+      <p>
+        Rain affects pollen in different ways depending on how much and when it falls.
+        In dry months like September and October, pollen levels tend to rise as nothing holds them down.
+        A burst of heavy rain can clear pollen from the air, but light rain or post-rain humidity can actually increase airborne allergens.
+        The relationship is complex — low rainfall months often align with high allergy risk, while brief wet spells may offer short-term relief.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+<div className="subscribe-section">
         <div className="subscribe-content">
-          <div className="subscribe-text">
+            <div className="subscribe-text">
             <h2>Want pollen forecasts at your fingertips?</h2>
             <p>
-              Stay informed with daily updates tailored for Melbourne. Just drop your email
-              below and we’ll keep you one step ahead of allergies — every day, no spam.
+                Stay informed with daily updates tailored for Melbourne. Just drop your email
+                below and we’ll keep you one step ahead of allergies — every day, no spam.
             </p>
             <SubscribeForm />
-          </div>
-          <div className="subscribe-image">
+            </div>
+            <div className="subscribe-image">
             <img src={MailSVG} alt="Subscribe illustration" />
-          </div>
+            </div>
         </div>
-      </div>
+        </div>
     </>
   );
 }
