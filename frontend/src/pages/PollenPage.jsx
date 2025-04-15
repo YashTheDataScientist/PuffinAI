@@ -70,18 +70,19 @@ export default function PollenPage() {
 
       {/* SECTION 1: LIVE POLLEN MAP */}
       <div className="live-map-wrapper">
-        <div className="map-column">
-          <h1 className="section-heading">Live Pollen Map of Victoria</h1>
-          <PollenMap />
-        </div>
-
-      </div>
-      <SeasonBanner status="off-season" />
+  <div className="map-column">
+ 
+    <h1 className="section-heading">Live Pollen Map of Victoria</h1>
+    <PollenMap />
+    
+  </div>
+  <SeasonBanner status="off-season" />
+</div>
 
       <hr className="section-divider" />
 
       {/* SECTION 2: POLLEN FORECAST */}
-      <div className="live-map-wrapper">
+      <div id="forecast-section" className="live-map-wrapper">
         <div className="map-column">
           <PollenForecast />
         </div>

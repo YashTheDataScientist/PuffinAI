@@ -1,5 +1,5 @@
 body {
-  padding-top: 80px; /* if navbar is fixed */
+  padding-top: 100px; /* if navbar is fixed */
   background: #f1f1f1;
 }
 
@@ -7,23 +7,25 @@ body {
 .section-heading {
   text-align: center;
   font-size: 2rem;
-  margin: 2rem 0 1.5rem;
+  
   color: #213622;
 }
 
 /* Section layout: map/chart + description */
 .live-map-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center; /* 👈 centers vertically */
-  padding: 0 2rem;
+  flex-wrap: nowrap; /* prevent wrapping */
+  gap: 0.5rem;
+  padding: 1rem;
+  align-items: flex-start;
 }
 
+
 .map-column {
-  flex: 3;
-  min-width: 300px;
+  flex: 4;
+  min-width: 0;
 }
+
 
 .map-description {
   flex: 2;

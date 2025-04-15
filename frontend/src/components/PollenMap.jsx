@@ -18,13 +18,24 @@
 //     map.current = new mapboxgl.Map({
 //       container: mapContainer.current,
 //       style: 'mapbox://styles/mapbox/dark-v11',
-//       center: [144.9631, -37.8136],
-//       zoom: 6.5,
+//       center: [144.408, -36.650],
+
+//       zoom: 1.5, // Initial zoom set to far away for zoom-in effect
 //     });
 
 //     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
 //     map.current.on('load', () => {
+//       // Zoom-in animation
+//       map.current.flyTo({
+//         center: [144.408, -36.650],
+
+//         zoom: 6,
+//         speed: 0.8,
+//         curve: 1.42,
+//         easing: (t) => t,
+//       });
+
 //       fetch('/data/vic_forecast_districts.geojson')
 //         .then((res) => res.json())
 //         .then(async (geojson) => {
@@ -161,11 +172,13 @@
 
 //             popup.current
 //               .setLngLat(e.lngLat)
-//               .setHTML(
-//                 `<strong>Pollen UPI</strong><br/>
-//                  🌳 Tree: ${tree}<br/>
-//                  🌾 Grass: ${grass}`
-//               )
+//               .setHTML(`
+//                 <strong style="color:#00000;">Pollen Risk Index</strong><br/>
+//                 Tree 🌳: <span style="color:#4caf50;">${tree}</span><br/>
+//                 Grass 🌾: <span style="color:#4caf50;">${grass}</span><br/>
+//                 <small style="color:#888;">(0 = Very Low, 5 = Extreme)</small>
+//               `)
+              
 //               .addTo(map.current);
 //           });
 
@@ -187,7 +200,7 @@
 //     <div className="map-container">
 //       <div ref={mapContainer} className="map" />
 //       <div className="map-legend">
-//         <strong>Pollen UPI</strong>
+//         <strong>Allergy Risk Index</strong>
 //         <div><span style={{ background: '#a5d6a7' }}></span> 0 – Very Low</div>
 //         <div><span style={{ background: '#dce775' }}></span> 1 – Low</div>
 //         <div><span style={{ background: '#fff176' }}></span> 2 – Moderate</div>
@@ -200,7 +213,6 @@
 // };
 
 // export default PollenMap;
-
 import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import * as turf from '@turf/turf';
@@ -214,6 +226,7 @@ const PollenMap = () => {
   const map = useRef(null);
   const popup = useRef(new mapboxgl.Popup({ closeButton: false, closeOnClick: false }));
   const hoveredFeatureId = useRef(null);
+  const userMarker = useRef(null); // ✅ NEW: For user location pin
 
   useEffect(() => {
     if (map.current) return;
@@ -222,17 +235,38 @@ const PollenMap = () => {
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/dark-v11',
       center: [144.408, -36.650],
-
-      zoom: 1.5, // Initial zoom set to far away for zoom-in effect
+      zoom: 1.5,
     });
 
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
+    // ✅ NEW: Get user's location and add pin
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+
+        userMarker.current = new mapboxgl.Marker({ color: '#00BFFF' }) // blue pin
+          .setLngLat([longitude, latitude])
+          .setPopup(
+            new mapboxgl.Popup({ closeButton: false }) // ✅ disables that "x" button
+              .setHTML("<strong>You are here</strong>")
+          )
+          
+          .addTo(map.current)
+          .togglePopup();
+
+        // Optionally center on user location
+        // map.current.flyTo({ center: [longitude, latitude], zoom: 10 });
+      },
+      (error) => {
+        console.warn("Geolocation failed:", error);
+      },
+      { enableHighAccuracy: true }
+    );
+
     map.current.on('load', () => {
-      // Zoom-in animation
       map.current.flyTo({
         center: [144.408, -36.650],
-
         zoom: 6,
         speed: 0.8,
         curve: 1.42,
@@ -251,17 +285,14 @@ const PollenMap = () => {
               let grassUPI = 0;
 
               try {
-                const response = await axios.get(
-                  'https://pollen.googleapis.com/v1/forecast:lookup',
-                  {
-                    params: {
-                      key: 'AIzaSyBk5Jp0Hurs4ACTPBjGX94uL7ZZv85k8aA',
-                      'location.latitude': lat,
-                      'location.longitude': lon,
-                      days: 1,
-                    },
-                  }
-                );
+                const response = await axios.get('https://pollen.googleapis.com/v1/forecast:lookup', {
+                  params: {
+                    key: 'AIzaSyBk5Jp0Hurs4ACTPBjGX94uL7ZZv85k8aA',
+                    'location.latitude': lat,
+                    'location.longitude': lon,
+                    days: 1,
+                  },
+                });
 
                 const pollenInfo = response.data?.dailyInfo?.[0]?.pollenTypeInfo || [];
                 const getUPI = (type) =>
@@ -375,11 +406,13 @@ const PollenMap = () => {
 
             popup.current
               .setLngLat(e.lngLat)
-              .setHTML(
-                `<strong>Pollen UPI</strong><br/>
-                 🌳 Tree: ${tree}<br/>
-                 🌾 Grass: ${grass}`
-              )
+              .setHTML(`
+                <div style="font-size: 13px; font-weight: bold; margin-bottom: 4px;">Pollen Risk Index</div>
+                <div style="font-size: 13px;">Tree 🌳: <strong style="color:#4caf50;">${tree}</strong></div>
+                <div style="font-size: 13px;">Grass 🌾: <strong style="color:#4caf50;">${grass}</strong></div>
+
+              `)
+              
               .addTo(map.current);
           });
 
@@ -401,7 +434,7 @@ const PollenMap = () => {
     <div className="map-container">
       <div ref={mapContainer} className="map" />
       <div className="map-legend">
-        <strong>Pollen UPI</strong>
+        <strong>Allergy Risk Index</strong>
         <div><span style={{ background: '#a5d6a7' }}></span> 0 – Very Low</div>
         <div><span style={{ background: '#dce775' }}></span> 1 – Low</div>
         <div><span style={{ background: '#fff176' }}></span> 2 – Moderate</div>

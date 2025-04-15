@@ -1,5 +1,5 @@
 .map-container {
-    height: 70vh;
+    height: 74vh;
     
     position: relative;
     z-index: 15;
@@ -14,11 +14,17 @@
     width: 100%;
   }
   .mapboxgl-popup-content {
-    color: #000 !important;
-    font-size: 14px;
+    color: #111 !important;
+    font-size: 11px !important;
     background-color: #fff;
-    border-radius: 8px;
-    padding: 8px;
+    border-radius: 6px;
+    padding: 6px 10px;          /* more natural spacing */
+    box-shadow: none !important;
+    border: none !important;
+    max-width: 140px;
+    text-align: center;
+    font-weight: 500;           /* less bold, more clean */
+    line-height: 1.3;
   }
   
   .map-legend {
