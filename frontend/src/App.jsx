@@ -231,23 +231,73 @@
 
 
 
+// import { Routes, Route } from 'react-router-dom';
+// import Navbar from './components/Navbar';
+// import HomePage from './pages/HomePage';
+// import PollenPage from './pages/PollenPage';
+// import TestPage from './pages/TestPage';
+// import PlantPage from './pages/Allergyplantpage';
+
+
+
+// function App() {
+//   return (
+//     <>
+//       <Navbar />
+//       <Routes>
+//         <Route path="/" element={<HomePage />} />
+//         <Route path="/pollen_watch" element={<PollenPage />} />
+//         <Route path="/know_your_plants" element={<PlantPage />} />
+//       </Routes>
+//     </>
+//   );
+// }
+
+// export default App;
+
+
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import PollenPage from './pages/PollenPage';
 import TestPage from './pages/TestPage';
 import PlantPage from './pages/Allergyplantpage';
-
-
+import PasswordPage from './pages/PasswordPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/pollen_watch" element={<PollenPage />} />
-        <Route path="/know_your_plants" element={<PlantPage />} />
+        
+        <Route path="/auth" element={<PasswordPage />} />
+
+        
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/pollen_watch"
+          element={
+            <ProtectedRoute>
+              <PollenPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/know_your_plants"
+          element={
+            <ProtectedRoute>
+              <PlantPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
