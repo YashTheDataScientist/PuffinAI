@@ -263,6 +263,7 @@ import PollenPage from './pages/PollenPage';
 import TestPage from './pages/TestPage';
 import PlantPage from './pages/Allergyplantpage';
 import PasswordPage from './pages/PasswordPage';
+import TestPlantIdentifyPage from './pages/TestPlantIdentifyPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -295,6 +296,14 @@ function App() {
           element={
             <ProtectedRoute>
               <PlantPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/plant_identify"
+          element={
+            <ProtectedRoute>
+              <TestPlantIdentifyPage />
             </ProtectedRoute>
           }
         />
