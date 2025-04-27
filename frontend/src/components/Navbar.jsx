@@ -54,6 +54,7 @@ const Navbar = () => {
       <div className="nav-right">
         <Link to="/" className={isActive('/') ? 'active' : ''}>Home</Link>
         <Link to="/pollen_watch" className={isActive('/pollen_watch') ? 'active' : ''}>Pollen Watch</Link>
+        <Link to="/country" className={isActive('/country') ? 'active' : ''}>3D Map</Link>
         <Link to="/know_your_plants" className={isActive('/know_your_plants') ? 'active' : ''}>Know Your Plants</Link>
       </div>
     </nav>

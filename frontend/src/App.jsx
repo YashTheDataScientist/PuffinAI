@@ -265,16 +265,19 @@ import PlantPage from './pages/Allergyplantpage';
 import PasswordPage from './pages/PasswordPage';
 import TestPlantIdentifyPage from './pages/TestPlantIdentifyPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import Country from './components/CountryMap';
+import StateMap from './components/StateMap';
+import CityMap from './components/CityMap';
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        
+
         <Route path="/auth" element={<PasswordPage />} />
 
-        
+
         <Route
           path="/"
           element={
@@ -307,6 +310,10 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/country" element={<ProtectedRoute><Country /></ProtectedRoute>} />
+        <Route path="/country/:stateName" element={<ProtectedRoute><StateMap /></ProtectedRoute>} />
+        <Route path="/country/:stateName/:cityName" element={<ProtectedRoute><CityMap /></ProtectedRoute>} />
       </Routes>
     </>
   );
