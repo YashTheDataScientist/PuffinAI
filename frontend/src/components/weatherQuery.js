@@ -1,4 +1,46 @@
 // import { fetchWeatherApi } from 'openmeteo';
+
+export const pollenSources = {
+  ALDER: "#228B22",           // 桤木 - 树形
+  ASH: "#32CD32",             // 白蜡树 - 树形
+  BIRCH: "#ADFF2F",           // 桦木灰 - 树形
+  COTTONWOOD: "#66CDAA",      // Cottonwood - 树形
+  ELM: "#3CB371",             // Elm - 树形
+  MAPLE: "#7CFC00",           // Maple - 树形
+  OLIVE: "#6B8E23",           // 橄榄绿 - 树形
+  JUNIPER: "#2E8B57",         // Juniper - 树形
+  OAK: "#8FBC8F",             // 橡木 - 树形
+  PINE: "#20B2AA",            // Pine - 树形
+  CYPRESS_PINE: "#008B8B",    // 柏松 - 树形
+  HAZEL: "#9ACD32",           // 灰棕色 - 树形
+  GRAMINALES: "#FFD700",      // 草类 - 草地
+  JAPANESE_CEDAR: "#556B2F",  // 日本雪松 - 树形
+  JAPANESE_CYPRESS: "#6B8E23",// 日本柏树 - 树形
+  RAGWEED: "#FF6347",         // 豚草 - 杂草
+  MUGWORT: "#FF4500"          // 艾蒿 - 杂草
+};
+
+export const sourceNames = {
+  ALDER: "Tag Alder",           // 桤木 - 树形
+  ASH: "Ash Tree",             // 白蜡树 - 树形
+  BIRCH: "Birch Ash",           // 桦木灰 - 树形
+  COTTONWOOD: "Cottonwood",      // Cottonwood - 树形
+  ELM: "Elm",                   // Elm - 树形
+  MAPLE: "Maple",               // Maple - 树形
+  OLIVE: "Olive Green",           // 橄榄绿 - 树形
+  JUNIPER: "Juniper",         // Juniper - 树形
+  OAK: "Oak",                  // 橡木 - 树形
+  PINE: "Pine",                // Pine - 树形
+  CYPRESS_PINE: "Bosong",    // 柏松 - 树形
+  HAZEL: "Hazel",           // 灰棕色 - 树形
+  GRAMINALES: "Grass",      // 草类 - 草地
+  JAPANESE_CEDAR: "Japanese Cedar",  // 日本雪松 - 树形
+  JAPANESE_CYPRESS: "Japanese Cypress",// 日本柏树 - 树形
+  RAGWEED: "Ragweed",         // 豚草 - 杂草
+  MUGWORT: "Mugwort"          // 艾蒿 - 杂草
+};
+
+
 import axios from 'axios';
 // async function fetchForecastWithLimit(tasks, limit = 10) {
 //     const results = [];
@@ -124,3 +166,52 @@ export async function fetchForecast(latitude, longitude) {
         return null; 
       }
   }
+
+
+
+  
+export async function samplefetchPollen() {
+  // 取所有pollen源名字（key）
+  const allSources = Object.keys(pollenSources);
+
+  // 随机决定要几个pollen源（2到5个）
+  const count = Math.floor(Math.random() * 4) + 2; // 随机 [2,5]
+
+  const shuffled = allSources.sort(() => 0.5 - Math.random());
+  const selectedSources = shuffled.slice(0, count);
+  const result = {};
+  selectedSources.forEach(source => {
+    result[source] = Math.floor(Math.random() * 5) + 1; // 强度[1,5]
+  });
+  return result;
+}
+
+
+export function createPopupContent(suburbName, pollenData) {
+  // 创建区域名称部分
+  let popupContent = `
+    <div style="color: black; font-size: 14px;">
+      <strong>Suburb name:</strong> ${suburbName}<br/>
+  `;
+
+  // 遍历pollenData字典
+  Object.keys(pollenData).forEach(source => {
+    const sourceName = sourceNames[source];
+    const strength = pollenData[source];
+    const color = pollenSources[source]; // 假设有一个方法返回颜色
+    
+    // 添加每个pollenData的展示信息
+    popupContent += `
+      <p><strong>${sourceName}</strong>: ${strength} 
+        <span style="display:inline-block; width: 10px; height: 10px; background-color: ${color}; border-radius: 50%;"></span>
+      </p>
+    `;
+  });
+
+  // 结束HTML部分
+  popupContent += `
+    </div>
+  `;
+
+  return popupContent;
+}

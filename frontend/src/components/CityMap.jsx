@@ -11,7 +11,7 @@ import 'mapbox-gl/dist/mapbox-gl.js';
 import "./ThreeDmap.css";
 import ThreeDMapInfoPanel from './ThreeDMapInfoPanel';
 import { generatePollenPointsBySuburbs } from './generatePollenPoints';
-import { fetchForecast, fetchPollen } from './weatherQuery';
+import { fetchForecast, fetchPollen, samplefetchPollen, createPopupContent } from './weatherQuery';
 import * as turf from "@turf/turf";
 
 
@@ -84,7 +84,7 @@ const MapContainer = () => {
         type: "fill-extrusion",
         minzoom: 15,
         paint: {
-          "fill-extrusion-color": "#aaa",
+          "fill-extrusion-color": "#FFFFE0",
           "fill-extrusion-height": [
             "interpolate",
             ["linear"],
@@ -106,7 +106,7 @@ const MapContainer = () => {
       'source-layer': 'building',
       filter: ['==', 'extrude', 'true'], // 先只过滤可拉伸建筑
       paint: {
-        'fill-extrusion-color': '#ffffff', // 默认白色，后面再改
+        'fill-extrusion-color': '#ffffff',
         'fill-extrusion-height': [
           'interpolate',
           ['linear'],
@@ -289,18 +289,34 @@ const MapContainer = () => {
         map.on('mousemove', (e) => {
           const lng = e.lngLat.lng;
           const lat = e.lngLat.lat;
-
+          if (!popup.current) {
+            popup.current = new mapboxgl.Popup({
+              closeButton: false,
+              closeOnClick: false
+            });
+          }
+          const currentPollenData = pollenDataRef.current;
           const nearestSuburb = getNearestSuburb(lng, lat, suburbList);
+
+          let popupContent = createPopupContent(nearestSuburb.suburbName, currentPollenData[nearestSuburb.suburbName].pollen);
+          popup.current
+            .setLngLat([lng, lat])
+            .setHTML(popupContent)
+            .addTo(map);
+
           if (!nearestSuburb || (lastSuburb && lastSuburb === nearestSuburb)) return;
 
           lastSuburb = nearestSuburb;
 
-          const popupContent = `
-            <div style="color: black; font-size: 14px;">
-            <strong>Suburb name:</strong> ${nearestSuburb.suburbName}<br/>
-            <strong>Pollen Info:</strong> ${'Level 1' || 'None'}
-            <strong>Infection:</strong> ${'Grass' || 'Others'}
-          `;
+
+
+
+          popupContent = createPopupContent(lastSuburb.suburbName, currentPollenData[lastSuburb.suburbName].pollen);
+
+          popup.current
+            .setLngLat([lng, lat])
+            .setHTML(popupContent)
+            .addTo(map);
           // console.log("查下最近suburb天气",lastSuburb.forecast);
           if (lastSuburb) {
             setHoveredSuburb({
@@ -322,53 +338,48 @@ const MapContainer = () => {
               WindDirect: ""
             });
           }
-          if (!popup.current) {
-            popup.current = new mapboxgl.Popup({
-              closeButton: false,
-              closeOnClick: false
-            });
-          }
 
-          popup.current
-            .setLngLat([lng, lat])
-            .setHTML(popupContent)
-            .addTo(map);
-          const currentPollenData = pollenDataRef.current;
+
 
           const points = currentPollenData[nearestSuburb.suburbName].pollengeojson;
 
 
-
+          const colorExpression = ['case'];
+          const heightExpression = ['case'];
           const suburbFeature = currentPollenData[nearestSuburb.suburbName]?.feature;
           const buildings = map.querySourceFeatures('composite', {
             sourceLayer: 'building',
             filter: ['all', ['==', 'extrude', 'true']]
           });
           // .filter(feature => turf.booleanPointInPolygon(turf.point(feature.geometry.coordinates[0]), suburbFeature));
-          console.log("看下建筑范围", buildings);
-
-          if (!currentPollenData || !currentPollenData[nearestSuburb.suburbName]) return;
-
-
-          // console.log("看下维度范围",suburbFeature);
-
-          const colorExpression = ['case'];
-          const heightExpression = ['case'];
-
+          // console.log("看下建筑范围", buildings);
+          if (map.getLayer('highlight-buildings')) {
+            console.log('highlight-buildings layer exists!');
+          } else {
+            console.log('highlight-buildings layer does not exist.');
+          }
           buildings.forEach(building => {
             const id = building.id;
             if (id !== undefined) {
-              colorExpression.push(['==', ['get', 'id'], id], getRandomColor());
-              heightExpression.push(['==', ['get', 'id'], id], 8);
+              colorExpression.push(['==', ['id'], id], getRandomColor());
+              heightExpression.push(['==', ['id'], id], 8);
             }
           });
           colorExpression.push('#aaaaaa');
-
+          console.log("看下颜色到底有没有", colorExpression);
           heightExpression.push(8);
 
 
           map.setPaintProperty('highlight-buildings', 'fill-extrusion-color', colorExpression);
           map.setPaintProperty('highlight-buildings', 'fill-extrusion-height', heightExpression);
+          if (!currentPollenData || !currentPollenData[nearestSuburb.suburbName]) return;
+
+
+          // console.log("看下维度范围",suburbFeature);
+
+
+
+
 
           // 设置过滤器，只显示当前 suburb 区域内的建筑物
           map.setFilter('highlight-buildings', [
@@ -393,11 +404,79 @@ const MapContainer = () => {
               type: 'circle',
               source: 'random-points',
               paint: {
-                'circle-radius': 6,
+                'circle-radius': ['interpolate', ['linear'], ['zoom'],
+                  0, 12,
+                  4, 10,
+                  6, 7,
+                  8, 5,
+                  10, 5,
+                  15, 5,
+                  15.05, 5],
                 'circle-color': ['get', 'color'],
                 'circle-opacity': 0.8
               }
             });
+
+            // map.addLayer({
+            //   id: 'random-points-layer',
+            //   type: 'circle',
+            //   source: 'random-points',
+            //   paint: {
+            //     'circle-radius': ['+', 4, ['*', ['random'], 2]],
+            //     'circle-color': ['get', 'color'],
+            //     'circle-opacity': 0.6,
+            //     'circle-blur': 0.4,
+            //     'circle-stroke-width': 1,
+            //     'circle-stroke-color': '#ffffff',
+            //     'circle-stroke-opacity': 0.3
+            //   }
+            // });
+
+            let t_pollen = 0;
+            let speedFactor = 10; // 控制粒子漂移的基础速度
+            const zoomLevel = map.getZoom();
+            const t_pollenSpeed = speedFactor / Math.pow(2, zoomLevel) * 2;
+            let lifetime = 8; // 粒子生命周期
+            let distanceMultiplier = 1.5; // 用于增加飘动的距离
+            const windDirection = 180; // 东风
+            const windRad = windDirection * Math.PI / 180;
+            const generateNewParticle = (startX, startY) => {
+              // 每个粒子独立的生命周期
+              const randomFloatX = Math.sin(t_pollen * 2) * 0.2;
+              const randomFloatY = Math.sin(t_pollen * 1.5) * 0.2;
+
+              const moveX = Math.cos(windRad) * speedFactor * t_pollen * distanceMultiplier + randomFloatX;
+              const moveY = Math.sin(windRad) * speedFactor * t_pollen * distanceMultiplier + randomFloatY;
+
+              // 计算粒子透明度随时间变化（随着t_pollen增加，透明度减少）
+              const opacity = Math.max(0, 0.6 - (t_pollen / lifetime));
+
+              // 返回一个新的粒子的位置和透明度
+              return {
+                position: [startX + moveX, startY + moveY],
+                opacity: opacity
+              };
+            };
+
+            const animatePollen = () => {
+              t_pollen += t_pollenSpeed;
+
+              // 获取当前粒子的位置
+              const { position, opacity } = generateNewParticle(0, 0); // 假设起始位置是(0, 0)
+
+              // 更新地图上的粒子
+              map.setPaintProperty('random-points-layer', 'circle-translate', position);
+              map.setPaintProperty('random-points-layer', 'circle-opacity', opacity);
+
+              // 如果粒子完全消失（透明度为0），重新生成新的粒子
+              if (opacity <= 0) {
+                t_pollen = 0; // 重新开始生命周期
+              }
+
+              requestAnimationFrame(animatePollen);
+            };
+
+            animatePollen();
 
             map.setLayoutProperty('random-points-layer', 'visibility', 'visible');
           }
@@ -427,15 +506,15 @@ const MapContainer = () => {
     const vertexSource = `
       uniform mat4 u_matrix;
       attribute vec3 a_position;
-      void main() {
-        gl_Position = u_matrix * vec4(a_position, 1.0);
-        gl_PointSize = 8.0;
-      }`;
+          void main() {
+            gl_Position = u_matrix * vec4(a_position, 1.0);
+            gl_PointSize = 8.0;
+          } `;
 
     const fragmentSource = `
-      void main() {
-        gl_FragColor = vec4(1.0, 1.0, 1.0, 0.8);
-      }`;
+          void main() {
+            gl_FragColor = vec4(1.0, 1.0, 1.0, 0.8);
+          } `;
 
     const vertexShader = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertexShader, vertexSource);
@@ -522,7 +601,7 @@ const MapContainer = () => {
 
 
   // async function getSuburbsData(cityName) {
-  //   const geojsonPath = `/data/suburb_${cityName}.geojson`;
+  //   const geojsonPath = `/ data / suburb_${ cityName }.geojson`;
 
   //   const suburbList = [];
 
@@ -569,8 +648,7 @@ const MapContainer = () => {
   async function getSuburbsData(cityName, includeForecastAndPollen = false) {
     const geojsonPath = `/data/suburb_${cityName}.geojson`;
     const suburbList = [];
-    if (includeForecastAndPollen) { console.log("二层函数被调用一次"); }
-
+    console.log(geojsonPath);
     try {
       const response = await fetch(geojsonPath);
 
@@ -605,6 +683,7 @@ const MapContainer = () => {
           // console.log(forecast);
           // pollen = await fetchPollen(latitude, longitude);
         }
+        pollen = await samplefetchPollen();
 
         suburbList.push({
           suburbName,
