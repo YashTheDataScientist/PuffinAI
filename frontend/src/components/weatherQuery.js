@@ -42,6 +42,7 @@ export const sourceNames = {
 
 
 import axios from 'axios';
+import {gaussianPlumeAverageConcentration} from './CalculateHeight';
 // async function fetchForecastWithLimit(tasks, limit = 10) {
 //     const results = [];
 //     const executing = [];
@@ -214,4 +215,38 @@ export function createPopupContent(suburbName, pollenData) {
   `;
 
   return popupContent;
+}
+
+export function updateRectangleBox(totalPollenLevel,pollenHeight, box = null) {
+  if (!box) {
+    box = document.getElementById('pollen-info-box');
+    if (!box) return;  // 如果box不存在就不更新了
+  }
+
+  // const pollenHeight = Math.random() * (8 - 6) + 6;
+  // const totalPollenLevel = Object.values(pollen).reduce((sum, value) => sum + value, 0);
+  const averageConcentration = gaussianPlumeAverageConcentration(totalPollenLevel, 1, 1, 0, pollenHeight);
+
+  box.innerHTML = `
+    <strong>Average Pollen Concentration:</strong> ${averageConcentration} µg/m³<br/>
+    <strong>Pollen Distribution Height:</strong> ${pollenHeight} meters
+  `;
+}
+
+export function createRectangleBox(totalPollenLevel,pollenHeight) {
+  const box = document.createElement('div');
+  box.id = 'pollen-info-box';
+  box.style.position = 'absolute';
+  box.style.left = '50%';
+  box.style.bottom = '20px';
+  box.style.transform = 'translateX(-50%)';
+  box.style.backgroundColor = 'rgba(0, 0, 255, 0.1)';
+  box.style.border = '2px solid #000000';
+  box.style.padding = '10px';
+  box.style.borderRadius = '5px';
+  box.style.zIndex = '1000';
+
+  updateRectangleBox(totalPollenLevel,pollenHeight, box);  // ✅ 创建的时候就填好内容
+
+  document.body.appendChild(box);
 }
