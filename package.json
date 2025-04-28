@@ -1,0 +1,29 @@
+{
+  "name": "puffin-ai",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@react-spring/web": "^9.7.5",
+    "@splinetool/runtime": "^1.9.82",
+    "leaflet": "^1.9.4",
+    "papaparse": "^5.5.2",
+    "react": "^18.2.0",
+    "react-circular-progressbar": "^2.2.0",
+    "react-countup": "^6.4.2",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "jest": "^29.7.0",
+    "vite": "^5.0.12"
+  }
+}
