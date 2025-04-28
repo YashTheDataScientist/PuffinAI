@@ -11,15 +11,24 @@ import 'mapbox-gl/dist/mapbox-gl.js';
 import "./ThreeDmap.css";
 import ThreeDMapInfoPanel from './ThreeDMapInfoPanel';
 import { generatePollenPointsBySuburbs } from './generatePollenPoints';
-import { fetchForecast, fetchPollen, samplefetchPollen, createPopupContent } from './weatherQuery';
+import { fetchForecast, fetchPollen, samplefetchPollen, createPopupContent, createRectangleBox, updateRectangleBox } from './weatherQuery';
 import * as turf from "@turf/turf";
 
 
-function getRandomColor() {
-  const r = Math.floor(Math.random() * 256);
-  const g = Math.floor(Math.random() * 256);
-  const b = Math.floor(Math.random() * 256);
-  return `rgb(${r},${g},${b})`;
+// function getRandomColor() {
+//   const r = Math.floor(Math.random() * 256);
+//   const g = Math.floor(Math.random() * 256);
+//   const b = Math.floor(Math.random() * 256);
+//   return `rgb(${r},${g},${b})`;
+// }
+
+function hexToRgb(hex) {
+  hex = hex.replace('#', '');
+  const bigint = parseInt(hex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return [r, g, b];
 }
 
 const MapContainer = () => {
@@ -132,10 +141,63 @@ const MapContainer = () => {
 
       const map = new mapboxgl.Map({
         container: mapContainerRef.current,
-        style: 'mapbox://styles/mapbox/light-v10',
+        style: 'mapbox://styles/mapbox/dark-v11',
         center: [144.9631, -37.8136], // Melbourne
         zoom: 10,
       });
+
+
+      let transitionInterval = null; // 记录定时器，避免重复开多个
+      let currentRed = 0;
+      let currentGreen = 0;
+      let currentBlue = 0;
+
+      function startColorTransition() {
+        if (transitionInterval) {
+          clearInterval(transitionInterval); // 如果已有定时器，清除掉
+        }
+
+        const targetRed = 255;
+        const targetGreen = 255;
+        const targetBlue = 224;
+
+        transitionInterval = setInterval(() => {
+          let changed = false;
+
+          if (currentRed < targetRed) {
+            currentRed++;
+            changed = true;
+          } else if (currentRed > targetRed) {
+            currentRed--;
+            changed = true;
+          }
+
+          if (currentGreen < targetGreen) {
+            currentGreen++;
+            changed = true;
+          } else if (currentGreen > targetGreen) {
+            currentGreen--;
+            changed = true;
+          }
+
+          if (currentBlue < targetBlue) {
+            currentBlue++;
+            changed = true;
+          } else if (currentBlue > targetBlue) {
+            currentBlue--;
+            changed = true;
+          }
+
+          const color = `rgb(${currentRed}, ${currentGreen}, ${currentBlue})`;
+          map.setPaintProperty('highlight-buildings', 'fill-extrusion-color', color);
+
+          if (!changed) {
+            clearInterval(transitionInterval); // 如果已经到达目标颜色，就停止渐变
+            transitionInterval = null;
+          }
+        }, 20); // 每30毫秒更新一次
+      }
+
 
       map.on("load", () => {
         const points = [
@@ -295,6 +357,7 @@ const MapContainer = () => {
               closeOnClick: false
             });
           }
+
           const currentPollenData = pollenDataRef.current;
           const nearestSuburb = getNearestSuburb(lng, lat, suburbList);
 
@@ -304,6 +367,20 @@ const MapContainer = () => {
             .setHTML(popupContent)
             .addTo(map);
 
+
+
+          let zoomLevel = map.getZoom();
+          if (zoomLevel >= 15.05) {
+            const box = document.getElementById('pollen-info-box');
+            if (box) {
+              box.style.display = 'block';
+            }
+          } else {
+            const box = document.getElementById('pollen-info-box');
+            if (box) {
+              box.style.display = 'none';
+            }
+          }
           if (!nearestSuburb || (lastSuburb && lastSuburb === nearestSuburb)) return;
 
           lastSuburb = nearestSuburb;
@@ -324,7 +401,7 @@ const MapContainer = () => {
               weather: "🌤️ Sunny and cloudy",
               pollen: "🌲 High",
               floor: "No. 3",
-              WindLevel: "3",
+              WindLevel: "3 km/h",
               WindDirect: "Southeast"
             });
           } else {
@@ -344,49 +421,66 @@ const MapContainer = () => {
           const points = currentPollenData[nearestSuburb.suburbName].pollengeojson;
 
 
-          const colorExpression = ['case'];
-          const heightExpression = ['case'];
-          const suburbFeature = currentPollenData[nearestSuburb.suburbName]?.feature;
-          const buildings = map.querySourceFeatures('composite', {
-            sourceLayer: 'building',
-            filter: ['all', ['==', 'extrude', 'true']]
-          });
-          // .filter(feature => turf.booleanPointInPolygon(turf.point(feature.geometry.coordinates[0]), suburbFeature));
-          // console.log("看下建筑范围", buildings);
-          if (map.getLayer('highlight-buildings')) {
-            console.log('highlight-buildings layer exists!');
-          } else {
-            console.log('highlight-buildings layer does not exist.');
+          // const colorExpression = ['case'];
+          // const heightExpression = ['case'];
+          // const suburbFeature = currentPollenData[nearestSuburb.suburbName]?.feature;
+          // const buildings = map.querySourceFeatures('composite', {
+          //   sourceLayer: 'building',
+          //   filter: ['all', ['==', 'extrude', 'true']]
+          // });
+          // // .filter(feature => turf.booleanPointInPolygon(turf.point(feature.geometry.coordinates[0]), suburbFeature));
+          // // console.log("看下建筑范围", buildings);
+          // if (map.getLayer('highlight-buildings')) {
+          //   console.log('highlight-buildings layer exists!');
+          // } else {
+          //   console.log('highlight-buildings layer does not exist.');
+          // }
+          // buildings.forEach(building => {
+          //   const id = building.id;
+          //   if (id !== undefined) {
+          //     colorExpression.push(['==', ['id'], id], getRandomColor());
+          //     heightExpression.push(['==', ['id'], id], 8);
+          //   }
+          // });
+          // colorExpression.push('#aaaaaa');
+          // console.log("看下颜色到底有没有", colorExpression);
+          // heightExpression.push(8);
+          const modifiedHeight = (Math.random() * (8 - 6) + 6).toFixed(1);
+          const totalPollenLevel = (Object.values(currentPollenData[lastSuburb.suburbName].pollen).reduce((sum, value) => sum + value, 0)).toFixed(6);
+          const fixedStartColor = '#00FF00';
+          if (fixedStartColor) {
+            const [r, g, b] = hexToRgb(fixedStartColor);
+            currentRed = r;
+            currentGreen = g;
+            currentBlue = b;
+
+            startColorTransition();
           }
-          buildings.forEach(building => {
-            const id = building.id;
-            if (id !== undefined) {
-              colorExpression.push(['==', ['id'], id], getRandomColor());
-              heightExpression.push(['==', ['id'], id], 8);
-            }
-          });
-          colorExpression.push('#aaaaaa');
-          console.log("看下颜色到底有没有", colorExpression);
-          heightExpression.push(8);
+          // map.setPaintProperty('highlight-buildings', 'fill-extrusion-color', '#00FF00');
+          map.setPaintProperty('highlight-buildings', 'fill-extrusion-height', [
+            'case',
+            ['>=', ['get', 'height'], parseFloat(modifiedHeight)],  // 如果建筑的高度 >= modifiedHeight
+            parseFloat(modifiedHeight),  // 使用修改后的高度
+            ['get', 'height']  // 否则使用原始的高度
+          ]);
 
+          if (!document.getElementById('pollen-info-box')) {
+            createRectangleBox(totalPollenLevel, modifiedHeight);
+          } else {
+            const box = document.getElementById('pollen-info-box');
+            updateRectangleBox(totalPollenLevel, modifiedHeight, box);
+          }
 
-          map.setPaintProperty('highlight-buildings', 'fill-extrusion-color', colorExpression);
-          map.setPaintProperty('highlight-buildings', 'fill-extrusion-height', heightExpression);
+          // map.setPaintProperty('highlight-buildings', 'fill-extrusion-color', colorExpression);
+          // map.setPaintProperty('highlight-buildings', 'fill-extrusion-height', heightExpression);
           if (!currentPollenData || !currentPollenData[nearestSuburb.suburbName]) return;
 
-
-          // console.log("看下维度范围",suburbFeature);
-
-
-
-
-
           // 设置过滤器，只显示当前 suburb 区域内的建筑物
-          map.setFilter('highlight-buildings', [
-            'all',
-            ['==', 'extrude', 'true'],
-            ['within', suburbFeature.geometry]
-          ]);
+          // map.setFilter('highlight-buildings', [
+          //   'all',
+          //   ['==', 'extrude', 'true'],
+          //   ['within', suburbFeature.geometry]
+          // ]);
 
 
 
@@ -774,19 +868,6 @@ const MapContainer = () => {
           zIndex: 1000, // 与ThreeDMapInfoPanel同级，确保显示
         }}
       >
-        <button
-          onClick={() => navigate('/')} // 跳转到主页
-          style={{
-            backgroundColor: 'rgba(75, 85, 99, 0.6)',
-            color: 'white',
-            border: 'none',
-            padding: '10px 20px',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}
-        >
-          Home
-        </button>
         <button
           onClick={() => navigate(-1)} // 返回上一页
           style={{

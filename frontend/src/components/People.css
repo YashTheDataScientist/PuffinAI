@@ -1,0 +1,118 @@
+.body-container {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body-wrapper {
+  position: relative;
+  width: 300px;
+  height: 600px;
+}
+
+.body-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.magnifier-indicator {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  animation: float 2s ease-in-out infinite;
+}
+
+.magnifier-indicator:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.body-symptom-tooltip {
+  position: absolute;
+  right: -320px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: slideIn 0.3s ease forwards;
+}
+
+.body-symptom-tooltip::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent #2c3e50 transparent transparent;
+}
+
+.symptom-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ecf0f1;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
+}
+
+.symptom-description {
+  color: #e0e0e0;
+  margin-bottom: 15px;
+}
+
+.symptom-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.symptom-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.symptom-image:hover {
+  transform: scale(1.05);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-5px);
+  }
+} 
