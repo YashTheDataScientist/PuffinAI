@@ -42,33 +42,52 @@ const PlantIdentifier = () => {
   const renderResult = () => {
     if (!result) return null;
     if (result.message) return <p className={styles.infoText}>{result.message}</p>;
-    const best = result.results?.[0];
+    
+    const best = result.plantnet_result;
     if (!best) return <p className={styles.infoText}>No match found.</p>;
+  
+    const allergicInfoAvailable = result.allergic_info && Object.keys(result.allergic_info).length > 0;
+  
     return (
       <div className={styles.resultBox}>
-        <h4>Best Match:</h4>
-        <p><strong>Name:</strong> {best.species.scientificNameWithoutAuthor}</p>
+        <h4>Best Match</h4>
+        <p><strong>Name:</strong> {best.species?.scientificNameWithoutAuthor}</p>
         <p><strong>Score:</strong> {(best.score * 100).toFixed(2)}%</p>
+        <p><strong>Description:</strong> {result.wikipedia_summary || "No description available."}</p>
+  
+        {allergicInfoAvailable ? (
+          <>
+            <p><strong>Allergic Level:</strong> {result.allergic_info.allergy_level}</p>
+            <p><strong>Flowering Season:</strong> {result.allergic_info.flowering_season}</p>
+          </>
+        ) : (
+          <p className={styles.infoText}>Not a common pollen plant in Victoria</p>
+        )}
       </div>
     );
   };
+  
 
   return (
     <div className={styles.wrapper}>
-        <h3 className={styles.title}>Plant Identifier</h3>
-        <input
-            type="file"
-            accept="image/*"
-            id="fileUpload"
-            onChange={handleFileChange}
-            style={{ display: 'none' }}
-        />
-        <label htmlFor="fileUpload" className={styles.uploadBtn}>Upload Plant Image</label>
+      <h3 className={styles.title}>WANT TO KNOW THE PLANT NEAR YOU IS POLLEN SAFE?</h3>
+      <input
+        type="file"
+        accept="image/*"
+        id="fileUpload"
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+      />
+      <label htmlFor="fileUpload" className={styles.uploadBtn}>Upload Image</label>
+
+      <div className={styles.content}>
         {imagePreview && (
-        <img src={imagePreview} alt="preview" className={styles.preview} />
+          <img src={imagePreview} alt="preview" className={styles.preview} />
         )}
-        {loading && <div className={styles.spinner}></div>}
         {renderResult()}
+      </div>
+
+      {loading && <div className={styles.spinner}></div>}
     </div>
   );
 };
