@@ -1,0 +1,226 @@
+/* === 全局滚动设置（整页滑动）=== */
+html, body {
+  margin: 0;
+  padding: 0;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+/* 页面包裹容器 */
+.full-page-wrapper {
+  scroll-behavior: smooth;
+}
+
+/* 每一页（section）占满整个屏幕 */
+section {
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === Welcome / Intro Page 样式 === */
+.intro-page {
+  background: url('/mushroom.avif') center center / cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.intro-page::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 0;
+}
+
+.intro-page * {
+  position: relative;
+  z-index: 1;
+}
+
+.intro-page h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.intro-page p {
+  font-size: 1.25rem;
+  max-width: 720px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+/* === Scroll Down Arrow 动画 === */
+.arrow-container {
+  margin-top: 2rem;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scroll-label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.arrow-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.arrow-icon {
+  animation: bounce-fade 1.5s infinite ease-in-out;
+  stroke: white;
+  filter: drop-shadow(0 0 6px #ffffffaa);
+  transition: transform 0.3s;
+}
+
+.arrow-icon.delay-1 {
+  animation-delay: 0.2s;
+}
+.arrow-icon.delay-2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce-fade {
+  0% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+}
+
+.arrow-container:hover .arrow-icon {
+  transform: scale(1.15);
+  stroke: #f3c623;
+}
+
+/* === Intro 页的统计数据卡片区域 === */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.stat-card {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.stat-number {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* === 机器人页面布局（新增）=== */
+.robot-viewer-section {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f8ff;
+  display: flex; /* ✅ 左右布局 */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* === 症状页面 === */
+.symptom-page {
+  position: relative;
+  background-color: #f8fafc;
+  padding: 2rem;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.symptom-page h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0f172a;
+  margin-bottom: 24px;
+}
+
+.symptom-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+/* === 症状标题 + 返回按钮（如果有） === */
+.symptom-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.inline-back-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.inline-back-btn:hover {
+  background-color: #1e40af;
+}

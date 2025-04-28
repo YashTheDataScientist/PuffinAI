@@ -194,41 +194,66 @@
 //           <p className="section-subtitle">
 //             Find out real-time pollen levels by location and stay ahead of allergens.
 //           </p>
-//           <button onClick={() => parallaxRef.current.scrollTo(3)}>
-//             Continue
-//           </button>
-//         </div>
-//       </ParallaxLayer>
-//       {/* SECTION 4 - Thesis Theme (Text Left, Image Right) */}
-//       <ParallaxLayer offset={3} speed={0} factor={1} style={{ backgroundColor: '#fffde6' }} />
+// //           <button onClick={() => parallaxRef.current.scrollTo(3)}>
+// //             Continue
+// //           </button>
+// //         </div>
+// //       </ParallaxLayer>
+// //       {/* SECTION 4 - Thesis Theme (Text Left, Image Right) */}
+// //       <ParallaxLayer offset={3} speed={0} factor={1} style={{ backgroundColor: '#fffde6' }} />
 
-//       <ParallaxLayer offset={3} speed={0.2}>
-//         <div className="image-layer right">
-//           <img src={ThesisSVG} alt="Thesis Illustration" />
-//         </div>
-//       </ParallaxLayer>
+// //       <ParallaxLayer offset={3} speed={0.2}>
+// //         <div className="image-layer right">
+// //           <img src={ThesisSVG} alt="Thesis Illustration" />
+// //         </div>
+// //       </ParallaxLayer>
 
-//       <ParallaxLayer offset={3} speed={0.5}>
-//         <div className="text-layer left">
-//           <h1 className="section-title">Scan Your Plant</h1>
-//           <p className="section-subtitle">
-//             Snap a photo, and we’ll tell you if the plant is allergy-safe or not.
-//           </p>
-//           <button onClick={() => parallaxRef.current.scrollTo(4)}>
-//             Final Section
-//           </button>
-//         </div>
-//       </ParallaxLayer>
+// //       <ParallaxLayer offset={3} speed={0.5}>
+// //         <div className="text-layer left">
+// //           <h1 className="section-title">Scan Your Plant</h1>
+// //           <p className="section-subtitle">
+// //             Snap a photo, and we’ll tell you if the plant is allergy-safe or not.
+// //           </p>
+// //           <button onClick={() => parallaxRef.current.scrollTo(4)}>
+// //             Final Section
+// //           </button>
+// //         </div>
+// //       </ParallaxLayer>
 
 
-//     </Parallax>
+// //     </Parallax>
 
-//     </>
-//   );
-// }
+// //     </>
+// //   );
+// // }
 
-// export default App;
+// // export default App;
 
+
+
+// // import { Routes, Route } from 'react-router-dom';
+// // import Navbar from './components/Navbar';
+// // import HomePage from './pages/HomePage';
+// // import PollenPage from './pages/PollenPage';
+// // import TestPage from './pages/TestPage';
+// // import PlantPage from './pages/Allergyplantpage';
+
+
+
+// // function App() {
+// //   return (
+// //     <>
+// //       <Navbar />
+// //       <Routes>
+// //         <Route path="/" element={<HomePage />} />
+// //         <Route path="/pollen_watch" element={<PollenPage />} />
+// //         <Route path="/know_your_plants" element={<PlantPage />} />
+// //       </Routes>
+// //     </>
+// //   );
+// // }
+
+// // export default App;
 
 
 // import { Routes, Route } from 'react-router-dom';
@@ -237,24 +262,64 @@
 // import PollenPage from './pages/PollenPage';
 // import TestPage from './pages/TestPage';
 // import PlantPage from './pages/Allergyplantpage';
-
-
+// import PasswordPage from './pages/PasswordPage';
+// import TestPlantIdentifyPage from './pages/TestPlantIdentifyPage';
+// import ProtectedRoute from './components/ProtectedRoute';
+// import Country from './components/CountryMap';
+// import StateMap from './components/StateMap';
+// import CityMap from './components/CityMap';
 
 // function App() {
 //   return (
 //     <>
 //       <Navbar />
 //       <Routes>
-//         <Route path="/" element={<HomePage />} />
-//         <Route path="/pollen_watch" element={<PollenPage />} />
-//         <Route path="/know_your_plants" element={<PlantPage />} />
+
+//         <Route path="/auth" element={<PasswordPage />} />
+
+
+//         <Route
+//           path="/"
+//           element={
+//             <ProtectedRoute>
+//               <HomePage />
+//             </ProtectedRoute>
+//           }
+//         />
+//         <Route
+//           path="/pollen_watch"
+//           element={
+//             <ProtectedRoute>
+//               <PollenPage />
+//             </ProtectedRoute>
+//           }
+//         />
+//         <Route
+//           path="/know_your_plants"
+//           element={
+//             <ProtectedRoute>
+//               <PlantPage />
+//             </ProtectedRoute>
+//           }
+//         />
+//         <Route
+//           path="/plant_identify"
+//           element={
+//             <ProtectedRoute>
+//               <TestPlantIdentifyPage />
+//             </ProtectedRoute>
+//           }
+//         />
+
+//         <Route path="/country" element={<ProtectedRoute><Country /></ProtectedRoute>} />
+//         <Route path="/country/:stateName" element={<ProtectedRoute><StateMap /></ProtectedRoute>} />
+//         <Route path="/country/:stateName/:cityName" element={<ProtectedRoute><CityMap /></ProtectedRoute>} />
 //       </Routes>
 //     </>
 //   );
 // }
 
 // export default App;
-
 
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -268,6 +333,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Country from './components/CountryMap';
 import StateMap from './components/StateMap';
 import CityMap from './components/CityMap';
+import SymptomsPage from './pages/SymptomPage'; // ✅ 新加这一行
 
 function App() {
   return (
@@ -277,7 +343,6 @@ function App() {
 
         <Route path="/auth" element={<PasswordPage />} />
 
-
         <Route
           path="/"
           element={
@@ -286,6 +351,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/pollen_watch"
           element={
@@ -294,6 +360,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/know_your_plants"
           element={
@@ -302,6 +369,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/plant_identify"
           element={
@@ -311,9 +379,42 @@ function App() {
           }
         />
 
-        <Route path="/country" element={<ProtectedRoute><Country /></ProtectedRoute>} />
-        <Route path="/country/:stateName" element={<ProtectedRoute><StateMap /></ProtectedRoute>} />
-        <Route path="/country/:stateName/:cityName" element={<ProtectedRoute><CityMap /></ProtectedRoute>} />
+        <Route
+          path="/symptoms"
+          element={
+            <ProtectedRoute>
+              <SymptomsPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/country"
+          element={
+            <ProtectedRoute>
+              <Country />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/country/:stateName"
+          element={
+            <ProtectedRoute>
+              <StateMap />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/country/:stateName/:cityName"
+          element={
+            <ProtectedRoute>
+              <CityMap />
+            </ProtectedRoute>
+          }
+        />
+        
       </Routes>
     </>
   );
