@@ -1,0 +1,89 @@
+/* === 症状卡片基础样式 === */
+.symptom-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  flex: 1 1 calc(33.33% - 20px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  border-left: 6px solid transparent; /* 默认无色条 */
+}
+
+.symptom-card:hover {
+  transform: translateY(-4px);
+}
+
+/* === 严重程度对应样式（边框 + 背景色） === */
+.card--mild {
+  border-left: 6px solid #34d399;       /* green-400 */
+  background-color: #f0fdf4;            /* green-50 */
+}
+
+.card--moderate {
+  border-left: 6px solid #facc15;       /* yellow-400 */
+  background-color: #fefce8;            /* yellow-50 */
+}
+
+.card--severe {
+  border-left: 6px solid #f87171;       /* red-400 */
+  background-color: #fef2f2;            /* red-50 */
+}
+
+/* === 标题和段落样式 === */
+.symptom-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+
+.symptom-card p {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+
+/* === Learn More 按钮样式（仅展示，不可点击） === */
+.more-btn {
+  margin-top: 10px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background-color: #f1f5f9;
+  color: #64748b;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* === 颜色图例样式（可选放在症状区域上方） === */
+.severity-legend {
+  display: flex;
+  gap: 1.5rem;
+  margin: 20px 0 10px;
+  font-size: 0.95rem;
+  color: #334155;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.legend-box {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  border-radius: 3px;
+  margin-right: 6px;
+}
+
+.legend-box.mild {
+  background-color: #34d399;
+}
+.legend-box.moderate {
+  background-color: #facc15;
+}
+.legend-box.severe {
+  background-color: #f87171;
+}

@@ -1,0 +1,242 @@
+[
+  {
+    "Symptom":"Sneezing",
+    "Title_EN":"Sneezing",
+    "Description_EN":"Frequent sneezing is a hallmark symptom of pollen allergies, often occurring in bursts, especially in the morning.",
+    "Triggers_EN":[
+      "High pollen levels",
+      "Dust exposure",
+      "Sudden weather changes"
+    ],
+    "Remedies_EN":[
+      "Antihistamines",
+      "Staying indoors on high-pollen days",
+      "Using HEPA filters"
+    ],
+    "SeeDoctor_EN":[
+      "Persistent sneezing disrupting daily life",
+      "Sneezing with nosebleeds",
+      "Sneezing with wheezing"
+    ],
+    "Severity":"Mild",
+    "Duration":"Intermittent during pollen season"
+  },
+  {
+    "Symptom":"Runny Nose",
+    "Title_EN":"Runny Nose",
+    "Description_EN":"Runny nose is caused by inflammation of the nasal membranes due to pollen exposure.",
+    "Triggers_EN":[
+      "High pollen count",
+      "Outdoor exposure",
+      "Gardening or grass contact"
+    ],
+    "Remedies_EN":[
+      "Antihistamines (e.g., loratadine)",
+      "Saline nasal rinse",
+      "Air purifiers",
+      "Wearing masks outside"
+    ],
+    "SeeDoctor_EN":[
+      "Lasts more than 2 weeks",
+      "Nasal discharge turns yellow\/green",
+      "Fever, headache or facial pain"
+    ],
+    "Severity":"Mild",
+    "Duration":"Few days to several weeks"
+  },
+  {
+    "Symptom":"Nasal Congestion",
+    "Title_EN":"Nasal Congestion",
+    "Description_EN":"Nasal congestion causes blocked nasal passages, making it difficult to breathe through the nose.",
+    "Triggers_EN":[
+      "Pollen exposure",
+      "Cold air",
+      "Strong smells"
+    ],
+    "Remedies_EN":[
+      "Nasal corticosteroids",
+      "Decongestants",
+      "Steam inhalation"
+    ],
+    "SeeDoctor_EN":[
+      "Breathing difficulty",
+      "Severe sinus pressure",
+      "Persistent congestion > 10 days"
+    ],
+    "Severity":"Moderate",
+    "Duration":"Varies based on exposure"
+  },
+  {
+    "Symptom":"Itchy Nose",
+    "Title_EN":"Itchy Nose",
+    "Description_EN":"A tingling or itchy sensation in the nose, usually an early sign of an allergic response.",
+    "Triggers_EN":[
+      "High pollen levels",
+      "Dry or dusty environments"
+    ],
+    "Remedies_EN":[
+      "Avoid allergens",
+      "Antihistamine sprays",
+      "Keeping indoor air humidified"
+    ],
+    "SeeDoctor_EN":[
+      "Worsening symptoms despite medication",
+      "Interferes with sleep"
+    ],
+    "Severity":"Mild",
+    "Duration":"May persist throughout allergy season"
+  },
+  {
+    "Symptom":"Watery Eyes",
+    "Title_EN":"Watery Eyes",
+    "Description_EN":"Eyes may water excessively as a defense mechanism against allergens like pollen.",
+    "Triggers_EN":[
+      "Pollen",
+      "Windy conditions",
+      "Bright sunlight"
+    ],
+    "Remedies_EN":[
+      "Antihistamine eye drops",
+      "Wear sunglasses outdoors",
+      "Cold compresses"
+    ],
+    "SeeDoctor_EN":[
+      "Eye pain",
+      "Blurred vision",
+      "Severe redness"
+    ],
+    "Severity":"Mild",
+    "Duration":"Usually short-lived if exposure is reduced"
+  },
+  {
+    "Symptom":"Red Eyes",
+    "Title_EN":"Red Eyes",
+    "Description_EN":"Red or bloodshot eyes are common when pollen particles irritate the eye surface.",
+    "Triggers_EN":[
+      "Pollen",
+      "Smoke",
+      "Contact lenses"
+    ],
+    "Remedies_EN":[
+      "Eye drops",
+      "Avoid rubbing eyes",
+      "Cool compresses"
+    ],
+    "SeeDoctor_EN":[
+      "Prolonged redness",
+      "Eye discharge",
+      "Severe irritation"
+    ],
+    "Severity":"Moderate",
+    "Duration":"1–2 days to a week"
+  },
+  {
+    "Symptom":"Itchy Eyes",
+    "Title_EN":"Itchy Eyes",
+    "Description_EN":"Persistent itching sensation in the eyes, often accompanied by watery discharge.",
+    "Triggers_EN":[
+      "Airborne allergens",
+      "Pets",
+      "Pollen"
+    ],
+    "Remedies_EN":[
+      "Antihistamine eye drops",
+      "Wear sunglasses",
+      "Avoid outdoor exposure"
+    ],
+    "SeeDoctor_EN":[
+      "Severe swelling",
+      "Pain",
+      "Light sensitivity"
+    ],
+    "Severity":"Mild",
+    "Duration":"Few days to several weeks"
+  },
+  {
+    "Symptom":"Cough",
+    "Title_EN":"Cough",
+    "Description_EN":"Allergy-induced cough is often dry and triggered by postnasal drip.",
+    "Triggers_EN":[
+      "Dust",
+      "Pollen",
+      "Cold air"
+    ],
+    "Remedies_EN":[
+      "Stay hydrated",
+      "Use humidifier",
+      "Antihistamines"
+    ],
+    "SeeDoctor_EN":[
+      "Persistent cough > 3 weeks",
+      "Cough with wheezing",
+      "Cough with blood"
+    ],
+    "Severity":"Moderate",
+    "Duration":"1–3 weeks"
+  },
+  {
+    "Symptom":"Fatigue",
+    "Title_EN":"Fatigue",
+    "Description_EN":"Fatigue results from poor sleep due to nasal congestion or immune system strain.",
+    "Triggers_EN":[
+      "Chronic allergies",
+      "Sleep disruption",
+      "Overuse of antihistamines"
+    ],
+    "Remedies_EN":[
+      "Improve sleep environment",
+      "Treat nasal symptoms",
+      "Moderate exercise"
+    ],
+    "SeeDoctor_EN":[
+      "Unrelenting fatigue",
+      "Accompanied by fever or weakness"
+    ],
+    "Severity":"Moderate",
+    "Duration":"Ongoing during allergy flare-ups"
+  },
+  {
+    "Symptom":"Headache",
+    "Title_EN":"Headache",
+    "Description_EN":"Sinus pressure caused by congestion often leads to dull or throbbing headaches.",
+    "Triggers_EN":[
+      "Sinus congestion",
+      "Weather changes",
+      "Pollen overload"
+    ],
+    "Remedies_EN":[
+      "Decongestants",
+      "Cold packs",
+      "Pain relievers"
+    ],
+    "SeeDoctor_EN":[
+      "Persistent headache",
+      "Severe pain",
+      "Fever with headache"
+    ],
+    "Severity":"Moderate",
+    "Duration":"Varies with symptom severity"
+  },
+  {
+    "Symptom":"Shortness of Breath",
+    "Title_EN":"Shortness of Breath",
+    "Description_EN":"Difficulty breathing may result from nasal blockage or allergic asthma.",
+    "Triggers_EN":[
+      "Pollen",
+      "Mold",
+      "Physical exertion during allergy season"
+    ],
+    "Remedies_EN":[
+      "Inhalers (if prescribed)",
+      "Avoid exercise during high pollen days",
+      "Seek ventilated spaces"
+    ],
+    "SeeDoctor_EN":[
+      "Sudden shortness of breath",
+      "Chest tightness",
+      "Breathing difficulty while resting"
+    ],
+    "Severity":"Severe",
+    "Duration":"Acute or chronic depending on condition"
+  }
+]
