@@ -153,12 +153,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #2b531d;
+  background: #426d32f7;
   border-radius: 10px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.2);
   z-index: 1000;
   padding: 20px;
 }
+.map-popup button:hover {
+    background-color: #9ea99d;
+} 
 
 .carousel-button:hover {
   transform: scale(1.1);
@@ -339,4 +342,111 @@
   border-radius: 2px;
   background: linear-gradient(90deg, #b2e5c6 0%, #3bb77e 100%);
   opacity: 0.5;
+}
+
+
+.recommendation-popup {
+  text-align: center;
+  min-width: 800px;
+}
+
+.recommendation-popup h3 {
+  margin-bottom: 24px;
+  color: #dbec9e;
+  font-size: 1.8rem;
+}
+
+.similar-plant-card {
+  background: rgb(214, 230, 206);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.plants-comparison {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.plant-comparison-item {
+  flex: 1;
+  text-align: center;
+}
+
+.plant-comparison-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.plant-comparison-name {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #2d5a27;
+}
+
+.vs-icon-container {
+  padding: 0 20px;
+}
+
+.vs-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.differences-section {
+  text-align: center;
+  padding: 20px;
+  background-color: #166715aa;
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.differences-section h4 {
+  margin-bottom: 5px;
+  color: #dce9b7;
+}
+
+.differences-section p {
+  margin: 0;
+  line-height: 1.0;
+}
+
+.scientific-name {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #494545;
+  font-style: italic;
+}
+
+.recommendation-popup button {
+  margin-top: 20px;
+  padding: 8px 24px;
+  background-color: #ffffff;
+  color: #2d5a27;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.recommendation-popup button:hover {
+  background-color: #9ea99d;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 999;
+  pointer-events: auto;
 } 

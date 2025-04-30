@@ -3,6 +3,15 @@ import './PlantCarousel.css';
 import Papa from 'papaparse';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import dotIcon from '../assets/dot.png';
+
+const customIcon = new L.Icon({
+  iconUrl: dotIcon,
+  iconSize: [35, 35], 
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -12] 
+});
 
 const PLANT_LIST = [
   'Ryegrass',
@@ -239,6 +248,10 @@ const PlantCarousel = () => {
           />
         ))}
       </div>
+      {/* 遮罩层，仅在弹窗显示时渲染 */}
+      {(showMap || showRecommend) && (
+        <div className="modal-backdrop"></div>
+      )}
       {showMap && currentPlant && (
         <div className="map-popup">
           <MapContainer center={[-37.8136, 144.9631]} zoom={13} style={{ height: 400, width: 600 }}>
@@ -255,6 +268,7 @@ const PlantCarousel = () => {
                     parseFloat(loc.decimalLatitude),
                     parseFloat(loc.decimalLongitude)
                   ]}
+                  icon={customIcon}
                 >
                   <Popup>{loc.locality}</Popup>
                 </Marker>
@@ -264,7 +278,7 @@ const PlantCarousel = () => {
         </div>
       )}
       {showRecommend && (
-        <div className="map-popup" style={{textAlign: 'center', minWidth: 400}}>
+        <div className="map-popup recommendation-popup">
           <h3>Recommended Similar Pollen Safe Plant</h3>
           {(() => {
             const info = getSimilarPlantInfo();
@@ -276,23 +290,49 @@ const PlantCarousel = () => {
             }
             return (
               <div className="similar-plant-card">
-                {simName && (
-                  <>
-                    <div style={{display:'flex', flexDirection:'column', alignItems:'center', marginBottom:12}}>
-                      <img src={simImg} alt={simName} style={{width:180, height:180, objectFit:'contain', borderRadius:10, boxShadow:'0 2px 8px #0001', marginBottom:8}} onError={e => e.target.style.display='none'} />
-                      <div className="sp-title">{simName}</div>
-                    </div>
-                  </>
-                )}
-                <div className="sp-section"><span className="sp-label">Scientific name:</span> {info['Scientific name'] || 'N/A'}</div>
-                <div className="sp-section"><span className="sp-label">Difference:</span> {info['Difference'] || 'N/A'}</div>
-                {info['Mainly found in'] && (
-                  <div className="sp-section"><span className="sp-label">Mainly found in:</span> {info['Mainly found in']}</div>
-                )}
+                <div className="plants-comparison">
+                  <div className="plant-comparison-item">
+                    <img 
+                      src={PLANT_META[currentPlant['Common Name']]?.Image} 
+                      alt={currentPlant['Common Name']}
+                      className="plant-comparison-image"
+                    />
+                    <h4 className="plant-comparison-name">{currentPlant['Common Name']}</h4>
+                  </div>
+
+                  <div className="vs-icon-container">
+                    <img 
+                      src="/icons/vs.png" 
+                      alt="versus" 
+                      className="vs-icon"
+                    />
+                  </div>
+
+                  <div className="plant-comparison-item">
+                    <img 
+                      src={simImg} 
+                      alt={simName}
+                      className="plant-comparison-image"
+                      onError={e => e.target.style.display='none'}
+                    />
+                    <h4 className="plant-comparison-name">{simName}</h4>
+                  </div>
+                </div>
+
+                <div className="differences-section">
+                  <h4>Key Differences</h4>
+                  <p>{info['Difference'] || 'N/A'}</p>
+                </div>
+
+                <div className="scientific-name">
+                  Scientific name: {info['Scientific name'] || 'N/A'}
+                </div>
               </div>
             );
           })()}
-          <button onClick={() => setShowRecommend(false)}>Close</button>
+          <button onClick={() => setShowRecommend(false)}>
+            Close
+          </button>
         </div>
       )}
     </div>
