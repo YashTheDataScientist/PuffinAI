@@ -15,23 +15,28 @@ export default function LeafletMap() {
       .then(res => res.json())
       .then(data => {
         const geojsonLayer = L.geoJSON(data, {
-          style: () => ({
-            color: "#0078A8",
-            weight: 2,
-            fillOpacity: 0.3,
-          }),
+          style: (feature) => {
+            const isVictoria = feature.properties.STATE_NAME === 'Victoria';
+            return {
+              color: isVictoria ? '#0078A8' : '#888888', 
+              weight: 2,
+              fillColor: isVictoria ? '#66c2ff' : '#cccccc',
+              fillOpacity: 0.5,
+            };
+          },
           onEachFeature: (feature, layer) => {
             const stateName = feature.properties.STATE_NAME;
-
+            const isVictoria = stateName === 'Victoria';
             layer.bindTooltip(stateName, {
               permanent: false,
               direction: "center",
             });
-
+            if(isVictoria){
             layer.on('click', () => {
               // map.remove();
               navigate(`/country/${stateName}`);
             });
+          }
           }
         });
 

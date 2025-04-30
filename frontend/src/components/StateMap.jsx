@@ -54,16 +54,24 @@ export default function StateMap() {
               L.geoJSON(cityData, {
                 pointToLayer: (feature, latlng) => {
                   const cityName = feature.properties.name;
+                  const isMelbourne = cityName === 'Melbourne';
                   window.cityClickHandler = (stateName, cityName) => {
                     navigate(`/country/${stateName}/${cityName}`);
                   };
                   const cityLabel = L.divIcon({
                     className: 'city-label',
                     html: `
-                      <div style="position: relative; cursor: pointer;" onclick="window.cityClickHandler('${cityName}')">
-                        <img src="/icons/city.png" style="position: absolute; top: 0; left: 0; width: 32px; height: 32px;" />
-                        <div class="city-label-text" style="position: absolute; top: 35px; left: -16px; font-size: 12px; font-weight: bold; color: #000;">${cityName}</div>
-                      </div>`,
+                      <div style="position: relative; cursor: ${isMelbourne ? 'pointer' : 'default'};">
+                        <img src="/icons/city.png"
+                            style="position: absolute; top: 0; left: 0; width: 32px; height: 32px;
+                            ${!isMelbourne ? 'filter: grayscale(100%) opacity(0.4);' : ''}" />
+                        <div class="city-label-text"
+                            style="position: absolute; top: 35px; left: -16px; font-size: 12px; font-weight: bold;
+                            color: ${isMelbourne ? '#000' : '#999'};">
+                          ${cityName}
+                        </div>
+                      </div>
+                    `,
                     iconSize: [50, 50],
                     iconAnchor: [16, 50],
                   });
@@ -72,9 +80,15 @@ export default function StateMap() {
                 },
                 onEachFeature: (feature, layer) => {
                   const cityName = feature.properties.name;
+                  if (cityName === 'Melbourne') {
                   layer.on('click', () => {
                     navigate(`/country/${stateName}/${cityName}`);
                   });
+                } else {
+                  // 禁用点击事件
+                  layer.off('click');
+                  layer.options.interactive = false;
+                }
                 },
               }).addTo(map);
             });
@@ -82,7 +96,7 @@ export default function StateMap() {
       });
 
     return () => {
-      map.remove(); // 清理地图
+      map.remove();
     };
   }, [stateName]);
 
