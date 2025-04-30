@@ -1,13 +1,35 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SymptomCard from '../components/SymptomCard';
-import SplineRobotViewer from '../components/robot'; // ✅ 引入机器人
+import SplineRobotViewer from '../components/robot';
+import { Card, CardContent } from "@/components/ui/card"; // ✅ shadcn/ui 组件
+import { Info } from "lucide-react"; // ✅ 图标（需要 lucide-react）
 import './SymptomPage.css';
+
+function RobotInstructionPanel() {
+  return (
+    <Card className="w-80 shadow-lg bg-white rounded-xl border border-gray-200">
+      <CardContent className="flex flex-col items-center p-5 space-y-3">
+        <Info className="w-8 h-8 text-blue-500" />
+        <h2 className="text-lg font-semibold text-gray-800">How to Interact</h2>
+        <p className="text-sm text-center text-gray-600">
+          Hover over the <span className="text-red-500 font-semibold">red dots</span> on the robot
+          to discover allergy symptoms in specific body areas.
+        </p>
+        <img
+          src="/illustrations/hover-guide.svg"
+          alt="Interaction Guide"
+          className="w-32 h-auto mt-2"
+        />
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function SymptomPage() {
   const [symptoms, setSymptoms] = useState([]);
 
   const sectionIntroRef = useRef(null);
-  const sectionRobotRef = useRef(null); // ✅ 新增机器人ref
+  const sectionRobotRef = useRef(null);
   const sectionSymptomRef = useRef(null);
 
   useEffect(() => {
@@ -109,11 +131,15 @@ export default function SymptomPage() {
         </div>
       </section>
 
-      {/* === Step 0.5: Robot Viewer Section === */}
+      {/* === Step 0.5: Robot Viewer Section with Instruction === */}
       <section className="robot-viewer-section" ref={sectionRobotRef}>
-        {/* ✅ 加上标题 */}
-        <h1 className="robot-section-title">Allergic Reactions in Different Body Areas</h1>
-        <SplineRobotViewer />
+        <h1 className="robot-section-title fixed-title">
+          Allergic Reactions in Different Body Areas
+        </h1>
+        <div className="flex flex-row gap-10 items-center mt-12">
+          <SplineRobotViewer />
+          <RobotInstructionPanel />
+        </div>
       </section>
 
       {/* === Step 1: Symptom List Section === */}

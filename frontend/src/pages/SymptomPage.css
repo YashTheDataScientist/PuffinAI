@@ -164,11 +164,26 @@ section {
   width: 100vw;
   height: 100vh;
   background-color: #f0f8ff;
-  display: flex; /* ✅ 左右布局 */
+  display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   overflow: hidden;
+}
+
+/* ✅ 新增：让标题浮在顶部可见 */
+.robot-section-title.fixed-title {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background-color: #d1e7d0;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
 }
 
 /* === 症状页面 === */
