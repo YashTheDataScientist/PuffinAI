@@ -20,7 +20,7 @@ function generateRandomPoints(feature, numPoints,pollenData) {
   const [minLng, minLat, maxLng, maxLat] = turf.bbox(feature);
   let colors = [];
   Object.keys(pollenData).forEach((source) => {
-    console.log("看下颜色数据",pollenData);
+    // console.log("看下颜色数据",pollenData);
     const color = pollenSources[source]; 
     const intensity = pollenData[source];
     colors = colors.concat(Array(intensity).fill(color));

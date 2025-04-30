@@ -18,9 +18,9 @@ export async function generatePollenPointsBySuburbs(suburbNames) {
 
       return new Promise((resolve) => {
         const area = turf.area(feature);
-        const density = 1 / 10000;
+        const density = 1 / 20000;
         const totalPoints = Math.ceil(area * density);
-        const numWorkers = 2;
+        const numWorkers = 3;
         const pointsPerWorker = Math.ceil(totalPoints / numWorkers);
         const allPoints = [];
         const workers = [];

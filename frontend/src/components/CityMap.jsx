@@ -130,6 +130,7 @@ const MapContainer = () => {
 
 
   useEffect(() => {
+    let map = null;
     const loadSuburbs = async () => {
 
       const suburbList = await getSuburbsData(selectedCity, false);
@@ -139,7 +140,7 @@ const MapContainer = () => {
       mapboxgl.accessToken =
         "pk.eyJ1IjoibnlhbjAwMjUiLCJhIjoiY204dHBvdjdjMGRxajJyb2NhbTRuYnVzOCJ9.002RhpjH1--fp6uxHi1viA";
 
-      const map = new mapboxgl.Map({
+      map = new mapboxgl.Map({
         container: mapContainerRef.current,
         style: 'mapbox://styles/mapbox/dark-v11',
         center: [144.9631, -37.8136], // Melbourne
@@ -197,8 +198,6 @@ const MapContainer = () => {
           }
         }, 20); // 每30毫秒更新一次
       }
-
-
       map.on("load", () => {
         const points = [
           { lng: 144.9631, lat: -37.8116 },
@@ -584,11 +583,25 @@ const MapContainer = () => {
         });
       });
 
-      return () => map.remove(); // 清理 map
+      return () => {
+        map.remove();
+        const box = document.getElementById('pollen-info-box');
+        if (box) {
+          box.style.display = 'none';
+        }
+      } // 清理数据
     };
 
     loadSuburbs();
-
+    return () => {
+      if (map) {
+        map.remove(); // 销毁 map 实例
+      }
+      const box = document.getElementById('pollen-info-box');
+      if (box) {
+        box.style.display = 'none';
+      }
+    };
   }, [selectedCity]);
 
 
