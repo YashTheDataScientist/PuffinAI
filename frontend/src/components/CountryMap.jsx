@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function LeafletMap() {
   const navigate = useNavigate();
-
+  //test
   useEffect(() => {
     const map = L.map('map').setView([-25.2744, 133.7751], 4);
 
@@ -40,7 +40,7 @@ export default function LeafletMap() {
       .catch(error => {
         console.error("加载 GeoJSON 失败:", error);
       });
-
+      
     return () => {
       map.remove();
     };
