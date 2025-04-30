@@ -159,19 +159,34 @@ section {
   line-height: 1.4;
 }
 
-/* === 机器人页面布局（新增）=== */
+/* === 机器人页面布局（修复）=== */
 .robot-viewer-section {
   width: 100vw;
   height: 100vh;
   background-color: #f0f8ff;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
   overflow: hidden;
+  padding-top: 4.5rem; /* 给标题留空间 */
 }
 
-/* ✅ 新增：让标题浮在顶部可见 */
+/* ✅ 横向布局：机器人 + 说明卡片 */
+.robot-viewer-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  gap: 2.5rem;
+  width: 100%;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+/* ✅ 让标题浮在顶部可见 */
 .robot-section-title.fixed-title {
   position: absolute;
   top: 20px;
@@ -238,4 +253,9 @@ section {
 
 .inline-back-btn:hover {
   background-color: #1e40af;
+}
+
+/* === 说明卡片容器 === */
+.robot-instruction-wrapper {
+  margin-right: 3rem; /* 调整这个值控制靠右距离 */
 }

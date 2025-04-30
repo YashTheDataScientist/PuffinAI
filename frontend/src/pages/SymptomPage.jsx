@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SymptomCard from '../components/SymptomCard';
 import SplineRobotViewer from '../components/robot';
+import RobotCard from '../components/RobotCard'; // ✅ 新增引入
 import './SymptomPage.css';
 
 export default function SymptomPage() {
@@ -109,12 +110,17 @@ export default function SymptomPage() {
         </div>
       </section>
 
-      {/* === Step 0.5: Robot Viewer Section with Fixed Title === */}
+      {/* === Step 0.5: Robot Viewer Section with Layout and Card === */}
       <section className="robot-viewer-section" ref={sectionRobotRef}>
         <h1 className="robot-section-title fixed-title">
           Allergic Reactions in Different Body Areas
         </h1>
-        <SplineRobotViewer />
+        <div className="robot-viewer-layout">
+          <SplineRobotViewer />
+          <div className="robot-instruction-wrapper">
+            <RobotCard />
+          </div>
+        </div>
       </section>
 
       {/* === Step 1: Symptom List Section === */}
