@@ -110,7 +110,7 @@ const KnowYourArea = () => {
 
   useEffect(() => {
     if (matchedSuburb) {
-      Papa.parse('/src/assets/All_Plants_Victoria_With_suburbs.csv', {
+      Papa.parse('data/All_Plants_Victoria_With_suburbs.csv', {
         download: true,
         header: true,
         complete: (results) => {
