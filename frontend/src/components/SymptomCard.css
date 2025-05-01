@@ -18,21 +18,51 @@
 }
 
 .symptom-card.highlighted {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(45, 90, 39, 0.15);
-  border-color: #2d5a27;
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(45, 90, 39, 0.25);
+  border: 2px solid #2d5a27;
+  background: linear-gradient(135deg, #f3f9f3, #ffffff);
   animation: highlight-pulse 2s infinite;
+  position: relative;
+}
+
+.symptom-card.highlighted::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #4ade80, #2d5a27) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  animation: border-pulse 2s infinite;
 }
 
 @keyframes highlight-pulse {
   0% {
-    box-shadow: 0 8px 24px rgba(45, 90, 39, 0.15);
+    box-shadow: 0 12px 28px rgba(45, 90, 39, 0.25);
   }
   50% {
-    box-shadow: 0 8px 32px rgba(45, 90, 39, 0.25);
+    box-shadow: 0 16px 32px rgba(45, 90, 39, 0.35);
   }
   100% {
-    box-shadow: 0 8px 24px rgba(45, 90, 39, 0.15);
+    box-shadow: 0 12px 28px rgba(45, 90, 39, 0.25);
+  }
+}
+
+@keyframes border-pulse {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
   }
 }
 
@@ -50,6 +80,19 @@
 .symptom-card.card--severe {
   border-left: 4px solid #ef4444;
   background: linear-gradient(to right, rgba(239, 68, 68, 0.1), transparent 20%);
+}
+
+/* 当卡片同时具有 highlighted 和 severity 类时的样式 */
+.symptom-card.highlighted.card--mild::before {
+  background: linear-gradient(135deg, #4ade80, #2d5a27) border-box;
+}
+
+.symptom-card.highlighted.card--moderate::before {
+  background: linear-gradient(135deg, #fbbf24, #975712) border-box;
+}
+
+.symptom-card.highlighted.card--severe::before {
+  background: linear-gradient(135deg, #ef4444, #991b1b) border-box;
 }
 
 /* === 标题和段落样式 === */
