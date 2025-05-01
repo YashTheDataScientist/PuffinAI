@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SymptomCard from '../components/SymptomCard';
 import SplineRobotViewer from '../components/robot';
-import RobotCard from '../components/RobotCard'; // ✅ 新增引入
+import RobotCard from '../components/RobotCard'; 
 import './SymptomPage.css';
 
 export default function SymptomPage() {
   const [symptoms, setSymptoms] = useState([]);
+  const [selectedSymptom, setSelectedSymptom] = useState(null);
+  const symptomRefs = useRef({});
 
   const sectionIntroRef = useRef(null);
   const sectionRobotRef = useRef(null);
@@ -54,6 +56,27 @@ export default function SymptomPage() {
       duration: s.Duration || '',
     }))
     .sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
+
+  const handleSymptomSelect = (symptom) => {
+    setSelectedSymptom(symptom);
+    // 先滚动到症状列表区域
+    scrollToRef(sectionSymptomRef);
+    
+    // 等待滚动完成后，再滚动到具体症状卡片
+    setTimeout(() => {
+      const symptomCard = symptomRefs.current[symptom];
+      if (symptomCard) {
+        const headerOffset = 40;
+        const elementPosition = symptomCard.getBoundingClientRect().top;
+        const offsetPosition = window.scrollY + elementPosition - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }
+    }, 500); // 等待500ms确保页面已经滚动到症状列表区域
+  };
 
   return (
     <div className="full-page-wrapper">
@@ -116,7 +139,7 @@ export default function SymptomPage() {
           Allergic Reactions in Different Body Areas
         </h1>
         <div className="robot-viewer-layout">
-          <SplineRobotViewer />
+          <SplineRobotViewer onSymptomSelect={handleSymptomSelect} />
           <div className="robot-instruction-wrapper">
             <RobotCard />
           </div>
@@ -131,7 +154,15 @@ export default function SymptomPage() {
 
         <div className="symptom-list">
           {normalizedSymptoms.map((sym, idx) => (
-            <SymptomCard key={idx} {...sym} />
+            <div
+              key={idx}
+              ref={(el) => (symptomRefs.current[sym.symptom] = el)}
+            >
+              <SymptomCard 
+                {...sym} 
+                isHighlighted={selectedSymptom === sym.symptom}
+              />
+            </div>
           ))}
         </div>
       </section>

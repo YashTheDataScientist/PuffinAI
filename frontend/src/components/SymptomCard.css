@@ -1,49 +1,80 @@
 /* === 症状卡片基础样式 === */
 .symptom-card {
-  background-color: white;
-  padding: 20px;
+  background: #ffffff;
   border-radius: 12px;
-  flex: 1 1 calc(33.33% - 20px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease;
-  position: relative;
-  overflow: hidden;
-  border-left: 6px solid transparent; /* 默认无色条 */
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e0e9e2;
+  width: 380px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .symptom-card:hover {
   transform: translateY(-4px);
 }
 
+.symptom-card.highlighted {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(45, 90, 39, 0.15);
+  border-color: #2d5a27;
+  animation: highlight-pulse 2s infinite;
+}
+
+@keyframes highlight-pulse {
+  0% {
+    box-shadow: 0 8px 24px rgba(45, 90, 39, 0.15);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(45, 90, 39, 0.25);
+  }
+  100% {
+    box-shadow: 0 8px 24px rgba(45, 90, 39, 0.15);
+  }
+}
+
 /* === 严重程度对应样式（边框 + 背景色） === */
-.card--mild {
-  border-left: 6px solid #34d399;       /* green-400 */
-  background-color: #f0fdf4;            /* green-50 */
+.symptom-card.card--mild {
+  border-left: 4px solid #4ade80;
+  background: linear-gradient(to right, rgba(74, 222, 128, 0.1), transparent 20%);
 }
 
-.card--moderate {
-  border-left: 6px solid #facc15;       /* yellow-400 */
-  background-color: #fefce8;            /* yellow-50 */
+.symptom-card.card--moderate {
+  border-left: 4px solid #fbbf24;
+  background: linear-gradient(to right, rgba(251, 191, 36, 0.1), transparent 20%);
 }
 
-.card--severe {
-  border-left: 6px solid #f87171;       /* red-400 */
-  background-color: #fef2f2;            /* red-50 */
+.symptom-card.card--severe {
+  border-left: 4px solid #ef4444;
+  background: linear-gradient(to right, rgba(239, 68, 68, 0.1), transparent 20%);
 }
 
 /* === 标题和段落样式 === */
 .symptom-card h3 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  color: #1a3d14;
+  margin: 0 0 12px 0;
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #1e293b;
 }
 
 .symptom-card p {
-  font-size: 0.95rem;
-  color: #475569;
-  margin-bottom: 0.3rem;
-  line-height: 1.4;
+  margin: 0 0 12px 0;
+  color: #2a2a2a;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.symptom-card p:last-child {
+  margin-bottom: 0;
+}
+
+.symptom-card p strong {
+  color: #1a3d14;
+  font-weight: 600;
+  margin-right: 4px;
 }
 
 /* === Learn More 按钮样式（仅展示，不可点击） === */
@@ -86,4 +117,12 @@
 }
 .legend-box.severe {
   background-color: #f87171;
+}
+
+/* 响应式布局调整 */
+@media (max-width: 768px) {
+  .symptom-card {
+    width: 100%;
+    min-height: auto;
+  }
 }

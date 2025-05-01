@@ -172,8 +172,8 @@ const PlantCarousel = () => {
           <h1 className="plant-intro-title">
             Explore our plant gallery to discover common allergenic plants found across Victoria.
           </h1>
-        </div>
-
+            </div>
+            
         {/* 中间植物展示 */}
         <div className="plant-content-col">
           {currentPlant && (
@@ -184,13 +184,7 @@ const PlantCarousel = () => {
                   alt={currentPlant['Common Name']}
                   className="plant-main-image"
                 />
-              </div>
-              <div className="plant-main-info-col">
-                <h2 className="plant-main-name">{currentPlant['Common Name']}</h2>
-                <div className={`risk-badge ${PLANT_META[currentPlant['Common Name']]?.risk?.toLowerCase()}`}>
-                  {PLANT_META[currentPlant['Common Name']]?.risk} Risk
-                </div>
-                <div className="plant-main-description">
+                <div className="plant-main-desc-box">
                   {PLANT_META[currentPlant['Common Name']]?.desc
                     ? PLANT_META[currentPlant['Common Name']].desc.split('\n').map((line, idx) => {
                         const match = line.match(/^(Season|Region|Note):(.+)$/);
@@ -199,17 +193,40 @@ const PlantCarousel = () => {
                             <div key={idx} className="plant-main-desc-row">
                               <span className="plant-main-desc-label">{match[1]}:</span>
                               <span>{match[2]}</span>
-                            </div>
+            </div>
                           );
                         }
                         return <div key={idx}>{line}</div>;
                       })
                     : ''}
+          </div>
+              </div>
+              <div className="plant-indicators">
+                <div className="indicator-card">
+                  <div className="indicator-label">Risk Level</div>
+                  <div className={`indicator-value risk-${PLANT_META[currentPlant['Common Name']]?.risk?.toLowerCase()}`}>
+                    {PLANT_META[currentPlant['Common Name']]?.risk}
+              </div>
+                </div>
+                <div className="indicator-card">
+                  <div className="indicator-label">Population</div>
+                  <div className="indicator-value">
+                    {plantLocations.filter(p => p['Common Name'] === currentPlant['Common Name']).length} Areas
+                  </div>
+                </div>
+                <div className="indicator-card">
+                  <div className="indicator-label">Season</div>
+                  <div className="indicator-value">
+                    {PLANT_META[currentPlant['Common Name']]?.desc.match(/Season:([^\\n]+)/)?.[1].trim()}
+                  </div>
                 </div>
               </div>
+              <div className="plant-main-info-col">
+                <h2 className="plant-main-name">{currentPlant['Common Name']}</h2>
+              </div>
             </>
-          )}
-        </div>
+              )}
+            </div>
 
         {/* 右侧按钮和说明 */}
         <div className="plant-actions-col">

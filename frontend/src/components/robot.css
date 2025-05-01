@@ -1,4 +1,4 @@
-.spline-container {
+.robot-container {
   width: 100%;
   height: 100%;
   min-height: 400px;
@@ -7,14 +7,23 @@
 }
 
 .model-wrapper {
-  width: 60%; /* ✅ 让模型在屏幕上稍微居中，避免太靠右 */
+  width: 60%;
   height: 100%;
   position: relative;
 }
 
-.spline-canvas {
+.lottie-container {
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lottie-player {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 500px;
 }
 
 /* ✅ controls 和 debug-info 可以留着 */
@@ -27,7 +36,7 @@
 
 .debug-info {
   background: rgba(0,0,0,0.7);
-  color: white;
+  color: rgb(65, 29, 29);
   padding: 5px;
   margin-top: 5px;
   border-radius: 4px;
@@ -36,18 +45,18 @@
 /* ✨ 调整提示框，整体向右大幅偏移 */
 .symptom-tooltip {
   position: absolute;
-  left: calc(70% + 40px); /* ✅ 直接靠左计算距离，让提示框在机器人右边远一点 */
+  right: -320px;
   top: 50%;
   transform: translateY(-50%);
-  width: 320px;
-  background: #ffffff;
+  width: 280px;
+  background: #f2efe9;
   color: #333333;
   padding: 20px;
   border-radius: 12px;
   font-size: 16px;
   line-height: 1.6;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  border: 1px solid #e0e0e0;
+  border: 1px solid #decbcb;
   opacity: 0;
   transition: all 0.3s ease;
   animation: slideIn 0.3s ease forwards;
@@ -66,18 +75,20 @@
   border-color: transparent #ffffff transparent transparent;
 }
 
-.symptom-tooltip .symptom-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #222222;
-  border-bottom: 1px solid #dddddd;
+.symptom-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a3d14 !important;
+  margin-bottom: 8px;
   padding-bottom: 8px;
+  border-bottom: 1px solid #e0e9e2;
 }
 
-.symptom-tooltip .symptom-description {
-  color: #555555;
+.symptom-description {
+  color: #2a2a2a !important;
+  font-size: 0.9rem;
   margin-bottom: 12px;
+  font-weight: 600;
 }
 
 /* ✨ 图片区 */
@@ -134,6 +145,13 @@
   box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.3);
   animation: pulse 2s infinite;
   z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.indicator-dot.selected {
+  background-color: #2d5a27;
+  box-shadow: 0 0 0 6px rgba(45, 90, 39, 0.3);
+  animation: selected-pulse 2s infinite;
 }
 
 @keyframes pulse {
@@ -146,4 +164,66 @@
   100% {
     box-shadow: 0 0 0 0 rgba(255, 68, 68, 0);
   }
+}
+
+@keyframes selected-pulse {
+  0% {
+    box-shadow: 0 0 0 6px rgba(45, 90, 39, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(45, 90, 39, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 6px rgba(45, 90, 39, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .robot-container {
+    flex-direction: column;
+  }
+
+  .model-wrapper {
+    width: 100%;
+  }
+
+  .symptom-tooltip {
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    top: auto;
+    right: auto;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .symptom-tooltip::before {
+    display: none;
+  }
+}
+
+.symptoms-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.symptom-item {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1a3d14;
+  font-size: 0.95rem;
+  border: 1px solid #e0e9e2;
+  font-weight: 500;
+}
+
+.symptom-item:hover {
+  background: #1a3d14;
+  color: white;
+  transform: translateX(4px);
 }
