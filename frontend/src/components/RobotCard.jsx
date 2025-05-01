@@ -6,7 +6,7 @@ export default function RobotCard() {
     <div className="robot-card">
       <h2>How to Interact</h2>
       <p>
-        Hover over the <span>red dots</span> on the robot to explore allergy symptoms for that body part.
+        Click the <span>red dots</span> on the different body part and choose a symptom to see more details.
       </p>
       <img
         src="/illustrations/hover-guide.svg"
