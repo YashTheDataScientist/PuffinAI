@@ -1,0 +1,147 @@
+.pollen-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .section-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  
+  /* Text wrapper */
+  .pollen-text {
+    position: relative;
+    z-index: 3;
+    top: 20%;
+    left: 15%;
+    padding-left: 5vw;
+    width: 60%;
+  }
+  
+  .text-box {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-box h2 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: #2c2c2c;
+  }
+  
+  .text-box p {
+    font-size: 1.3rem;
+    line-height: 1.9;
+    color: #333;
+  }
+  
+  /* Floating pollen */
+  .pollen {
+    position: absolute;
+    z-index: 2;
+    opacity: 0.6;
+  }
+  
+  .pollen.float {
+    animation-name: floatLeft;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  
+  @keyframes floatLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100vw);
+    }
+  }
+  
+  /* Main pollen */
+  .main-pollen {
+    position: absolute;
+    top: 50%;
+    right: 4%;
+    transform: translateY(-50%);
+    width: 120px;
+    z-index: 4;
+    opacity: 1;
+    animation: floatUpDown 4s ease-in-out infinite;
+  }
+  
+  @keyframes floatUpDown {
+    0%   { transform: translateY(-50%) translateX(0); }
+    50%  { transform: translateY(-60%) translateX(5px); }
+    100% { transform: translateY(-50%) translateX(0); }
+  }
+  
+  /* Custom pollen start positions + slower durations */
+  .pollen-1  { top: 10%; left: 100%; width: 40px; animation-duration: 30s; z-index: 2; }
+  .pollen-2  { top: 30%; left: 120%; width: 28px; animation-duration: 35s; z-index: 3; }
+  .pollen-3  { top: 50%; left: 138%; width: 33px; animation-duration: 34s; z-index: 1; }
+  .pollen-4  { top: 70%; left: 105%; width: 25px; animation-duration: 38s; z-index: 2; }
+  .pollen-5  { top: 20%; left: 109%; width: 45px; animation-duration: 32s; z-index: 3; }
+  .pollen-6  { top: 40%; left: 146%; width: 32px; animation-duration: 36s; z-index: 5; }
+  .pollen-7  { top: 60%; left: 90%; width: 38px; animation-duration: 37s; z-index: 2; }
+  .pollen-8  { top: 15%; left: 112%; width: 30px; animation-duration: 39s; z-index: 1; }
+  .pollen-9  { top: 45%; left: 87%; width: 36px; animation-duration: 40s; z-index: 3; }
+  .pollen-10 { top: 65%; left: 10%; width: 31px; animation-duration: 31s; z-index: 2; }
+  .pollen-11 { top: 5%;  left: 46%; width: 26px; animation-duration: 33s; z-index: 4; }
+  .pollen-12 { top: 35%; left: 69%; width: 39px; animation-duration: 29s; z-index: 5; }
+  .pollen-13 { top: 55%; left: 126%; width: 27px; animation-duration: 37s; z-index: 2; }
+  .pollen-14 { top: 75%; left: 101%; width: 34px; animation-duration: 41s; z-index: 3; }
+  .pollen-15 { top: 25%; left: 77%; width: 35px; animation-duration: 33s; z-index: 1; }
+  
+
+  .section-transition {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    z-index: 4;
+  }
+  
+  .section-transition p {
+    font-size: 1.2rem;
+    color: #444;
+    background: rgba(255, 255, 255, 0.85);
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+
+  .down-arrow {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    animation: bounceDown 2s infinite;
+    opacity: 0.6;
+  }
+  
+  .down-arrow span {
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  /* Bounce animation */
+  @keyframes bounceDown {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(8px);
+    }
+  }
+  

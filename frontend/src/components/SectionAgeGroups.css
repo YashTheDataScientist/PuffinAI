@@ -1,0 +1,110 @@
+.section3-container {
+  width: 100%;
+  height: 100vh;
+  display: block;
+  background-color: #0d1b2a;
+  color: white;
+  overflow: hidden;
+}
+
+/* Left Panel */
+.section3-left {
+  width: 20%;
+  float: left;
+  height: 100%;
+  background-color: #1f2a40;
+  padding: 2.5rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.section3-left h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.section3-left p {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.symptom-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.symptom-item img {
+  width: 45px;
+  height: 45px;
+}
+
+/* Right Panel */
+.section3-right {
+  width: 80%;
+  float: left;
+  height: 100%;
+  padding: 3rem 4rem;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+}
+
+.section3-heading {
+  font-size: 2.2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  min-height: 80px;
+}
+
+/* Percentage Block */
+.percentage-wrapper {
+  margin-bottom: 2rem;
+}
+
+.percentage-counter {
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: #ffd166;
+}
+
+.percentage-label {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-top: 0.2rem;
+}
+
+/* Image Row */
+.section3-images {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 3rem;
+  position: absolute;
+  bottom: 7rem;
+  left: 0;
+  right: 0;
+}
+
+.age-img {
+  width: 240px;
+  height: auto;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.age-img:hover {
+  transform: scale(1.07);
+}
+
+/* Bottom note */
+.section3-note {
+  position: absolute;
+  bottom: 3rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  opacity: 0.7;
+}

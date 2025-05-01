@@ -1,0 +1,181 @@
+.learn-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: white;
+  font-family: 'Quicksand', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 🌼 Fixed Pollen Button */
+.pollen-fixed-wrapper {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 25;
+  cursor: pointer;
+}
+
+.pollen-click {
+  width: 70px;
+  opacity: 0.9;
+  transition: transform 0.3s ease;
+}
+
+/* 💬 Tooltip */
+.pollen-tooltip {
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+  z-index: 30;
+  background-color: #3a2b5c;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: fadeInTooltip 1.2s forwards;
+}
+
+@keyframes fadeInTooltip {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🧭 Dropdown Menu */
+.pollen-menu {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 24;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pollen-menu button {
+  background: #e6dbf6;
+  color: #3a2b5c;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.pollen-menu button:hover {
+  background: #d2c4ed;
+}
+
+/* 📘 Intro Section */
+.intro-box {
+  height: 100vh;
+  width: 100%;
+  background-color: #d9c6f0; /* darker pastel purple */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 6vw;
+  position: relative;
+  z-index: 2;
+}
+.intro-box {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 4rem 6vw;
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+/* 🔮 Purple background image */
+.purple-bg {
+  background-image: url('../assets/purple-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 📝 Intro text styles */
+.intro-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro-left h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.intro-left p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* 📍 Section Layouts */
+.allergy-map-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 2rem 4%;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.left-calendar-column {
+  flex: 0 0 40%;
+  height: 70vh;
+  max-height: 640px;
+  min-height: 560px;
+  margin: 0;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.section-pollen-map {
+  flex: 0 0 58%;
+  height: 70vh;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}

@@ -335,6 +335,9 @@ import Country from './components/CountryMap';
 import StateMap from './components/StateMap';
 import CityMap from './components/CityMap';
 import SymptomsPage from './pages/SymptomPage'; 
+import LearnAboutPollen from './pages/LearnAboutPollen';
+import KnowYourArea from './pages/KnowYourArea';
+
 
 function App() {
   return (
@@ -367,6 +370,22 @@ function App() {
           element={
             <ProtectedRoute>
               <PlantPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/know_your_area"
+          element={
+            <ProtectedRoute>
+              <KnowYourArea />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/learn"
+          element={
+            <ProtectedRoute>
+              <LearnAboutPollen />
             </ProtectedRoute>
           }
         />
