@@ -188,7 +188,186 @@
   background: #f8fbf5;
 }
 
-/* 响应式支持 */
+/* 指标卡片样式 */
+.plant-indicators {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.indicator-card {
+  flex: 1;
+  background: linear-gradient(135deg, #f4fff4 60%, #d6f5e6 100%);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1.5px solid #b2e5c6;
+  position: relative;
+}
+
+.indicator-label {
+  font-size: 0.85rem;
+  color: #2d5a27;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.indicator-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a3d14;
+  line-height: 1.2;
+}
+
+.indicator-value.risk-high {
+  color: #b91c1c;
+  font-weight: 800;
+}
+
+.indicator-value.risk-medium {
+  color: #975712;
+  font-weight: 800;
+}
+
+.indicator-value.risk-low {
+  color: #166534;
+  font-weight: 800;
+}
+
+/* 弹窗样式 */
+.map-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #426d32f7;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  z-index: 1000;
+  padding: 24px;
+  color: #fff;
+}
+
+.map-popup button {
+  margin-top: 20px;
+  padding: 10px 24px;
+  background-color: #ffffff;
+  color: #2d5a27;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.map-popup button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.recommendation-popup {
+  text-align: center;
+  min-width: 800px;
+  max-width: 90vw;
+}
+
+.recommendation-popup h3 {
+  margin-bottom: 24px;
+  color: #dbec9e;
+  font-size: 1.8rem;
+}
+
+.similar-plant-card {
+  background: rgb(214, 230, 206);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.plants-comparison {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.plant-comparison-item {
+  flex: 1;
+  text-align: center;
+}
+
+.plant-comparison-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.plant-comparison-name {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  color: #2d5a27;
+  font-weight: 600;
+}
+
+.vs-icon-container {
+  padding: 0 20px;
+}
+
+.vs-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.differences-section {
+  text-align: left;
+  padding: 24px;
+  background-color: #166715aa;
+  border-radius: 12px;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.differences-section h4 {
+  margin-bottom: 12px;
+  color: #dce9b7;
+  font-size: 1.2rem;
+}
+
+.differences-section p {
+  margin: 0;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.scientific-name {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #494545;
+  font-style: italic;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  pointer-events: auto;
+}
+
+/* 响应式布局 */
 @media (max-width: 1200px) {
   .plant-main-section {
     grid-template-columns: 1fr;
@@ -227,6 +406,20 @@
     width: 100%;
     margin-top: 20px;
   }
+
+  .recommendation-popup {
+    min-width: 90vw;
+    margin: 20px;
+  }
+
+  .plants-comparison {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .vs-icon-container {
+    padding: 12px 0;
+  }
 }
 
 @media (max-width: 900px) {
@@ -238,5 +431,25 @@
   .plant-thumbnails-bar {
     gap: 10px;
     padding: 10px 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .plant-indicators {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .indicator-card {
+    padding: 16px;
+  }
+
+  .indicator-value {
+    font-size: 1.2rem;
+  }
+
+  .plant-comparison-image {
+    width: 160px;
+    height: 160px;
   }
 }
