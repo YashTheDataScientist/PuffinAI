@@ -51,7 +51,7 @@ const KnowYourArea = () => {
   const [uniquePlants, setUniquePlants] = useState([]);
 
   useEffect(() => {
-    Papa.parse('/src/assets/suburb_plant_density.csv', {
+    Papa.parse('/data/suburb_plant_density.csv', {
       download: true,
       header: true,
       complete: (results) => {
