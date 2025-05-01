@@ -222,14 +222,15 @@ section {
   margin-bottom: 24px;
 }
 
+/* ✅ 修改后的样式 */
 .symptom-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 24px;
   width: 100%;
-  max-width: 1600px;
+  max-width: 100%;     /* ✅ 原为 1600px，改成 100% */
   margin: 0 auto;
-  padding: 24px;
+  padding: 0 2vw;       /* ✅ 原为 24px，改成 vw 单位以适配不同屏幕 */
   box-sizing: border-box;
 }
 
@@ -267,5 +268,5 @@ section {
 
 /* === 说明卡片容器 === */
 .robot-instruction-wrapper {
-  margin-right: 3rem; /* 调整这个值控制靠右距离 */
+  margin-right: 3rem;
 }

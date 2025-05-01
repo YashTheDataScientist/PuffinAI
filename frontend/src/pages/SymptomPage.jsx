@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SymptomCard from '../components/SymptomCard';
 import SplineRobotViewer from '../components/robot';
-import RobotCard from '../components/RobotCard'; 
+import RobotCard from '../components/RobotCard';
 import './SymptomPage.css';
 
 export default function SymptomPage() {
@@ -59,10 +59,7 @@ export default function SymptomPage() {
 
   const handleSymptomSelect = (symptom) => {
     setSelectedSymptom(symptom);
-    // 先滚动到症状列表区域
     scrollToRef(sectionSymptomRef);
-    
-    // 等待滚动完成后，再滚动到具体症状卡片
     setTimeout(() => {
       const symptomCard = symptomRefs.current[symptom];
       if (symptomCard) {
@@ -75,15 +72,14 @@ export default function SymptomPage() {
           behavior: 'smooth',
         });
       }
-    }, 500); // 等待500ms确保页面已经滚动到症状列表区域
+    }, 500);
   };
 
   return (
     <div className="full-page-wrapper">
-      {/* === Step 0: Intro Section with Stats === */}
+      {/* === Intro Section === */}
       <section className="intro-page" ref={sectionIntroRef}>
         <h1>Understand Common Allergy Symptoms</h1>
-
         <div className="stats-grid">
           <div className="stat-card">
             <div className="stat-icon">🎯</div>
@@ -106,7 +102,6 @@ export default function SymptomPage() {
             <div className="stat-label">Annual economic cost</div>
           </div>
         </div>
-
         <div className="arrow-container" onClick={() => scrollToRef(sectionRobotRef)}>
           <p className="scroll-label">Click to explore symptoms</p>
           <div className="arrow-group">
@@ -133,7 +128,7 @@ export default function SymptomPage() {
         </div>
       </section>
 
-      {/* === Step 0.5: Robot Viewer Section with Layout and Card === */}
+      {/* === Robot Viewer Section === */}
       <section className="robot-viewer-section" ref={sectionRobotRef}>
         <h1 className="robot-section-title fixed-title">
           Allergic Reactions in Different Body Areas
@@ -146,24 +141,29 @@ export default function SymptomPage() {
         </div>
       </section>
 
-      {/* === Step 1: Symptom List Section === */}
+      {/* === Symptom Section === */}
       <section className="symptom-page" ref={sectionSymptomRef}>
         <div className="symptom-header">
           <h1>Allergy Symptoms</h1>
         </div>
 
         <div className="symptom-list">
-          {normalizedSymptoms.map((sym, idx) => (
-            <div
-              key={idx}
-              ref={(el) => (symptomRefs.current[sym.symptom] = el)}
-            >
-              <SymptomCard 
-                {...sym} 
-                isHighlighted={selectedSymptom === sym.symptom}
-              />
-            </div>
-          ))}
+          {selectedSymptom ? (
+            normalizedSymptoms
+              .filter((s) => s.symptom === selectedSymptom)
+              .map((sym, idx) => (
+                <div
+                  key={idx}
+                  ref={(el) => (symptomRefs.current[sym.symptom] = el)}
+                >
+                  <SymptomCard {...sym} />
+                </div>
+              ))
+          ) : (
+            <p className="symptom-placeholder">
+              Please click a red dot on the robot above to view related symptoms.
+            </p>
+          )}
         </div>
       </section>
     </div>
