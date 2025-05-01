@@ -1,4 +1,4 @@
-/* === 全局滚动设置（整页滑动）=== */
+/* === 全局整页滚动设置 === */
 html, body {
   margin: 0;
   padding: 0;
@@ -7,12 +7,11 @@ html, body {
   scroll-behavior: smooth;
 }
 
-/* 页面包裹容器 */
 .full-page-wrapper {
   scroll-behavior: smooth;
 }
 
-/* 每一页（section）占满整个屏幕 */
+/* 每一页全屏 */
 section {
   width: 100vw;
   height: 100vh;
@@ -23,119 +22,59 @@ section {
   align-items: center;
 }
 
-/* === Welcome / Intro Page 样式 === */
+/* === Intro Section === */
 .intro-page {
-  background: url('/mushroom.avif') center center / cover no-repeat;
-  color: white;
-  text-align: center;
+  background: url('/images/Symptoms_bg.png') center center / cover no-repeat;
+  color: rgb(22, 21, 21);
+  text-align: left;
   padding: 2rem;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
 }
 
-.intro-page::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0, 0, 0, 0.35);
-  z-index: 0;
+/* 横向排布容器 */
+.intro-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 4rem;
+  box-sizing: border-box;
 }
 
-.intro-page * {
-  position: relative;
+/* 左侧内容 */
+.intro-left {
+  flex: 1;
+  max-width: 480px;
   z-index: 1;
 }
 
-.intro-page h1 {
+/* 标题样式 */
+.intro-left h1 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
 
-.intro-page p {
-  font-size: 1.25rem;
-  max-width: 720px;
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-}
-
-/* === Scroll Down Arrow 动画 === */
-.arrow-container {
-  margin-top: 2rem;
-  cursor: pointer;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.scroll-label {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  opacity: 0.85;
-}
-
-.arrow-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.arrow-icon {
-  animation: bounce-fade 1.5s infinite ease-in-out;
-  stroke: white;
-  filter: drop-shadow(0 0 6px #ffffffaa);
-  transition: transform 0.3s;
-}
-
-.arrow-icon.delay-1 {
-  animation-delay: 0.2s;
-}
-.arrow-icon.delay-2 {
-  animation-delay: 0.4s;
-}
-
-@keyframes bounce-fade {
-  0% {
-    transform: translateY(0);
-    opacity: 0.2;
-  }
-  30% {
-    transform: translateY(-8px);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 0.2;
-  }
-}
-
-.arrow-container:hover .arrow-icon {
-  transform: scale(1.15);
-  stroke: #f3c623;
-}
-
-/* === Intro 页的统计数据卡片区域 === */
+/* 统计信息卡片栅格 */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-  padding: 0 1rem;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
   width: 100%;
-  max-width: 1000px;
 }
 
+/* 卡片样式 */
 .stat-card {
   background-color: rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   padding: 1rem;
   text-align: center;
-  color: white;
+  color: rgb(9, 8, 8);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(8px);
+  backdrop-filter: none;
   transition: transform 0.2s ease;
 }
 
@@ -159,7 +98,69 @@ section {
   line-height: 1.4;
 }
 
-/* === 机器人页面布局（修复）=== */
+/* 右侧留白容器 */
+.intro-right {
+  flex: 1;
+}
+
+.arrow-container {
+  position: absolute;
+  bottom: 3rem;
+  left: 30%; /* 原来是 50%，现在更靠左 */
+  transform: translateX(0); /* 不需要横向居中 */
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 文字和箭头左对齐 */
+}
+
+
+.scroll-label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.arrow-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.arrow-icon {
+  animation: bounce-fade 1.5s infinite ease-in-out;
+  stroke: rgb(239, 6, 6);
+  filter: drop-shadow(0 0 6px #1900ffaa);
+  transition: transform 0.3s;
+}
+
+.arrow-icon.delay-0 { animation-delay: 0s; }
+.arrow-icon.delay-1 { animation-delay: 0.2s; }
+.arrow-icon.delay-2 { animation-delay: 0.4s; }
+
+@keyframes bounce-fade {
+  0% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+}
+
+.arrow-container:hover .arrow-icon {
+  transform: scale(1.15);
+  stroke: #f3c623;
+}
+
+/* === Robot Section === */
 .robot-viewer-section {
   width: 100vw;
   height: 100vh;
@@ -170,10 +171,9 @@ section {
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 4.5rem; /* 给标题留空间 */
+  padding-top: 4.5rem;
 }
 
-/* ✅ 横向布局：机器人 + 说明卡片 */
 .robot-viewer-layout {
   display: flex;
   flex-direction: row;
@@ -186,7 +186,6 @@ section {
   box-sizing: border-box;
 }
 
-/* ✅ 让标题浮在顶部可见 */
 .robot-section-title.fixed-title {
   position: absolute;
   top: 20px;
@@ -201,7 +200,11 @@ section {
   color: #0f172a;
 }
 
-/* === 症状页面 === */
+.robot-instruction-wrapper {
+  margin-right: 3rem;
+}
+
+/* === Symptom Section === */
 .symptom-page {
   position: relative;
   background-color: #f8fafc;
@@ -215,33 +218,6 @@ section {
   align-items: center;
 }
 
-.symptom-page h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #0f172a;
-  margin-bottom: 24px;
-}
-
-/* ✅ 修改后的样式 */
-.symptom-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 24px;
-  width: 100%;
-  max-width: 100%;     /* ✅ 原为 1600px，改成 100% */
-  margin: 0 auto;
-  padding: 0 2vw;       /* ✅ 原为 24px，改成 vw 单位以适配不同屏幕 */
-  box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-  .symptom-list {
-    grid-template-columns: 1fr;
-    padding: 16px;
-  }
-}
-
-/* === 症状标题 + 返回按钮（如果有） === */
 .symptom-header {
   display: flex;
   align-items: center;
@@ -250,6 +226,45 @@ section {
   flex-wrap: wrap;
 }
 
+.symptom-page h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0f172a;
+  margin-bottom: 24px;
+}
+
+.symptom-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 2vw;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .intro-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .intro-right {
+    display: none;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .symptom-list {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+}
+
+/* 返回按钮 */
 .inline-back-btn {
   background-color: #2563eb;
   color: white;
@@ -264,9 +279,4 @@ section {
 
 .inline-back-btn:hover {
   background-color: #1e40af;
-}
-
-/* === 说明卡片容器 === */
-.robot-instruction-wrapper {
-  margin-right: 3rem;
 }

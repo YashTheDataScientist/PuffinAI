@@ -79,29 +79,39 @@ export default function SymptomPage() {
     <div className="full-page-wrapper">
       {/* === Intro Section === */}
       <section className="intro-page" ref={sectionIntroRef}>
-        <h1>Understand Common Allergy Symptoms</h1>
-        <div className="stats-grid">
-          <div className="stat-card">
-            <div className="stat-icon">🎯</div>
-            <div className="stat-number">4.6M</div>
-            <div className="stat-label">Australians suffer from hay fever</div>
+        <div className="intro-layout">
+          {/* 左侧内容区域 */}
+          <div className="intro-left">
+            <h1>Understand Common Allergy Symptoms</h1>
+            <div className="stats-grid">
+              <div className="stat-card">
+                <div className="stat-icon">🎯</div>
+                <div className="stat-number">4.6M</div>
+                <div className="stat-label">Australians suffer from hay fever</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">🌸</div>
+                <div className="stat-number">70%</div>
+                <div className="stat-label">Symptoms triggered in spring</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">❓</div>
+                <div className="stat-number">1 in 5</div>
+                <div className="stat-label">Unaware of allergy triggers</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">💰</div>
+                <div className="stat-number">$7.8B</div>
+                <div className="stat-label">Annual economic cost</div>
+              </div>
+            </div>
           </div>
-          <div className="stat-card">
-            <div className="stat-icon">🌸</div>
-            <div className="stat-number">70%</div>
-            <div className="stat-label">Symptoms triggered in spring</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon">❓</div>
-            <div className="stat-number">1 in 5</div>
-            <div className="stat-label">Unaware of allergy triggers</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon">💰</div>
-            <div className="stat-number">$7.8B</div>
-            <div className="stat-label">Annual economic cost</div>
-          </div>
+
+          {/* 右侧空间展示背景图人物 */}
+          <div className="intro-right" />
         </div>
+
+        {/* 向下箭头 */}
         <div className="arrow-container" onClick={() => scrollToRef(sectionRobotRef)}>
           <p className="scroll-label">Click to explore symptoms</p>
           <div className="arrow-group">
