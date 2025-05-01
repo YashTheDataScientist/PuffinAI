@@ -1,10 +1,11 @@
 import PlantIdentifier from '../components/PlantIdentifier';
+import PlantCarousel from '../components/PlantCarousel';
 
 const TestPlantIdentifyPage = () => {
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
-      <h2>Test Plant Recognition</h2>
+    <div style={{ marginTop: '5rem', padding: '2rem' }}>
       <PlantIdentifier />
+      <PlantCarousel />
     </div>
   );
 };
