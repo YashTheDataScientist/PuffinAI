@@ -151,20 +151,7 @@ const PlantCarousel = () => {
       });
   }, []);
 
-  const handlePrevious = () => {
-    setCurrentIndex(current => (current === 0 ? carouselPlants.length - 1 : current - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex(current => (current === carouselPlants.length - 1 ? 0 : current + 1));
-  };
-
-  const handleDotClick = (index) => {
-    setCurrentIndex(index);
-  };
-
   const currentPlant = carouselPlants[currentIndex];
-
 
   const getSimilarPlantInfo = () => {
     if (!currentPlant) return null;
@@ -178,74 +165,87 @@ const PlantCarousel = () => {
 
   return (
     <div className="plant-carousel">
-      <div className="carousel-container">
-        <button 
-          className="carousel-button" 
-          onClick={handlePrevious}
-          aria-label="Previous plant"
-        >
-          ←
-        </button>
-        <div className="plant-display">
-          <div className="plant-desc-col">
-            {currentPlant && (
-              <div className="plant-description">
-                {PLANT_META[currentPlant['Common Name']]?.desc
-                  ? PLANT_META[currentPlant['Common Name']].desc.split('\n').map((line, idx) => {
-                      const match = line.match(/^(Season|Region|Note):(.+)$/);
-                      if (match) {
-                        return (
-                          <div key={idx} style={{marginBottom: 6}}>
-                            <span style={{fontWeight: 'bold'}}>{match[1]}:</span>
-                            <span>{match[2]}</span>
-                          </div>
-                        );
-                      }
-                      return <div key={idx}>{line}</div>;
-                    })
-                  : ''}
+      {/* 主展示区 */}
+      <div className="plant-main-section">
+        {/* 左侧说明文字 */}
+        <div className="plant-intro-col">
+          <h1 className="plant-intro-title">
+            Explore our plant gallery to discover common allergenic plants found across Victoria.
+          </h1>
+        </div>
+
+        {/* 中间植物展示 */}
+        <div className="plant-content-col">
+          {currentPlant && (
+            <>
+              <div className="plant-main-image-col">
+                <img
+                  src={PLANT_META[currentPlant['Common Name']]?.Image.replace(/^\.{2}/, '')}
+                  alt={currentPlant['Common Name']}
+                  className="plant-main-image"
+                />
               </div>
-            )}
-          </div>
-          <div className="plant-image-col">
-            {currentPlant && PLANT_META[currentPlant['Common Name']]?.Image && (
-              <img
-                src={PLANT_META[currentPlant['Common Name']].Image.replace(/^\.\./, '')}
-                alt={currentPlant['Common Name']}
-                className="plant-carousel-image"
-              />
-            )}
-            {currentPlant && (
-              <>
-                <h2 className="plant-name">{currentPlant['Common Name']}</h2>
-                <div className={`risk-badge ${PLANT_META[currentPlant['Common Name']]?.risk?.toLowerCase()}`}>{PLANT_META[currentPlant['Common Name']]?.risk} Risk</div>
-              </>
-            )}
-          </div>
-          <div className="plant-btn-col">
+              <div className="plant-main-info-col">
+                <h2 className="plant-main-name">{currentPlant['Common Name']}</h2>
+                <div className={`risk-badge ${PLANT_META[currentPlant['Common Name']]?.risk?.toLowerCase()}`}>
+                  {PLANT_META[currentPlant['Common Name']]?.risk} Risk
+                </div>
+                <div className="plant-main-description">
+                  {PLANT_META[currentPlant['Common Name']]?.desc
+                    ? PLANT_META[currentPlant['Common Name']].desc.split('\n').map((line, idx) => {
+                        const match = line.match(/^(Season|Region|Note):(.+)$/);
+                        if (match) {
+                          return (
+                            <div key={idx} className="plant-main-desc-row">
+                              <span className="plant-main-desc-label">{match[1]}:</span>
+                              <span>{match[2]}</span>
+                            </div>
+                          );
+                        }
+                        return <div key={idx}>{line}</div>;
+                      })
+                    : ''}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* 右侧按钮和说明 */}
+        <div className="plant-actions-col">
+          <div className="action-group">
+            <p className="action-description">
+              Want to know which areas in Victoria have this plant
+            </p>
             <button onClick={() => setShowMap(true)} disabled={!currentPlant}>
-              Explore the location of the plant
+              View on Map
             </button>
+          </div>
+          <div className="action-group">
+            <p className="action-description">
+              Some plants looks familiar but are pollen safe. Don't get confused!
+            </p>
             <button onClick={() => setShowRecommend(true)} disabled={!currentPlant}>
-              Recommend similar pollen safe plant
+              View Similar plants
             </button>
           </div>
         </div>
-        <button 
-          className="carousel-button" 
-          onClick={handleNext}
-          aria-label="Next plant"
-        >
-          →
-        </button>
       </div>
-      <div className="carousel-dots">
-        {carouselPlants.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${index === currentIndex ? 'active' : ''}`}
-            onClick={() => handleDotClick(index)}
-          />
+
+      {/* 底部缩略图栏 */}
+      <div className="plant-thumbnails-bar">
+        {carouselPlants.map((plant, idx) => (
+          <div
+            key={plant['Common Name']}
+            className={`plant-thumbnail-item${idx === currentIndex ? ' selected' : ''}`}
+            onClick={() => setCurrentIndex(idx)}
+          >
+            <img
+              src={PLANT_META[plant['Common Name']]?.Image.replace(/^\.{2}/, '')}
+              alt={plant['Common Name']}
+              className="plant-thumbnail-image"
+            />
+          </div>
         ))}
       </div>
       {/* 遮罩层，仅在弹窗显示时渲染 */}
@@ -299,7 +299,6 @@ const PlantCarousel = () => {
                     />
                     <h4 className="plant-comparison-name">{currentPlant['Common Name']}</h4>
                   </div>
-
                   <div className="vs-icon-container">
                     <img 
                       src="/icons/vs.png" 
@@ -307,7 +306,6 @@ const PlantCarousel = () => {
                       className="vs-icon"
                     />
                   </div>
-
                   <div className="plant-comparison-item">
                     <img 
                       src={simImg} 
@@ -318,12 +316,10 @@ const PlantCarousel = () => {
                     <h4 className="plant-comparison-name">{simName}</h4>
                   </div>
                 </div>
-
                 <div className="differences-section">
                   <h4>Key Differences</h4>
                   <p>{info['Difference'] || 'N/A'}</p>
                 </div>
-
                 <div className="scientific-name">
                   Scientific name: {info['Scientific name'] || 'N/A'}
                 </div>
