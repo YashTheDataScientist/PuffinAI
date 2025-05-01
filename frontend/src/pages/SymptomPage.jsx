@@ -111,7 +111,8 @@ export default function SymptomPage() {
           <div className="intro-right" />
         </div>
 
-        {/* 向下箭头 */}
+        {/* 向下箭头（已注释） */}
+        {/*
         <div className="arrow-container" onClick={() => scrollToRef(sectionRobotRef)}>
           <p className="scroll-label">Click to explore symptoms</p>
           <div className="arrow-group">
@@ -136,6 +137,7 @@ export default function SymptomPage() {
             ))}
           </div>
         </div>
+        */}
       </section>
 
       {/* === Robot Viewer Section === */}

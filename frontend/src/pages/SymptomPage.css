@@ -2,24 +2,12 @@
 html, body {
   margin: 0;
   padding: 0;
-  scroll-snap-type: y mandatory;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
 
 .full-page-wrapper {
   scroll-behavior: smooth;
-}
-
-/* 每一页全屏 */
-section {
-  width: 100vw;
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 /* === Intro Section === */
@@ -60,6 +48,7 @@ section {
 
 /* 统计信息卡片栅格 */
 .stats-grid {
+  position: relative; /* 允许子元素绝对定位 */
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.2rem;
@@ -98,29 +87,29 @@ section {
   line-height: 1.4;
 }
 
-/* 右侧留白容器 */
-.intro-right {
-  flex: 1;
-}
-
+/* 箭头容器 */
 .arrow-container {
   position: absolute;
-  bottom: 3rem;
-  left: 30%; /* 原来是 50%，现在更靠左 */
-  transform: translateX(0); /* 不需要横向居中 */
+  bottom: 0.5rem;
+  right: 0.5rem;
   cursor: pointer;
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* 文字和箭头左对齐 */
+  align-items: center;
+  background: white;
+  border-radius: 6px;
+  padding: 0.5rem;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
-
 .scroll-label {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
   font-weight: 500;
   opacity: 0.85;
+  text-align: center;
 }
 
 .arrow-group {
@@ -158,6 +147,11 @@ section {
 .arrow-container:hover .arrow-icon {
   transform: scale(1.15);
   stroke: #f3c623;
+}
+
+/* 右侧留白容器 */
+.intro-right {
+  flex: 1;
 }
 
 /* === Robot Section === */
