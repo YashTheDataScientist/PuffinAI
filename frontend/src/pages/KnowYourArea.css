@@ -4,7 +4,10 @@
   width: 100vw;
   display: flex;
   justify-content: center;
-  background: linear-gradient(to bottom, #e2aef0, #9fc3f1);
+  background: radial-gradient(circle at center, #cde4f9, #a7c8f0, #7baee7, #5695dd);
+
+
+
   padding: 2rem;
   box-sizing: border-box;
   overflow-y: auto;
