@@ -28,23 +28,27 @@ export default function HomePage() {
     <>
       <Parallax pages={5} ref={parallaxRef}>
         {/* SECTION 1 */}
-        <ParallaxLayer offset={0} speed={0} factor={1} style={{ backgroundColor: '#f9f9f9' }} />
-        <ParallaxLayer offset={0} speed={0.2}>
-          <div className="image-layer right">
-            <img src={BlowingDandelion} alt="Dandelion" />
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={0} speed={0.5}>
-          <div className="text-layer left section1">
-            <h1 className="section-title">New to Victoria?</h1>
-            <p className="section-subtitle">
-              Your quick guide to staying allergy-free in Victoria — track pollen, identify risky plants, and get smart tips to breathe easy all season.
-            </p>
-            <button onClick={() => parallaxRef.current.scrollTo(1)}>
-              Why This Matters
-            </button>
-          </div>
-        </ParallaxLayer>
+<ParallaxLayer offset={0} speed={0} factor={1} style={{ backgroundColor: '#f9f9f9' }} />
+<ParallaxLayer offset={0} speed={0.2}>
+  <div className="image-layer right">
+    <img src={BlowingDandelion} alt="Dandelion" />
+  </div>
+</ParallaxLayer>
+<ParallaxLayer offset={0} speed={0.5}>
+  <div className="text-layer left section1">
+    <h1 className="section-title">New to Victoria?</h1>
+    <p className="section-subtitle">
+      Your quick guide to staying allergy-free in Victoria — track pollen, identify risky plants, and get smart tips to breathe easy all season.
+    </p>
+    <Link to="/know_your_area">
+      <button>Know about pollen in your area</button>
+    </Link>
+    <p style={{ marginTop: '1rem', fontSize: '1rem', color: 'black', fontStyle: 'italic' }}>
+      Scroll down to see why it matters...
+    </p>
+  </div>
+</ParallaxLayer>
+
 
         {/* SECTION 2 */}
         <ParallaxLayer offset={1} speed={0} factor={1} style={{ backgroundColor: '#eaf3ff' }} />
@@ -116,29 +120,37 @@ export default function HomePage() {
             </p>
             <div className="button-group">
               <Link to="/know_your_plants">
-                <button>View Pollen Forecast</button>
+                <button>Scan Plant</button>
               </Link>
               <button onClick={() => parallaxRef.current.scrollTo(4)}>Final Tip: Prevention</button>
             </div>
           </div>
         </ParallaxLayer>
 
-        {/* SECTION 5 */}
-        <ParallaxLayer offset={4} speed={0} factor={1} style={{ backgroundColor: '#fffde6' }} />
-        <ParallaxLayer offset={4} speed={0.2}>
-          <div className="image-layer left">
-            <img src={ThesisSVG} alt="Allergy Prevention Illustration" />
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={4} speed={0.5}>
-          <div className="text-layer right section5">
-            <h1 className="section-title">Stay One Step Ahead of Allergies</h1>
-            <p className="section-subtitle">
-              Get practical, science-backed tips to avoid triggers and protect yourself year-round.
-            </p>
-            <button>Feature coming soon!</button>
-          </div>
-        </ParallaxLayer>
+{/* SECTION 5 */}
+<ParallaxLayer offset={4} speed={0} factor={1} style={{ backgroundColor: '#fffde6' }} />
+<ParallaxLayer offset={4} speed={0.2}>
+  <div className="image-layer left">
+    <img src={ThesisSVG} alt="Allergy Prevention Illustration" />
+  </div>
+</ParallaxLayer>
+<ParallaxLayer offset={4} speed={0.5}>
+  <div className="text-layer right section5">
+    <h1 className="section-title">Stay One Step Ahead of Allergies</h1>
+    <p className="section-subtitle">
+      Get practical, science-backed tips to avoid triggers and protect yourself year-round.
+    </p>
+    <div className="button-group">
+      <Link to="/symptoms">
+        <button>Understand symptoms</button>
+      </Link>
+      <Link to="/learn">
+        <button>Learn about pollen</button>
+      </Link>
+    </div>
+  </div>
+</ParallaxLayer>
+
       </Parallax>
 
       {showScrollTop && (

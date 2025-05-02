@@ -9,6 +9,7 @@ import lowRiskRadar from '../assets/radar/lowrisk.png';
 import mediumRiskRadar from '../assets/radar/mediumrisk.png';
 import highRiskRadar from '../assets/radar/highrisk.png';
 import symptomsImg from '../assets/symptoms.svg';
+import { Link } from 'react-router-dom';
 
 
 
@@ -233,7 +234,9 @@ const KnowYourArea = () => {
             {/* Button */}
             <div className="card-box">
             <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>To see pollen risk from a bigger picture</p>
-              <button className="risk-btn">Click Here</button>
+            <Link to="/pollen_watch">
+    <button className="risk-btn">Click Here</button>
+  </Link>
             </div>
           </div>
   
@@ -263,7 +266,9 @@ const KnowYourArea = () => {
 
 
         <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>Find out more info about these plants</p>
-              <button className="risk-btn">Click Here</button>
+        <Link to="/know_your_plants">
+          <button className="risk-btn">Click Here</button>
+        </Link>
             </div>
   
             {/* Floor Input */}
@@ -279,13 +284,17 @@ const KnowYourArea = () => {
             <img src={symptomsImg} alt="Allergy symptoms" className="illustration" />
 
             <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>To understand<br />common Allergic symptoms</p>
-              <button className="risk-btn">Click Here</button>
+            <Link to="/symptoms">
+          <button className="risk-btn">Click Here</button>
+        </Link>
             </div>
   
             {/* Precautions */}
             <div className="right-bottom card-box">
             <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>To Learn more<br />about the precautions</p>
-              <button className="risk-btn">Click Here</button>
+            <Link to="/learn">
+          <button className="risk-btn">Click Here</button>
+        </Link>
             </div>
           </div>
         </div>
