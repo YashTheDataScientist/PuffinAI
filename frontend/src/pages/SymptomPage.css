@@ -1,4 +1,4 @@
-/* === 全局整页滚动设置 === */
+/* === Global Page Setup === */
 html, body {
   margin: 0;
   padding: 0;
@@ -10,151 +10,7 @@ html, body {
   scroll-behavior: smooth;
 }
 
-/* === Intro Section === */
-.intro-page {
-  background: url('/images/Symptoms_bg.png') center center / cover no-repeat;
-  color: rgb(22, 21, 21);
-  text-align: left;
-  padding: 2rem;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
-}
-
-/* 横向排布容器 */
-.intro-layout {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 2rem 4rem;
-  box-sizing: border-box;
-}
-
-/* 左侧内容 */
-.intro-left {
-  flex: 1;
-  max-width: 480px;
-  z-index: 1;
-}
-
-/* 标题样式 */
-.intro-left h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-
-/* 统计信息卡片栅格 */
-.stats-grid {
-  position: relative; /* 允许子元素绝对定位 */
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
-  width: 100%;
-}
-
-/* 卡片样式 */
-.stat-card {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
-  padding: 1rem;
-  text-align: center;
-  color: rgb(9, 8, 8);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-  backdrop-filter: none;
-  transition: transform 0.2s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-4px);
-}
-
-.stat-icon {
-  font-size: 2rem;
-  margin-bottom: 0.4rem;
-}
-
-.stat-number {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 0.2rem;
-}
-
-.stat-label {
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-/* 箭头容器 */
-.arrow-container {
-  position: absolute;
-  bottom: 0.5rem;
-  right: 0.5rem;
-  cursor: pointer;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: white;
-  border-radius: 6px;
-  padding: 0.5rem;
-  z-index: 10;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-}
-
-.scroll-label {
-  font-size: 0.9rem;
-  margin-bottom: 0.3rem;
-  font-weight: 500;
-  opacity: 0.85;
-  text-align: center;
-}
-
-.arrow-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.arrow-icon {
-  animation: bounce-fade 1.5s infinite ease-in-out;
-  stroke: rgb(239, 6, 6);
-  filter: drop-shadow(0 0 6px #1900ffaa);
-  transition: transform 0.3s;
-}
-
-.arrow-icon.delay-0 { animation-delay: 0s; }
-.arrow-icon.delay-1 { animation-delay: 0.2s; }
-.arrow-icon.delay-2 { animation-delay: 0.4s; }
-
-@keyframes bounce-fade {
-  0% {
-    transform: translateY(0);
-    opacity: 0.2;
-  }
-  30% {
-    transform: translateY(-8px);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 0.2;
-  }
-}
-
-.arrow-container:hover .arrow-icon {
-  transform: scale(1.15);
-  stroke: #f3c623;
-}
-
-/* 右侧留白容器 */
-.intro-right {
-  flex: 1;
-}
-
-/* === Robot Section === */
+/* === Robot Viewer Section === */
 .robot-viewer-section {
   width: 100vw;
   height: 100vh;
@@ -162,43 +18,50 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   overflow: hidden;
   padding-top: 4.5rem;
 }
 
-.robot-viewer-layout {
+.robot-viewer-layout.with-fullside {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  gap: 2.5rem;
+  height: 100%;
   width: 100%;
-  padding: 0 2rem;
+  align-items: stretch;
+  justify-content: flex-start;
   box-sizing: border-box;
 }
 
-.robot-section-title.fixed-title {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  background-color: #d1e7d0;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #0f172a;
+.left-info-panel {
+  background-color: #0d4b66;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 2rem;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.6;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.robot-viewer-layout.with-fullside > :nth-child(2) {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin-left: -200px;
 }
 
 .robot-instruction-wrapper {
-  margin-right: 3rem;
+  display: none;
 }
 
-/* === Symptom Section === */
+/* === Symptom Section (Only Placeholder Now) === */
 .symptom-page {
   position: relative;
   background-color: #f8fafc;
@@ -227,50 +90,79 @@ html, body {
   margin-bottom: 24px;
 }
 
-.symptom-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 24px;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 2vw;
-  box-sizing: border-box;
+.symptom-placeholder {
+  font-size: 1.2rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 2rem;
 }
 
-@media (max-width: 768px) {
-  .intro-layout {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .intro-right {
-    display: none;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-
-  .symptom-list {
-    grid-template-columns: 1fr;
-    padding: 16px;
-  }
+/* === Symptom Popup === */
+.symptom-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-/* 返回按钮 */
-.inline-back-btn {
-  background-color: #2563eb;
-  color: white;
+.symptom-popup-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  animation: fadeInPopup 0.3s ease;
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.5rem;
+  background: transparent;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
+  color: #334155;
 }
 
-.inline-back-btn:hover {
-  background-color: #1e40af;
+@keyframes fadeInPopup {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .robot-viewer-layout.with-fullside {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-info-panel {
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 1.5rem;
+  }
+
+  .symptom-popup-card {
+    max-height: 85vh;
+    width: 95%;
+    padding: 1.5rem;
+  }
 }

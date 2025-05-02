@@ -1,20 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SymptomCard from '../components/SymptomCard';
 import SplineRobotViewer from '../components/robot';
-import RobotCard from '../components/RobotCard';
+import TestSymptoms from '../pages/TestSymptoms';
+
 import './SymptomPage.css';
 
 export default function SymptomPage() {
   const [symptoms, setSymptoms] = useState([]);
   const [selectedSymptom, setSelectedSymptom] = useState(null);
   const symptomRefs = useRef({});
-
-  const sectionIntroRef = useRef(null);
-  const sectionRobotRef = useRef(null);
   const sectionSymptomRef = useRef(null);
 
   useEffect(() => {
-    fetch('data//allergy_symptoms_detailed_info.json')
+    fetch('/data/allergy_symptoms_detailed_info.json')
       .then((res) => res.json())
       .then((data) => setSymptoms(data))
       .catch((err) => console.error('Failed to load symptoms:', err));
@@ -59,125 +57,47 @@ export default function SymptomPage() {
 
   const handleSymptomSelect = (symptom) => {
     setSelectedSymptom(symptom);
-    scrollToRef(sectionSymptomRef);
-    setTimeout(() => {
-      const symptomCard = symptomRefs.current[symptom];
-      if (symptomCard) {
-        const headerOffset = 40;
-        const elementPosition = symptomCard.getBoundingClientRect().top;
-        const offsetPosition = window.scrollY + elementPosition - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        });
-      }
-    }, 500);
   };
 
   return (
     <div className="full-page-wrapper">
-      {/* === Intro Section === */}
-      <section className="intro-page" ref={sectionIntroRef}>
-        <div className="intro-layout">
-          {/* 左侧内容区域 */}
-          <div className="intro-left">
-            <h1>Understand Common Allergy Symptoms</h1>
-            <div className="stats-grid">
-              <div className="stat-card">
-                <div className="stat-icon">🎯</div>
-                <div className="stat-number">4.6M</div>
-                <div className="stat-label">Australians suffer from hay fever</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon">🌸</div>
-                <div className="stat-number">70%</div>
-                <div className="stat-label">Symptoms triggered in spring</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon">❓</div>
-                <div className="stat-number">1 in 5</div>
-                <div className="stat-label">Unaware of allergy triggers</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon">💰</div>
-                <div className="stat-number">$7.8B</div>
-                <div className="stat-label">Annual economic cost</div>
-              </div>
-            </div>
-          </div>
-
-          {/* 右侧空间展示背景图人物 */}
-          <div className="intro-right" />
-        </div>
-
-        {/* 向下箭头（已注释） */}
-        {/*
-        <div className="arrow-container" onClick={() => scrollToRef(sectionRobotRef)}>
-          <p className="scroll-label">Click to explore symptoms</p>
-          <div className="arrow-group">
-            {[0, 1, 2].map((delay) => (
-              <svg
-                key={delay}
-                className={`arrow-icon delay-${delay}`}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="40"
-                height="40"
-              >
-                <polyline
-                  points="6 9 12 15 18 9"
-                  fill="none"
-                  stroke="#ffffff"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            ))}
-          </div>
-        </div>
-        */}
-      </section>
-
       {/* === Robot Viewer Section === */}
-      <section className="robot-viewer-section" ref={sectionRobotRef}>
-        <h1 className="robot-section-title fixed-title">
-          Allergic Reactions in Different Body Areas
-        </h1>
-        <div className="robot-viewer-layout">
-          <SplineRobotViewer onSymptomSelect={handleSymptomSelect} />
-          <div className="robot-instruction-wrapper">
-            <RobotCard />
+      <div className="robot-viewer-section">
+        <div className="robot-viewer-layout with-fullside">
+          <div className="left-info-panel">
+            <p>
+              Understand<br />
+              how pollen<br />
+              can interact<br />
+              with different<br />
+              parts of<br />
+              body and<br />
+              cause<br />
+              allergic<br />
+              reactions.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* === Symptom Section === */}
-      <section className="symptom-page" ref={sectionSymptomRef}>
-        <div className="symptom-header">
-          <h1>Allergy Symptoms</h1>
+          <SplineRobotViewer onSymptomSelect={handleSymptomSelect} />
         </div>
+      </div>
 
-        <div className="symptom-list">
-          {selectedSymptom ? (
-            normalizedSymptoms
+      <TestSymptoms />
+
+
+      {/* === Popup Modal for Symptom === */}
+      {selectedSymptom && (
+        <div className="symptom-popup-overlay" onClick={() => setSelectedSymptom(null)}>
+          <div className="symptom-popup-card" onClick={(e) => e.stopPropagation()}>
+            <button className="popup-close-btn" onClick={() => setSelectedSymptom(null)}>×</button>
+            {normalizedSymptoms
               .filter((s) => s.symptom === selectedSymptom)
               .map((sym, idx) => (
-                <div
-                  key={idx}
-                  ref={(el) => (symptomRefs.current[sym.symptom] = el)}
-                >
-                  <SymptomCard {...sym} />
-                </div>
-              ))
-          ) : (
-            <p className="symptom-placeholder">
-              Please click a red dot on the robot above to view related symptoms.
-            </p>
-          )}
+                <SymptomCard key={idx} {...sym} />
+              ))}
+          </div>
         </div>
-      </section>
+      )}
     </div>
   );
 }
