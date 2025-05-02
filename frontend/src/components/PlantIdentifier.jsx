@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './PlantIdentifier.module.css';
+
 const API_URL = 'https://eqysflxgv2.execute-api.ap-southeast-2.amazonaws.com/prod/plant_identify'; 
 
 const PlantIdentifier = () => {
@@ -42,19 +43,19 @@ const PlantIdentifier = () => {
   const renderResult = () => {
     if (!result) return null;
     if (result.message) return <p className={styles.infoText}>{result.message}</p>;
-    
+
     const best = result.plantnet_result;
     if (!best) return <p className={styles.infoText}>No match found.</p>;
-  
+
     const allergicInfoAvailable = result.allergic_info && Object.keys(result.allergic_info).length > 0;
-  
+
     return (
       <div className={styles.resultBox}>
         <h4>Best Match</h4>
         <p><strong>Name:</strong> {best.species?.scientificNameWithoutAuthor}</p>
         <p><strong>Score:</strong> {(best.score * 100).toFixed(2)}%</p>
         <p><strong>Description:</strong> {result.wikipedia_summary || "No description available."}</p>
-  
+
         {allergicInfoAvailable ? (
           <>
             <p><strong>Allergic Level:</strong> {result.allergic_info.allergy_level}</p>
@@ -66,7 +67,6 @@ const PlantIdentifier = () => {
       </div>
     );
   };
-  
 
   return (
     <div className={styles.wrapper}>

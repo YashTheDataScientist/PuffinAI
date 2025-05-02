@@ -1,14 +1,15 @@
 import React from 'react';
 import './SymptomCard.css';
 
-export default function SymptomCard({
+const SymptomCard = ({
   symptom,
   description,
   severity,
   triggers,
   remedies,
   duration,
-}) {
+  isHighlighted
+}) => {
   const severityClass = {
     Mild: 'card--mild',
     Moderate: 'card--moderate',
@@ -16,7 +17,7 @@ export default function SymptomCard({
   }[severity] || '';
 
   return (
-    <div className={`symptom-card ${severityClass}`}>
+    <div className={`symptom-card ${severityClass} ${isHighlighted ? 'highlighted' : ''}`}>
       <h3>{symptom}</h3>
       {description && <p>{description}</p>}
       {triggers?.length > 0 && (
@@ -31,4 +32,6 @@ export default function SymptomCard({
       )}
     </div>
   );
-}
+};
+
+export default SymptomCard;

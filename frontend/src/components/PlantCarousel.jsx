@@ -8,9 +8,9 @@ import dotIcon from '../assets/dot.png';
 
 const customIcon = new L.Icon({
   iconUrl: dotIcon,
-  iconSize: [35, 35], 
+  iconSize: [35, 35],
   iconAnchor: [12, 12],
-  popupAnchor: [0, -12] 
+  popupAnchor: [0, -12]
 });
 
 const PLANT_LIST = [
@@ -164,17 +164,14 @@ const PlantCarousel = () => {
   };
 
   return (
-    <div className="plant-carousel">
-      {/* 主展示区 */}
+    <>
       <div className="plant-main-section">
-        {/* 左侧说明文字 */}
         <div className="plant-intro-col">
           <h1 className="plant-intro-title">
             Explore our plant gallery to discover common allergenic plants found across Victoria.
           </h1>
         </div>
 
-        {/* 中间植物展示 */}
         <div className="plant-content-col">
           {currentPlant && (
             <>
@@ -184,34 +181,49 @@ const PlantCarousel = () => {
                   alt={currentPlant['Common Name']}
                   className="plant-main-image"
                 />
-              </div>
-              <div className="plant-main-info-col">
-                <h2 className="plant-main-name">{currentPlant['Common Name']}</h2>
-                <div className={`risk-badge ${PLANT_META[currentPlant['Common Name']]?.risk?.toLowerCase()}`}>
-                  {PLANT_META[currentPlant['Common Name']]?.risk} Risk
-                </div>
-                <div className="plant-main-description">
+                <div className="plant-main-desc-box">
                   {PLANT_META[currentPlant['Common Name']]?.desc
                     ? PLANT_META[currentPlant['Common Name']].desc.split('\n').map((line, idx) => {
                         const match = line.match(/^(Season|Region|Note):(.+)$/);
-                        if (match) {
-                          return (
-                            <div key={idx} className="plant-main-desc-row">
-                              <span className="plant-main-desc-label">{match[1]}:</span>
-                              <span>{match[2]}</span>
-                            </div>
-                          );
-                        }
-                        return <div key={idx}>{line}</div>;
+                        return match ? (
+                          <div key={idx} className="plant-main-desc-row">
+                            <span className="plant-main-desc-label">{match[1]}:</span>
+                            <span>{match[2]}</span>
+                          </div>
+                        ) : <div key={idx}>{line}</div>;
                       })
                     : ''}
                 </div>
+              </div>
+
+              <div className="plant-indicators">
+                <div className="indicator-card">
+                  <div className="indicator-label">Risk Level</div>
+                  <div className={`indicator-value risk-${PLANT_META[currentPlant['Common Name']]?.risk?.toLowerCase()}`}>
+                    {PLANT_META[currentPlant['Common Name']]?.risk}
+                  </div>
+                </div>
+                <div className="indicator-card">
+                  <div className="indicator-label">Population</div>
+                  <div className="indicator-value">
+                    {plantLocations.filter(p => p['Common Name'] === currentPlant['Common Name']).length} Areas
+                  </div>
+                </div>
+                <div className="indicator-card">
+                  <div className="indicator-label">Season</div>
+                  <div className="indicator-value">
+                    {PLANT_META[currentPlant['Common Name']]?.desc.match(/Season:([^\\n]+)/)?.[1].trim()}
+                  </div>
+                </div>
+              </div>
+
+              <div className="plant-main-info-col">
+                <h2 className="plant-main-name">{currentPlant['Common Name']}</h2>
               </div>
             </>
           )}
         </div>
 
-        {/* 右侧按钮和说明 */}
         <div className="plant-actions-col">
           <div className="action-group">
             <p className="action-description">
@@ -223,7 +235,7 @@ const PlantCarousel = () => {
           </div>
           <div className="action-group">
             <p className="action-description">
-              Some plants looks familiar but are pollen safe. Don't get confused!
+              Some plants look familiar but are pollen safe. Don't get confused!
             </p>
             <button onClick={() => setShowRecommend(true)} disabled={!currentPlant}>
               View Similar plants
@@ -232,7 +244,6 @@ const PlantCarousel = () => {
         </div>
       </div>
 
-      {/* 底部缩略图栏 */}
       <div className="plant-thumbnails-bar">
         {carouselPlants.map((plant, idx) => (
           <div
@@ -248,26 +259,22 @@ const PlantCarousel = () => {
           </div>
         ))}
       </div>
-      {/* 遮罩层，仅在弹窗显示时渲染 */}
-      {(showMap || showRecommend) && (
-        <div className="modal-backdrop"></div>
-      )}
+
+      {(showMap || showRecommend) && <div className="modal-backdrop"></div>}
+
       {showMap && currentPlant && (
         <div className="map-popup">
           <MapContainer center={[-37.8136, 144.9631]} zoom={13} style={{ height: 400, width: 600 }}>
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              attribution='&copy; OpenStreetMap contributors'
             />
             {plantLocations
               .filter(p => p['Common Name'] === currentPlant['Common Name'])
               .map((loc, idx) => (
                 <Marker
                   key={idx}
-                  position={[
-                    parseFloat(loc.decimalLatitude),
-                    parseFloat(loc.decimalLongitude)
-                  ]}
+                  position={[parseFloat(loc.decimalLatitude), parseFloat(loc.decimalLongitude)]}
                   icon={customIcon}
                 >
                   <Popup>{loc.locality}</Popup>
@@ -277,41 +284,36 @@ const PlantCarousel = () => {
           <button onClick={() => setShowMap(false)}>Close</button>
         </div>
       )}
+
       {showRecommend && (
         <div className="map-popup recommendation-popup">
           <h3>Recommended Similar Pollen Safe Plant</h3>
           {(() => {
             const info = getSimilarPlantInfo();
             if (!info) return <div>No recommendation found.</div>;
-            let simName = info['Similar looking plant'] || '';
-            let simImg = '';
-            if (simName) {
-              simImg = `/images/${simName.replace(/\s+/g, '').toLowerCase()}.jpg`;
-            }
+            const simName = info['Similar looking plant'] || '';
+            const simImg = simName ? `/images/${simName.replace(/\s+/g, '').toLowerCase()}.jpg` : '';
+
             return (
               <div className="similar-plant-card">
                 <div className="plants-comparison">
                   <div className="plant-comparison-item">
-                    <img 
-                      src={PLANT_META[currentPlant['Common Name']]?.Image} 
+                    <img
+                      src={PLANT_META[currentPlant['Common Name']]?.Image}
                       alt={currentPlant['Common Name']}
                       className="plant-comparison-image"
                     />
                     <h4 className="plant-comparison-name">{currentPlant['Common Name']}</h4>
                   </div>
                   <div className="vs-icon-container">
-                    <img 
-                      src="/icons/vs.png" 
-                      alt="versus" 
-                      className="vs-icon"
-                    />
+                    <img src="/icons/vs.png" alt="versus" className="vs-icon" />
                   </div>
                   <div className="plant-comparison-item">
-                    <img 
-                      src={simImg} 
+                    <img
+                      src={simImg}
                       alt={simName}
                       className="plant-comparison-image"
-                      onError={e => e.target.style.display='none'}
+                      onError={(e) => e.target.style.display = 'none'}
                     />
                     <h4 className="plant-comparison-name">{simName}</h4>
                   </div>
@@ -326,13 +328,11 @@ const PlantCarousel = () => {
               </div>
             );
           })()}
-          <button onClick={() => setShowRecommend(false)}>
-            Close
-          </button>
+          <button onClick={() => setShowRecommend(false)}>Close</button>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
-export default PlantCarousel; 
+export default PlantCarousel;

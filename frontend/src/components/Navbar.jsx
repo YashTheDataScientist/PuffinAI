@@ -53,10 +53,12 @@ const Navbar = () => {
 
       <div className="nav-right">
         <Link to="/" className={isActive('/') ? 'active' : ''}>Home</Link>
+        <Link to="/know_your_area" className={isActive('/know_your_area') ? 'active' : ''}>Know Your Area</Link>
         <Link to="/pollen_watch" className={isActive('/pollen_watch') ? 'active' : ''}>Pollen Watch</Link>
         <Link to="/country" className={isActive('/country') ? 'active' : ''}>3D Map</Link>
         <Link to="/know_your_plants" className={isActive('/know_your_plants') ? 'active' : ''}>Know Your Plants</Link>
         <Link to="/symptoms" className={isActive('/symptoms') ? 'active' : ''}>Symptoms</Link> {/* ✅ 新加这一行 */}
+        <Link to="/learn" className={isActive('/learn') ? 'active' : ''}>Learn</Link>
       </div>
     </nav>
   );

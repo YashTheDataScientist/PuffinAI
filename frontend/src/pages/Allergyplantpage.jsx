@@ -340,7 +340,7 @@ const reverseGeocode = async (lat, lng) => {
               <div style={{
                 flex: '1',
                 minWidth: '250px',
-                maxWidth: '1000px',
+                maxWidth: '800px',
                 padding: '20px',
                 background: 'rgba(255, 245, 245, 0.9)',
                 borderRadius: '12px',
@@ -385,6 +385,7 @@ const reverseGeocode = async (lat, lng) => {
               <div style={{
                 flex: '1',
                 minWidth: '250px',
+                maxWidth: '800px',
                 padding: '20px',
                 background: 'rgba(255, 250, 240, 0.9)',
                 borderRadius: '12px',
@@ -429,6 +430,7 @@ const reverseGeocode = async (lat, lng) => {
               <div style={{
                 flex: '1',
                 minWidth: '250px',
+                maxWidth: '800px',
                 padding: '20px',
                 background: 'rgba(240, 255, 244, 0.9)',
                 borderRadius: '12px',

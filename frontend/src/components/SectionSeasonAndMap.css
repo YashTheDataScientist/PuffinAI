@@ -1,0 +1,242 @@
+/* ================== ROW LAYOUT ================== */
+.season-map-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 10px;;
+  
+  flex-wrap: nowrap;
+}
+
+/* ================== CALENDAR SECTION ================== */
+.allergy-season-carousel {
+  width: 38%;
+  min-width: 340px;
+}
+
+.left-calendar-column {
+  width: 100%;
+  height: auto;
+  max-height: 680px;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.left-calendar-column::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.left-calendar-column > * {
+  position: relative;
+  z-index: 1;
+}
+
+.carousel-heading {
+  font-size: 2rem;
+  margin: 2rem 0 1.5rem 0;
+  color: #fff;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-btn {
+  background: #ffd166;
+  border: none;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.nav-btn:hover {
+  background: #ffa600;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.calendar-card {
+  width: 90px;
+  height: 120px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.calendar-card.active {
+  transform: scale(1.2);
+  z-index: 2;
+}
+.calendar-card.adjacent {
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.calendar-top-tab {
+  background: #03a9f4;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.6rem 0;
+  text-align: center;
+  position: relative;
+}
+
+.calendar-hooks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 2px;
+}
+
+.hook {
+  width: 2px;
+  height: 10px;
+  background: white;
+  margin-top: -8px;
+  border-radius: 10px;
+}
+
+.calendar-risk-label {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.allergy-description {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #f5f5f5;
+  text-align: center;
+  padding: 1rem;
+  line-height: 1.6;
+  background: rgba(0, 0, 0, 0.45);
+  
+  max-width: 95%;
+}
+
+/* Seasonal Backgrounds */
+.left-calendar-column.spring-bg {
+  background: url('/src/assets/spring.jpg') no-repeat center center/cover;
+}
+.left-calendar-column.summer-bg {
+  background: url('/src/assets/summer.jpg') no-repeat center center/cover;
+}
+.left-calendar-column.autumn-bg {
+  background: url('/src/assets/autumn.jpg') no-repeat center center/cover;
+}
+.left-calendar-column.winter-bg {
+  background: url('/src/assets/winter.jpg') no-repeat center center/cover;
+}
+
+/* ================== MAP SECTION ================== */
+.section-pollen-map {
+  width: 100%;
+  
+  margin: 10px;;
+  height: auto;
+}
+
+.map-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #222;
+  text-align: center;
+}
+
+
+.map-description {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  background: #f5f5f5;
+  padding: 1.2rem 1.5rem;
+  
+  margin-bottom: 1rem;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+
+.mapbox-wrapper {
+  position: relative;
+  width: 100%;
+  height: 55vh;
+  
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  background: #000;
+}
+
+.mapbox {
+  height: 100%;
+  width: 100%;
+}
+
+.legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(30, 30, 30, 0.9);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.legend div {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.legend span {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 8px;
+  border-radius: 3px;
+}
+
+.legend .low {
+  background: #66bb6a;
+}
+.legend .moderate {
+  background: #f9a825;
+}
+.legend .high {
+  background: #c62828;
+}

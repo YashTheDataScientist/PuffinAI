@@ -326,14 +326,18 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import PollenPage from './pages/PollenPage';
 import TestPage from './pages/TestPage';
-import PlantPage from './pages/Allergyplantpage';
+// import PlantPage from './pages/Allergyplantpage';
+import PlantPage from './pages/PlantIdentifyPage'
 import PasswordPage from './pages/PasswordPage';
-import TestPlantIdentifyPage from './pages/TestPlantIdentifyPage';
+import TestPlantIdentifyPage from './pages/PlantIdentifyPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import Country from './components/CountryMap';
 import StateMap from './components/StateMap';
 import CityMap from './components/CityMap';
-import SymptomsPage from './pages/SymptomPage'; // ✅ 新加这一行
+import SymptomsPage from './pages/SymptomPage'; 
+import LearnAboutPollen from './pages/LearnAboutPollen';
+import KnowYourArea from './pages/KnowYourArea';
+
 
 function App() {
   return (
@@ -366,6 +370,22 @@ function App() {
           element={
             <ProtectedRoute>
               <PlantPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/know_your_area"
+          element={
+            <ProtectedRoute>
+              <KnowYourArea />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/learn"
+          element={
+            <ProtectedRoute>
+              <LearnAboutPollen />
             </ProtectedRoute>
           }
         />
