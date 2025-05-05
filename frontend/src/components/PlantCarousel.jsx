@@ -209,12 +209,6 @@ const PlantCarousel = () => {
                     {plantLocations.filter(p => p['Common Name'] === currentPlant['Common Name']).length} Areas
                   </div>
                 </div>
-                <div className="indicator-card">
-                  <div className="indicator-label">Season</div>
-                  <div className="indicator-value">
-                    {PLANT_META[currentPlant['Common Name']]?.desc.match(/Season:([^\\n]+)/)?.[1].trim()}
-                  </div>
-                </div>
               </div>
 
               <div className="plant-main-info-col">
