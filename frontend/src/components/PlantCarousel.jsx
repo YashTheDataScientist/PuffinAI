@@ -166,21 +166,14 @@ const PlantCarousel = () => {
   return (
     <>
       <div className="plant-main-section">
-        <div className="plant-intro-col">
-          <h1 className="plant-intro-title">
-            Explore our plant gallery to discover common allergenic plants found across Victoria.
-          </h1>
-        </div>
+        <h1 className="plant-main-title">
+          Explore our plant gallery to discover common allergenic plants found across Victoria.
+        </h1>
 
         <div className="plant-content-col">
           {currentPlant && (
             <>
               <div className="plant-main-image-col">
-                <img
-                  src={PLANT_META[currentPlant['Common Name']]?.Image.replace(/^\.{2}/, '')}
-                  alt={currentPlant['Common Name']}
-                  className="plant-main-image"
-                />
                 <div className="plant-main-desc-box">
                   {PLANT_META[currentPlant['Common Name']]?.desc
                     ? PLANT_META[currentPlant['Common Name']].desc.split('\n').map((line, idx) => {
@@ -194,6 +187,14 @@ const PlantCarousel = () => {
                       })
                     : ''}
                 </div>
+                <img
+                  src={PLANT_META[currentPlant['Common Name']]?.Image.replace(/^\.{2}/, '')}
+                  alt={currentPlant['Common Name']}
+                  className="plant-main-image"
+                />
+              </div>
+              <div className="plant-main-info-col">
+                <h2 className="plant-main-name">{currentPlant['Common Name']}</h2>
               </div>
 
               <div className="plant-indicators">
@@ -211,9 +212,7 @@ const PlantCarousel = () => {
                 </div>
               </div>
 
-              <div className="plant-main-info-col">
-                <h2 className="plant-main-name">{currentPlant['Common Name']}</h2>
-              </div>
+              
             </>
           )}
         </div>
@@ -287,6 +286,7 @@ const PlantCarousel = () => {
             if (!info) return <div>No recommendation found.</div>;
             const simName = info['Similar looking plant'] || '';
             const simImg = simName ? `/images/${simName.replace(/\s+/g, '').toLowerCase()}.jpg` : '';
+            const [firstDesc, secondDesc] = (info['Difference'] || 'N/A').split('.').map(s => s.trim());
 
             return (
               <div className="similar-plant-card">
@@ -298,6 +298,7 @@ const PlantCarousel = () => {
                       className="plant-comparison-image"
                     />
                     <h4 className="plant-comparison-name">{currentPlant['Common Name']}</h4>
+                    <p className="plant-comparison-desc">{firstDesc}.</p>
                   </div>
                   <div className="vs-icon-container">
                     <img src="/icons/vs.png" alt="versus" className="vs-icon" />
@@ -310,14 +311,8 @@ const PlantCarousel = () => {
                       onError={(e) => e.target.style.display = 'none'}
                     />
                     <h4 className="plant-comparison-name">{simName}</h4>
+                    <p className="plant-comparison-desc">{secondDesc}.</p>
                   </div>
-                </div>
-                <div className="differences-section">
-                  <h4>Key Differences</h4>
-                  <p>{info['Difference'] || 'N/A'}</p>
-                </div>
-                <div className="scientific-name">
-                  Scientific name: {info['Scientific name'] || 'N/A'}
                 </div>
               </div>
             );
@@ -330,3 +325,4 @@ const PlantCarousel = () => {
 };
 
 export default PlantCarousel;
+
