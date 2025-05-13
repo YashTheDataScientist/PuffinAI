@@ -1,6 +1,7 @@
 import React from 'react';
 import './AsthmaPage.css';
-import TriggerBar from '../components/TriggerBar'; // ⬅️ 新增：导入诱因动画组件
+import TriggerBar from '../components/TriggerBar';
+import BreathingExercise from '../components/BreathingExercise'; // ✅ 引入呼吸练习组件
 
 export default function AsthmaPage() {
   return (
@@ -59,6 +60,9 @@ export default function AsthmaPage() {
 
       {/* 哮喘诱因图标动画条 */}
       <TriggerBar />
+
+      {/* 呼吸训练动画区域 */}
+      <BreathingExercise />
     </div>
   );
 }

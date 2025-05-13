@@ -115,3 +115,16 @@
     margin: 0 auto 10px;
   }
   
+  /* 呼吸练习模块样式 */
+.breathing-section {
+    text-align: center;
+    margin: 60px auto;
+    padding: 20px;
+  }
+  
+  .breathing-text {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    color: #444;
+  }
+  
