@@ -82,4 +82,36 @@
     color: #444;
     line-height: 1.5;
   }
+  /* 诱因图标模块 */
+.trigger-bar-container {
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  .trigger-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);  /* 👈 横向固定5列 */
+    gap: 30px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-items: center;
+  }
+  
+  .trigger-item {
+    width: 100px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    text-align: center;
+  }
+  
+  .trigger-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .trigger-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px;
+  }
   
