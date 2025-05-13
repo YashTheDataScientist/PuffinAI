@@ -14,6 +14,8 @@ import CityMap from './components/CityMap';
 import SymptomsPage from './pages/SymptomPage'; 
 import LearnAboutPollen from './pages/LearnAboutPollen';
 import KnowYourArea from './pages/KnowYourArea';
+import AsthmaPage from './pages/AsthmaPage';
+
 
 
 function App() {
@@ -111,6 +113,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/asthma_info"
+          element={
+            <ProtectedRoute>
+              <AsthmaPage />
+            </ProtectedRoute>
+          }
+        />
+
         
       </Routes>
     </>
