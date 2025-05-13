@@ -18,7 +18,7 @@ const triggers = [
 export default function TriggerBar() {
   return (
     <div className="trigger-bar-container">
-      <h2>Asthma Triggers / 哮喘诱因</h2>
+      <h2>Asthma Triggers</h2>
       <div className="trigger-bar">
         {triggers.map((t, index) => (
           <div className="trigger-item" key={index}>

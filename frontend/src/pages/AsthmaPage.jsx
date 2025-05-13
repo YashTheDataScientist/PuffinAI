@@ -8,13 +8,10 @@ export default function AsthmaPage() {
     <div className="asthma-container">
       {/* 顶部介绍区 */}
       <section className="asthma-intro">
-        <h1>What is Asthma? / 什么是哮喘？</h1>
+        <h1>What is Asthma?</h1>
         <p>
           Asthma is a long-term condition that affects the airways in your lungs.
           It can make it hard to breathe, especially when you are exposed to triggers like pollen, cold air, or stress.
-        </p>
-        <p>
-          哮喘是一种长期影响肺部气道的疾病。在接触花粉、冷空气或压力时，呼吸会变得困难甚至喘不过气。
         </p>
         <img
           src="https://via.placeholder.com/600x300?text=Asthma+Illustration"
