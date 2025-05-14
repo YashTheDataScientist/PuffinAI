@@ -26,7 +26,7 @@ export default function BreathingExercise() {
         animationData={breathingAnim}
         loop
         autoplay={false} // 默认不自动播放
-        style={{ width: 300, height: 300, margin: "0 auto" }}
+        style={{ width: 500, height: 500, margin: "0 auto" }}
       />
       <p className="breathing-text">Follow the rhythm: Inhale... Exhale...</p>
       <div className="breathing-controls">
