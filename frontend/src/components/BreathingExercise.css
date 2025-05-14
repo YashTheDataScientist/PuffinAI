@@ -1,0 +1,53 @@
+.breathing-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.breathing-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.breathing-center {
+  text-align: center;
+  max-width: 300px;
+}
+
+.breathing-text {
+  font-size: 1.4rem;
+  margin: 10px 0;
+}
+
+.breathing-controls button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  font-size: 1rem;
+}
+
+.breathing-info {
+  flex: 1;
+  max-width: 300px;
+  text-align: left;
+}
+
+.breathing-info h3 {
+  font-size: 1.2rem;
+  margin: 12px 0 8px;
+}
+
+.breathing-info p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.info-image {
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 12px;
+}

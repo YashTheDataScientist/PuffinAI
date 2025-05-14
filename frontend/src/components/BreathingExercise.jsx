@@ -1,30 +1,30 @@
 import React, { useRef, useState } from "react";
 import Lottie from "lottie-react";
 import breathingAnim from "../animations/breath.json";
+import leftAnim from "../animations/why_breath_exercise.json"; // ✅ 引入左侧动画
+import './BreathingExercise.css';
 
 export default function BreathingExercise() {
   const animationRef = useRef();
-  const intervalRef = useRef(null); // 用于控制 setInterval
-  const [phase, setPhase] = useState("Ready"); // 当前呼吸阶段显示
+  const intervalRef = useRef(null);
+  const [phase, setPhase] = useState("Ready");
 
-  // 使用 Web Speech API 播放语音提示
+  // 播放语音提示
   const speak = (text) => {
     const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = "en-US"; // 可改成 "zh-CN" 使用中文
-    utter.rate = 0.8; // 语速（可调节 0.8 ~ 1.2）
+    utter.lang = "en-US";
+    utter.rate = 0.8;
     window.speechSynthesis.speak(utter);
   };
 
-  // 启动语音节奏 + 动画
+  // 启动节奏 + 动画
   const startBreathingCycle = () => {
     const phases = ["Breath In", "Hold", "Breath Out", "Hold"];
     let index = 0;
 
-    // 立即播放第一次
     speak(phases[index]);
     setPhase(phases[index]);
 
-    // 每 3 秒切换一次阶段（动画总共 12 秒一轮）
     intervalRef.current = setInterval(() => {
       index = (index + 1) % phases.length;
       speak(phases[index]);
@@ -32,27 +32,21 @@ export default function BreathingExercise() {
     }, 3000);
   };
 
-  // 点击“开始”按钮
   const handleStart = () => {
     if (animationRef.current) {
-      animationRef.current.stop(); // 保证动画从头播放
+      animationRef.current.stop();
       animationRef.current.play();
     }
-
-    // 清除旧 interval（避免多次点击 Start 导致重复播报）
     clearInterval(intervalRef.current);
     startBreathingCycle();
   };
 
-  // 点击“重置”按钮
   const handleReset = () => {
     if (animationRef.current) {
-      animationRef.current.stop(); // 停止动画
+      animationRef.current.stop();
     }
-
-    // 停止语音与循环
     clearInterval(intervalRef.current);
-    window.speechSynthesis.cancel(); // 停止当前语音播放
+    window.speechSynthesis.cancel();
     setPhase("Ready");
   };
 
@@ -60,27 +54,49 @@ export default function BreathingExercise() {
     <div className="breathing-section">
       <h2>Breathing Exercise</h2>
 
-      <Lottie
-        lottieRef={animationRef}
-        animationData={breathingAnim}
-        loop
-        autoplay={false}
-        style={{ width: 500, height: 500, margin: "0 auto" }}
-      />
+      <div className="breathing-layout">
+        {/* 左侧说明：使用动画替换图片 */}
+        <div className="breathing-info left">
+          <Lottie
+            animationData={leftAnim}
+            loop
+            autoplay
+            style={{ width: 300, height: 300, marginBottom: "12px" }}
+          />
+          <h3>Why Practice Breathing Exercises?</h3>
+          <p>
+            Breathing exercises help reduce stress, improve lung function, and calm the nervous system.
+          </p>
+        </div>
 
-      {/* 显示当前阶段 */}
-      <p className="breathing-text" style={{ fontSize: "1.5rem", textAlign: "center" }}>
-        {phase}
-      </p>
+        {/* 中间动画 */}
+        <div className="breathing-center">
+          <Lottie
+            lottieRef={animationRef}
+            animationData={breathingAnim}
+            loop
+            autoplay={false}
+            style={{ width: 250, height: 250, margin: "0 auto" }}
+          />
+          <p className="breathing-text">{phase}</p>
+          <div className="breathing-controls">
+            <button onClick={handleStart}>Start</button>
+            <button onClick={handleReset}>Reset</button>
+          </div>
+        </div>
 
-      {/* 控制按钮 */}
-      <div className="breathing-controls" style={{ textAlign: "center", marginTop: "1rem" }}>
-        <button className="breathing-button" onClick={handleStart} style={{ marginRight: "10px" }}>
-          Start
-        </button>
-        <button className="breathing-button" onClick={handleReset}>
-          Reset
-        </button>
+        {/* 右侧说明 */}
+        <div className="breathing-info right">
+          <img
+            src="/images/breath-right.png"
+            alt="How to use breathing"
+            className="info-image"
+          />
+          <h3>How to Use This Exercise</h3>
+          <p>
+            Follow the circle’s rhythm. Inhale as it expands, exhale as it contracts. Repeat 3–5 times.
+          </p>
+        </div>
       </div>
     </div>
   );
