@@ -165,8 +165,7 @@ export default function PollenPage() {
 
 
 
-<div className="subscribe-section">
-        <div className="subscribe-content">
+<div className="subscribe-content">
             <div className="subscribe-text">
             <h2>Want pollen forecasts at your fingertips?</h2>
             <p>
@@ -178,7 +177,6 @@ export default function PollenPage() {
             <div className="subscribe-image">
             <img src={MailSVG} alt="Subscribe illustration" />
             </div>
-        </div>
         </div>
     </>
   );

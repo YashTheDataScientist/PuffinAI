@@ -67,7 +67,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  max-width: 1400px;
+  max-width: 1670px;
   width: 100%;
   background: #ffffff;
   padding: 4rem 3rem;
@@ -105,13 +105,7 @@ body {
   border-radius: 2px;
 }
 
-.subscribe-section {
-  width: 100%;
-  background: #1f1f1f;; /* soft blue background */
-  padding: 6rem 2rem;
-  display: flex;
-  justify-content: center;
-}
+
 
 
 /* Mobile Responsiveness */
