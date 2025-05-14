@@ -1,37 +1,44 @@
-/* 诱因模块整体容器 */
+/* 整体容器 */
 .trigger-bar-container {
-    margin-top: 50px;
-    text-align: center;
-  }
-  
-  /* 横向排列 5 个诱因图标（使用 grid） */
-  .trigger-bar {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);  /* 👈 横向 5 列 */
-    gap: 30px;
-    padding: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-    justify-items: center; /* 居中每个图标 */
-  }
-  
-  /* 每个诱因项 */
-  .trigger-item {
-    width: 100px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    text-align: center; /* 文字居中 */
-  }
-  
-  /* 悬浮动画效果 */
-  .trigger-item:hover {
-    transform: scale(1.05);
-  }
-  
-  /* 动画图标尺寸 */
-  .trigger-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 10px;
-  }
-  
+  margin-top: 50px;
+  text-align: center;
+}
+
+/* 标题居中 */
+.trigger-title {
+  text-align: center;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* 横向排列图标栏 */
+.trigger-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 列横排 */
+  gap: 30px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto; /* 居中整个栏 */
+  justify-items: center;
+}
+
+/* 每个图标项 */
+.trigger-item {
+  width: 140px;
+  text-align: center;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.trigger-item:hover {
+  transform: scale(1.05);
+}
+
+/* 图标大小控制在 item 内 */
+.trigger-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 10px;
+}

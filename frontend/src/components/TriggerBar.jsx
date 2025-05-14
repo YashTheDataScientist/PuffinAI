@@ -18,14 +18,14 @@ const triggers = [
 export default function TriggerBar() {
   return (
     <div className="trigger-bar-container">
-      <h2>Asthma Triggers</h2>
+      <h2 className="trigger-title">Asthma Triggers</h2>
       <div className="trigger-bar">
         {triggers.map((t, index) => (
           <div className="trigger-item" key={index}>
             <Lottie
               animationData={t.animation}
               loop
-              style={{ width: 200, height: 200 }} // ✅ 控制动画尺寸
+              style={{ width: 120, height: 120 }} // ✅ 控制动画尺寸
             />
             <p>{t.label}</p>
           </div>

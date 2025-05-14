@@ -11,7 +11,7 @@ export default function BreathingExercise() {
   const speak = (text) => {
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = "en-US"; // 可改成 "zh-CN" 使用中文
-    utter.rate = 1; // 语速（可调节 0.8 ~ 1.2）
+    utter.rate = 0.8; // 语速（可调节 0.8 ~ 1.2）
     window.speechSynthesis.speak(utter);
   };
 
