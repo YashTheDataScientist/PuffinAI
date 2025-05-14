@@ -13,11 +13,6 @@ export default function AsthmaPage() {
           Asthma is a long-term condition that affects the airways in your lungs.
           It can make it hard to breathe, especially when you are exposed to triggers like pollen, cold air, or stress.
         </p>
-        <img
-          src="https://via.placeholder.com/600x300?text=Asthma+Illustration"
-          alt="Asthma Illustration"
-          className="asthma-image"
-        />
       </section>
 
       {/* 卡片区域 */}
