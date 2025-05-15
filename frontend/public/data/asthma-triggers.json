@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Pets",
+    "description": "Pet allergens such as dander, saliva, and urine can trigger asthma symptoms. Cats and dogs are common sources. Regular cleaning, grooming, and allergen filters can help reduce exposure."
+  },
+  {
+    "name": "Pollen",
+    "description": "Pollen from grasses, trees, and weeds is a major asthma trigger, especially during certain seasons. Staying indoors during high pollen days and using air purifiers may reduce symptoms."
+  },
+  {
+    "name": "Exercise",
+    "description": "Exercise can cause airway narrowing in people with asthma, leading to coughing, wheezing, and shortness of breath. Warming up and using prescribed inhalers can help manage symptoms."
+  },
+  {
+    "name": "Smoke",
+    "description": "Smoke from tobacco, bushfires, or burning wood contains irritants that inflame the airways and worsen asthma. Avoiding smoke-filled environments is key to asthma management."
+  },
+  {
+    "name": "Cold air",
+    "description": "Breathing in cold, dry air can irritate airways and trigger asthma symptoms. Wearing a scarf over your nose and mouth in winter can help warm the air before it enters the lungs."
+  }
+]
