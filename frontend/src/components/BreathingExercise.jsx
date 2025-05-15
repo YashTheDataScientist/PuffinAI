@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Lottie from "lottie-react";
 import breathingAnim from "../animations/breath.json";
 import leftAnim from "../animations/why_breath_exercise.json"; // ✅ 引入左侧动画
+import RightAnim from "../animations/yoga.json"; // ✅ 引入左侧动画
 import './BreathingExercise.css';
 
 export default function BreathingExercise() {
@@ -57,13 +58,13 @@ export default function BreathingExercise() {
       <div className="breathing-layout">
         {/* 左侧说明：使用动画替换图片 */}
         <div className="breathing-info left">
+          <h3>Why Practice Breathing Exercises?</h3>
           <Lottie
             animationData={leftAnim}
             loop
             autoplay
             style={{ width: 300, height: 300, marginBottom: "12px" }}
           />
-          <h3>Why Practice Breathing Exercises?</h3>
           <p>
             Breathing exercises help reduce stress, improve lung function, and calm the nervous system.
           </p>
@@ -87,12 +88,13 @@ export default function BreathingExercise() {
 
         {/* 右侧说明 */}
         <div className="breathing-info right">
-          <img
-            src="/images/breath-right.png"
-            alt="How to use breathing"
-            className="info-image"
+                    <h3>How to Use This Exercise</h3>
+          <Lottie
+            animationData={RightAnim}
+            loop
+            autoplay
+            style={{ width: 300, height: 300, marginBottom: "12px" }}
           />
-          <h3>How to Use This Exercise</h3>
           <p>
             Follow the circle’s rhythm. Inhale as it expands, exhale as it contracts. Repeat 3–5 times.
           </p>
