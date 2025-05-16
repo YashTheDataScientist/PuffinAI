@@ -16,11 +16,13 @@ import LearnAboutPollen from './pages/LearnAboutPollen';
 import KnowYourArea from './pages/KnowYourArea';
 import AsthmaPage from './pages/AsthmaPage';
 import './App.css'; // ✅ 引入样式
+import Popup from './components/Popup';
 
 function App() {
   return (
     <div className="app-container"> {/* ✅ 外层容器布局 */}
       <Navbar />
+      <Popup />
       <div className="main-content"> {/* ✅ 主内容区域 */}
         <Routes>
           <Route path="/auth" element={<PasswordPage />} />

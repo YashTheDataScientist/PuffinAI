@@ -1,0 +1,413 @@
+/* == MAIN LAYOUT == */
+.plant-layout-wrapper {
+    display: flex;
+    width: 100%;
+    gap: 40px;
+    padding: 40px;
+    align-items: flex-start;
+    background-image: url('../assets/pgbg3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  
+  .carousel-column {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .details-column {
+    flex: 1.3;
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* == TITLE == */
+  .stack-title {
+    font-size: 2.4rem;
+    color: #1f1f1f;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* == CAROUSEL STACK == */
+  .stack-gallery {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stack-container {
+    position: relative;
+    width: 100%;
+    height: 440px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    margin-bottom: 30px;
+  }
+  
+  /* == PLANT CARD == */
+  .plant-card {
+    position: absolute;
+    top: 0;
+    width: 300px;
+    height: 440px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ease;
+    z-index: 1;
+  }
+  
+  .plant-frame {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 10px;
+  
+    /* ✅ Thick border */
+    border: 3px solid #d5d6d5; /* Change color to match your theme */
+  
+    /* ✅ Strong shadow */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  
+  .frame-inner {
+    width: 100%;
+    height: 330px;
+    background: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+  
+  .frame-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  
+  .caption {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222222;
+    margin-top: 12px;
+    text-align: center;
+  }
+  
+  /* == CARD STATES == */
+  .plant-card.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .plant-card.active {
+    transform: scale(1);
+    z-index: 3;
+  }
+  
+ 
+  
+  
+  /* == ARROW CONTROLS == */
+  .stack-arrows {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: -10px;
+  }
+  
+  .stack-arrow {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    transition: transform 0.2s ease;
+  }
+  
+  .stack-arrow img {
+    width: 26px;
+    height: 26px;
+    opacity: 0.85;
+  }
+  
+  .stack-arrow:hover {
+    transform: scale(1.1);
+  }
+  
+  /* == DETAILS SECTION == */
+  .details-column h3 {
+    margin-bottom: 10px;
+    color: #1f1f1f;
+  }
+  
+  .desc-lines {
+    border-top: 1.5px solid #ccc;
+    border-bottom: 1.5px solid #ccc;
+    margin-bottom: 20px;
+    padding: 12px 0;
+  }
+  
+  .desc-line {
+    font-size: 1rem;
+    color: #2a2a2a;
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  
+  .metrics-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;              /* slightly tighter spacing */
+    margin: 24px 0;
+  }
+  
+  .metric {
+    width: 150px;           /* fixed width for each metric */
+    height: 150px;          /* enough for 3 lines of content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+  
+  .metric img {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 6px;
+  }
+  
+  .metric-label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #1f1f1f;
+    margin-bottom: 4px;
+  }
+  
+  .metric-value {
+    font-size: 0.95rem;
+    color: #3d3d3d;
+    word-wrap: break-word;
+  }
+  
+  
+  /* == ACTION BOX == */
+  .actions-box {
+    display: flex;
+    flex-direction: row;         /* 🔁 make items go side-by-side */
+    gap: 20px;                   /* spacing between the two boxes */
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1; /* equal width */
+    padding: 20px;;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+    
+  
+  .action-info {
+    font-size: 0.95rem;
+    color: #333333;
+    margin: 0;
+  }
+  
+  .main-button {
+    width: 180px;
+    height: 50px;
+    background-color: #ffffff;
+    color: rgb(30, 30, 30);
+    font-weight: 200;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.18);
+  }
+  
+  .main-button:hover {
+    background-color: #16362e;
+    color:rgb(255, 255, 255);
+  }
+  
+  .map-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #00000095;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .map-popup .leaflet-container {
+    width: 700px;
+    height: 500px;
+    border-radius: 5px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Optional: Style the close button */
+  .map-popup button {
+    padding: 8px 20px;
+    font-weight: 600;
+    background: #000000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    align-self: center;
+  }
+  
+  .map-popup button:hover {
+    background: #16362e;
+  }
+  
+  .map-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.4); /* gentle white-ish blur */
+    z-index: 9998;
+  }
+  .recommend-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    width: 90%;
+    max-width: 960px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+  }
+  
+  /* Comparison grid */
+  .plant-comparison {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    margin: 30px 0;
+  }
+  
+  /* Individual plant box */
+  .plant-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Plant image */
+  .plant-box img {
+    width: 300px !important;
+    height: 300px !important;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+    border: 3px solid #eee;
+    display: block;
+  }
+  
+  
+  /* Plant name */
+  .plant-box h4 {
+    margin-top: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  /* Tag (safe / unsafe) */
+  .tag {
+    margin-top: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  
+  .tag.safe {
+    color: #198754; /* Bootstrap green */
+  }
+  
+  .tag.unsafe {
+    color: #dc3545; /* Bootstrap red */
+  }
+  
+  /* Description */
+  .recommend-desc {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    padding: 0 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Button */
+  .recommend-popup button {
+    padding: 10px 24px;
+    font-weight: 600;
+    background: #111;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .recommend-popup button:hover {
+    background: #333;
+  }
+  

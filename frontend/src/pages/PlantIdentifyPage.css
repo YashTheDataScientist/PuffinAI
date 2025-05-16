@@ -1,0 +1,78 @@
+.plant-identify-page {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .top-banner {
+    display: flex;
+    width: 100%;
+    height: 70%;
+  }
+  
+  .panel {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+  }
+  
+  .left-panel {
+    background-color: #d9eefd;
+  }
+  
+  .right-panel {
+    background-color: #eefaea;
+  }
+  
+  .content {
+    text-align: center;
+    margin-top: 60px;
+    z-index: 2;
+  }
+  
+  .content h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    max-width: 420px;
+    color: #313030;
+  }
+  
+  .content button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .left-panel .content button {
+    background-color: white;
+    color: #1a1a1a;
+  }
+  
+  .left-panel .content button:hover {
+    background-color: #cfe6f9;
+  }
+  
+  .right-panel .content button {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .right-panel .content button:hover {
+    background-color: #3a8d3a;
+  }
+  
+  .panel-img {
+    width: 80%;
+    max-width: 500px;
+    object-fit: contain;
+    margin-bottom: 30px;
+  }
+  

@@ -1,17 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Papa from 'papaparse';
 import './KnowYourArea.css';
 import tempIcon from '../assets/temperature.png';
 import windIcon from '../assets/wind.png';
 import humidityIcon from '../assets/humidity.png';
 import plantIcon from '../assets/plants.png';
-import lowRiskRadar from '../assets/radar/lowrisk.png';
-import mediumRiskRadar from '../assets/radar/mediumrisk.png';
-import highRiskRadar from '../assets/radar/highrisk.png';
-import symptomsImg from '../assets/symptoms.svg';
+import lowRiskRadar from '../assets/lowrisk.png';
+import mediumRiskRadar from '../assets/mediumrisk.png';
+import highRiskRadar from '../assets/highrisk.png';
 import { Link } from 'react-router-dom';
+import { Line } from 'react-chartjs-2';
+import lowIcon from '../assets/lowpre.png';
+import medIcon from '../assets/medpre.png';
+import highIcon from '../assets/highpre.png';
+import {
+  Chart as ChartJS,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
+ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend);
 
+const precautionTips = {
+  1: { text: "Low risk. Enjoy your day outside!", icon: lowIcon },
+  2: { text: "Moderate risk. A mask might be a good idea.", icon: medIcon },
+  3: { text: "High risk. Best to stay indoors if you can.", icon: highIcon },
+};
 
 const plantImages = import.meta.glob('../assets/plants/*.jpg', { eager: true });
 
@@ -33,6 +51,86 @@ const plantImageMap = {
   "Timothy Grass": "timothygrass"
 };
 
+const plantDetails = {
+  "Oak": {
+    description: "Oak trees release pollen in spring and can cause severe allergic reactions.",
+    count: 0,
+    riskLevel: "High"
+  },
+  "Pigweed": {
+    description: "Pigweed pollen is highly allergenic and thrives in dry climates.",
+    count: 0,
+    riskLevel: "Moderate"
+  },
+  "Ryegrass": {
+    description: "Ryegrass pollen is one of the most common triggers for hay fever.",
+    count: 0,
+    riskLevel: "High"
+  },
+  "Mulberry": {
+    description: "Mulberry trees produce dense clouds of allergenic pollen in spring.",
+    count: 0,
+    riskLevel: "High"
+  },
+  "Cedar": {
+    description: "Cedar pollen causes strong winter allergies, especially in dry areas.",
+    count: 0,
+    riskLevel: "Moderate"
+  },
+  "Plane Tree": {
+    description: "Plane Trees release fine airborne pollen during springtime.",
+    count: 0,
+    riskLevel: "Moderate"
+  },
+  "Silver Birch": {
+    description: "Silver Birch pollen is highly allergenic even in small doses.",
+    count: 0,
+    riskLevel: "High"
+  },
+  "Bermuda Grass": {
+    description: "Bermuda Grass pollen can cause allergic symptoms in warmer months.",
+    count: 0,
+    riskLevel: "Moderate"
+  },
+  "Privet": {
+    description: "Privet shrubs release summer pollen that worsens asthma and hay fever.",
+    count: 0,
+    riskLevel: "Moderate"
+  },
+  "Timothy Grass": {
+    description: "Timothy Grass is highly allergenic and pollinates in late spring.",
+    count: 0,
+    riskLevel: "High"
+  },
+  "Elm": {
+    description: "Elm trees produce pollen in early spring. Their pollen is a mild allergen.",
+    count: 0,
+    riskLevel: "Low"
+  },
+  "Olive Tree": {
+    description: "Olive Tree pollen is a major allergen in Mediterranean climates.",
+    count: 0,
+    riskLevel: "High"
+  },
+  "Paspalum Grass": {
+    description: "Paspalum releases pollen in warmer months, affecting many grass-allergy sufferers.",
+    count: 0,
+    riskLevel: "Moderate"
+  },
+  "Cocksfoot Grass": {
+    description: "Cocksfoot Grass pollinates heavily during late spring and early summer.",
+    count: 0,
+    riskLevel: "Moderate"
+  },
+  "Ragweed": {
+    description: "Ragweed pollen is extremely allergenic and widespread in late summer.",
+    count: 0,
+    riskLevel: "High"
+  }
+};
+
+
+
 const getRiskLabel = (level) => {
   if (level === 0) return 'VERY LOW';
   if (level === 1) return 'LOW';
@@ -50,6 +148,12 @@ const KnowYourArea = () => {
   const [apiData, setApiData] = useState(null);
   const [plantPercent, setPlantPercent] = useState(null);
   const [uniquePlants, setUniquePlants] = useState([]);
+  const [selectedPlant, setSelectedPlant] = useState(null);
+  const wrapperRef = useRef(null);
+
+
+  
+
 
   useEffect(() => {
     Papa.parse('/data/suburb_plant_density.csv', {
@@ -74,16 +178,22 @@ const KnowYourArea = () => {
   }, [search, suburbList]);
 
   useEffect(() => {
-    navigator.geolocation?.getCurrentPosition(
-      (pos) => {
-        setUserCoords({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-        });
-      },
-      (err) => console.warn('Geolocation error:', err)
-    );
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          setUserCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        },
+        (err) => {
+          console.warn('Geolocation error:', err);
+          alert('We couldn’t access your location. Please enable it in browser settings or search manually.');
+        },
+        { timeout: 10000 }
+      );
+    } else {
+      alert('Geolocation not supported by your device or browser.');
+    }
   }, []);
+  
 
   useEffect(() => {
     if (userCoords && suburbList.length && !matchedSuburb) {
@@ -116,24 +226,40 @@ const KnowYourArea = () => {
         header: true,
         complete: (results) => {
           const matchedKey = Object.keys(results.data[0] || {}).find(k =>
-            k.replace(/[\r\n\t\u200B\u00A0]/g, '').trim().toLowerCase() === 'matched_postcode'
+            k.replace(/\r|\n|\t|\u200B|\u00A0/g, '').trim().toLowerCase() === 'matched_postcode'
           );
 
-          const rows = results.data.filter(row => row[matchedKey]);
           const targetPostcode = String(matchedSuburb.postcode).replace(/\s/g, '');
-          let count = 0;
-          const plants = new Set();
+          const plantCounts = {};
 
-          rows.forEach((row) => {
-            if (String(row[matchedKey]).replace(/\s/g, '') === targetPostcode) {
-              count++;
-              const plant = row['Common Name'];
-              if (plant && plantImageMap[plant]) plants.add(plant);
+          const filtered = results.data.filter(row =>
+            String(row[matchedKey]).replace(/\s/g, '') === targetPostcode
+          );
+
+          filtered.forEach(row => {
+            const plant = row['Common Name'];
+            if (plant && plantImageMap[plant]) {
+              plantCounts[plant] = (plantCounts[plant] || 0) + 1;
             }
           });
 
-          setPlantPercent(rows.length > 0 ? ((count / rows.length) * 100).toFixed(1) : '0.0');
-          setUniquePlants([...plants].slice(0, 3));
+          const sortedPlants = Object.entries(plantCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 3)
+            .map(([name, count]) => ({
+              name,
+              count,
+              img: plantImages[`../assets/plants/${plantImageMap[name]}.jpg`]?.default
+            }));
+
+          sortedPlants.forEach(p => {
+            if (plantDetails[p.name]) {
+              plantDetails[p.name].count = p.count;
+            }
+          });
+
+          setUniquePlants(sortedPlants);
+          setPlantPercent(results.data.length > 0 ? ((filtered.length / results.data.length) * 100).toFixed(1) : '0.0');
         }
       });
     }
@@ -171,140 +297,196 @@ const KnowYourArea = () => {
     setFilteredSuggestions([]);
   };
 
-  const currentLocation = matchedSuburb ? `${matchedSuburb.suburb}, ${matchedSuburb.postcode}` : 'Detecting...';
   const pollenRisk = getRiskLabel(apiData?.predicted_pollen_risk);
-  let radarImage = null;
-    if (apiData?.predicted_pollen_risk === 1) radarImage = lowRiskRadar;
-    if (apiData?.predicted_pollen_risk === 2) radarImage = mediumRiskRadar;
-    if (apiData?.predicted_pollen_risk === 3) radarImage = highRiskRadar;
+  const radarImage =
+    apiData?.predicted_pollen_risk === 1 ? lowRiskRadar :
+    apiData?.predicted_pollen_risk === 2 ? mediumRiskRadar :
+    apiData?.predicted_pollen_risk === 3 ? highRiskRadar : null;
 
-
-    const plants = uniquePlants.map(name => {
-        const cleanName = name?.replace(/[\r\n\t\u200B\u00A0]/g, '').trim();
-        const path = `../assets/plants/${plantImageMap[cleanName]}.jpg`;
-        return { name: cleanName, img: plantImages[path]?.default };
-      });
-      
-
-  return (
-    <div className="know-area-wrapper">
-      <div className="know-card">
-        <div className="card-layout">
   
-          {/* LEFT COLUMN */}
-          <div className="left-column">
-            {/* Search + Location */}
-            <div className="card-box">
-              <input
-                type="text"
-                placeholder="Search another location"
-                className="search-box"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              {filteredSuggestions.length > 0 && (
-                <ul className="suggestions-list">
-                  {filteredSuggestions.map((item, index) => (
-                    <li key={index} onClick={() => handleSuggestionClick(item)}>
-                      {item.suburb} ({item.postcode})
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <p className="location-label">Current Location</p>
-              <h3 className="location-value">{currentLocation}</h3>
+
+    return (
+      <div className="know-area-wrapper" ref={wrapperRef}>
+        <div className="know-card">
+    
+          {/* ✅ Mobile Search Bar (top of page) */}
+          <div className="search-wrapper mobile-search">
+            <input
+              type="text"
+              placeholder="Enter Suburb Name"
+              className="search-box"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            {filteredSuggestions.length > 0 && (
+              <ul className="suggestions-list absolute-suggestions">
+                {filteredSuggestions.map((item, index) => (
+                  <li key={index} onClick={() => handleSuggestionClick(item)}>
+                    {item.suburb} ({item.postcode})
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+    
+          <div className="dashboard-grid">
+    
+            {/* LEFT COLUMN */}
+            <div className="left-column">
+              <div className="card-box">
+                <h1 className="pollen-risk-label">{pollenRisk}</h1>
+                <p className="card-subtitle">Pollen Risk in your Area</p>
+              </div>
+              <div className="card-box metrics-box">
+                <div className="icon-card"><img src={tempIcon} /><p>Temp</p><span>{apiData?.features_used?.temperature ?? '--'}°C</span></div>
+                <div className="icon-card"><img src={windIcon} /><p>Wind</p><span>{apiData?.features_used?.wind_speed ?? '--'} km/h</span></div>
+                <div className="icon-card"><img src={humidityIcon} /><p>Humidity</p><span>{apiData?.features_used?.relative_humidity ?? '--'}%</span></div>
+                <div className="icon-card"><img src={plantIcon} /><p>Pollen Density</p><span>{plantPercent ?? '--'}%</span></div>
+              </div>
+              <div className="card-stack">
+                <div className="card-box">
+                  <p className="suburb-name">{matchedSuburb?.suburb ?? '-'}</p>
+                  <p className="current-time">
+                    {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
+                  </p>
+                  <p className="current-date">{new Date().toDateString()}</p>
+                </div>
+                <div className="card-box">
+                  <p className="season-value"><strong>{apiData?.features_used?.off_season ? 'ON' : 'OFF'}</strong></p>
+                  <p className="card-subtitle"><strong>Season</strong></p>
+                </div>
+              </div>
             </div>
-  
-            {/* Radar Chart */}
-            <div className="card-box">
-              <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>Pollen Risk in your Area</p>
-              {apiData?.predicted_pollen_risk && (
-                <img
-                  src={{
-                    1: lowRiskRadar,
-                    2: mediumRiskRadar,
-                    3: highRiskRadar,
-                  }[apiData.predicted_pollen_risk]}
-                  alt="Radar Risk"
-                  className="radar-image"
+    
+            {/* MIDDLE COLUMN */}
+            <div className="middle-column">
+              
+              {/* ✅ Desktop Search Bar (in middle column) */}
+              <div className="search-wrapper desktop-search">
+                <input
+                  type="text"
+                  placeholder="Search location"
+                  className="search-box"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
-              )}
+                {filteredSuggestions.length > 0 && (
+                  <ul className="suggestions-list absolute-suggestions">
+                    {filteredSuggestions.map((item, index) => (
+                      <li key={index} onClick={() => handleSuggestionClick(item)}>
+                        {item.suburb} ({item.postcode})
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+    
+              <div className="card-box2" style={{ maxHeight: '300px' }}>
+                <h3 className="centered-title">5-Day Pollen Risk Forecast</h3>
+                <Line
+                  data={{
+                    labels: ['Today', 'Tue', 'Wed', 'Thu', 'Fri'],
+                    datasets: [{
+                      data: [1, 1, 2, 1, 0],
+                      borderColor: 'rgb(183, 180, 180)',
+                      backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                      tension: 0.3,
+                      fill: true,
+                      pointRadius: 5,
+                    }],
+                  }}
+                  options={{
+                    responsive: true,
+                    plugins: { legend: { display: false }},
+                    scales: {
+                      y: {
+                        min: 0,
+                        max: 3,
+                        ticks: {
+                          stepSize: 1,
+                          callback: (val) => ['Low', 'Moderate', 'High'][val],
+                          color: '#fff',
+                        },
+                        grid: { color: '#444' },
+                        border: { color: '#fff', display: true },
+                      },
+                      x: {
+                        offset: true,
+                        ticks: { color: '#fff', padding: 12 },
+                        grid: { color: '#444' },
+                        border: { color: '#fff', display: true },
+                      },
+                    }
+                  }}
+                />
+              </div>
+    
+              <div className="card-box1">
+                <h3>Common pollen plants in your area</h3>
+                <div className="plant-gallery">
+                  {uniquePlants.map((p, i) => (
+                    <div
+                      className="local-plant-box"
+                      key={i}
+                      onClick={() => setSelectedPlant(p.name)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img src={p.img} alt={p.name} />
+                      <p className="plant-name">{p.name}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="plant-gallery-note">Click on each image to know more</p>
+    
+                {selectedPlant && plantDetails[selectedPlant] && (
+                  <div className="plant-modal-overlay">
+                    <div className="plant-modal-card">
+                      <button className="plant-close-btn" onClick={() => setSelectedPlant(null)}>✖</button>
+                      <img src={uniquePlants.find(p => p.name === selectedPlant)?.img} alt={selectedPlant} className="plant-modal-img" />
+                      <h2>{selectedPlant}</h2>
+                      <p className="plant-modal-desc">{plantDetails[selectedPlant].description}</p>
+                      <div className="plant-modal-info">
+                        <p><strong>Nearby Count:</strong> {plantDetails[selectedPlant].count}</p>
+                        <p><strong>Pollen Risk:</strong> <span className={`risk-tag ${plantDetails[selectedPlant].riskLevel.toLowerCase()}`}>{plantDetails[selectedPlant].riskLevel}</span></p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-  
-            {/* Button */}
-            <div className="card-box">
-            <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>To see pollen risk from a bigger picture</p>
-            <Link to="/pollen_watch">
-    <button className="risk-btn">Click Here</button>
-  </Link>
-            </div>
-          </div>
-  
-          {/* CENTER COLUMN */}
-          <div className="center-column card-box">
-            <div className="icon-card"><img src={tempIcon} /><p>Temp:</p><span>{apiData?.features_used?.temperature ?? '--'}°C</span></div>
-            <div className="icon-card"><img src={windIcon} /><p>Wind:</p><span>{apiData?.features_used?.wind_speed ?? '--'} km/h</span></div>
-            <div className="icon-card"><img src={humidityIcon} /><p>Humidity:</p><span>{apiData?.features_used?.relative_humidity ?? '--'}%</span></div>
-            <div className="icon-card"><img src={plantIcon} /><p>Pollen Plant<br />Density:</p><span>{plantPercent ?? '--'}%</span></div>
-          </div>
-  
-          {/* RIGHT COLUMN */}
-          <div className="right-column">
-            {/* Plant Gallery */}
-            <div className="right-top card-box">
-            <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>Common pollen plants in your area</p>
-              <div className="plant-gallery">
-        {plants.map((p, i) => (
-            <div className="plant-box" key={i}>
-            <img src={p.img} alt={p.name.trim()} />
-            <p className="plant-name">{p.name}</p>
-
-            </div>
-        ))}
-        </div>
-
-
-
-        <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>Find out more info about these plants</p>
-        <Link to="/know_your_plants">
-          <button className="risk-btn">Click Here</button>
-        </Link>
-            </div>
-  
-            {/* Floor Input */}
-            <div className="right-top card-box">
-            <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>Want to understand how does pollen effect height wise,<br />please enter your floor number below</p>
-              <input type="number" placeholder="Enter floor number" className="floor-input" />
-              <button className="coming-soon-btn">Coming Soon</button>
-
-            </div>
-  
-            {/* Allergic Symptoms */}
-            <div className="right-bottom card-box">
-            <img src={symptomsImg} alt="Allergy symptoms" className="illustration" />
-
-            <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>To understand<br />common Allergic symptoms</p>
-            <Link to="/symptoms">
-          <button className="risk-btn">Click Here</button>
-        </Link>
-            </div>
-  
-            {/* Precautions */}
-            <div className="right-bottom card-box">
-            <p style={{ color: '#111', fontWeight: '600', fontSize: '1rem' }}>To Learn more<br />about the precautions</p>
-            <Link to="/learn">
-          <button className="risk-btn">Click Here</button>
-        </Link>
+    
+            {/* RIGHT COLUMN */}
+            <div className="right-column">
+              <div className="horizontal-row">
+                <div className="card-box small-card">
+                  <div className="precaution-wrapper">
+                    <img
+                      src={precautionTips[apiData?.predicted_pollen_risk]?.icon}
+                      alt="risk icon"
+                      className="precaution-icon"
+                    />
+                    <p className="precaution-text">
+                      {precautionTips[apiData?.predicted_pollen_risk]?.text || "Checking pollen levels..."}
+                    </p>
+                  </div>
+                </div>
+    
+                <div className="card-box small-card">
+                  <h4 className="symptom-header">Symptoms?</h4>
+                  <Link to="/symptoms"><button className="risk-btn">Click Here</button></Link>
+                </div>
+              </div>
+    
+              <div className="card-box">
+                <p className="floor-label">Check pollen effect by floor</p>
+                <input type="number" className="floor-input" placeholder="Enter floor number" />
+                <button className="coming-soon-btn">Coming Soon</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-  
-  
-};
+    );
+    };
 
 export default KnowYourArea;
-
-
