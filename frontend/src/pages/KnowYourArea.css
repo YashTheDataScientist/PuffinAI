@@ -249,7 +249,7 @@
 
 /* BUTTONS */
 .risk-btn {
-  margin-top: 0.7rem;
+  margin-top: 0.01rem;
   background: #d084ea;
   
   padding: 0.5rem 1.2rem;
@@ -454,6 +454,194 @@
 .desktop-search {
   display: block;
 }
+
+.floor-flip-card {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  perspective: 1200px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Shared face styling */
+.flip-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  border-radius: 12px;
+  transition: transform 0.6s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FRONT CARD */
+.front-face {
+  background-color: #1a023f;
+  transform: rotateY(0deg);
+  z-index: 2;
+  flex-direction: column;
+}
+
+.floor-check-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: nowrap; /* prevent wrapping unless absolutely needed */
+}
+
+/* Input Field */
+.floor-input {
+  width: 240px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  color: #5c2b9f;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Button */
+.go-btn {
+  margin-top: 25px;
+  padding: 0.6rem 1.6rem;
+  background-color: #c084f5;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap; /* ✅ keep button text on one line */
+}
+
+.go-btn:hover {
+  background-color: #a062d1;
+  transform: scale(1.03);
+}
+
+
+
+.floor-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+}
+
+/* BACK CARD SPLIT VIEW */
+.back-face {
+  background-color: #ffffff;
+  transform: rotateY(180deg);
+  z-index: 1;
+  flex-direction: row;
+  padding: 0;
+}
+
+/* Flip behavior */
+.floor-flip-card.flipped .front-face {
+  transform: rotateY(-180deg);
+  z-index: 1;
+}
+
+.floor-flip-card.flipped .back-face {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+/* Split layout */
+.back-left {
+  width: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-right {
+  width: 50%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+/* Illustration */
+.illustration {
+  width: 80%;
+  max-width: 250px;
+  margin-bottom: 1rem;
+}
+
+/* Message text */
+.floor-message {
+  font-weight: bold;
+  color: #111;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+
+
+
+.alexa-card {
+  background: #13044e;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;  /* ✅ reduced vertical padding */
+  margin-top: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #fff;
+  display: inline-block;   /* ✅ avoids auto-stretch */
+}
+
+
+.alexa-header {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.alexa-text {
+  font-size: 0.9rem;
+  line-height: 1.35;
+  margin-bottom: 0.8rem;
+  color: #e5dbff;
+}
+
+.risk-btn1 {
+  background-color: #000;         /* Black background */
+  color: #fff;                    /* White text */
+  font-weight: bold;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.risk-btn1:hover {
+  background-color: #222;         /* Slightly lighter black on hover */
+  transform: scale(1.03);
+}
+
 
 
 @media (max-width: 768px) {

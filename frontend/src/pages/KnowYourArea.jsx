@@ -23,6 +23,10 @@ import {
   Legend,
 } from 'chart.js';
 
+
+import Lottie from 'lottie-react';
+import buildingAnim from '../assets/building.json';
+
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend);
 
 const precautionTips = {
@@ -150,10 +154,9 @@ const KnowYourArea = () => {
   const [uniquePlants, setUniquePlants] = useState([]);
   const [selectedPlant, setSelectedPlant] = useState(null);
   const wrapperRef = useRef(null);
-
-
-  
-
+  const [floorInput, setFloorInput] = useState('');
+  const [showResultCard, setShowResultCard] = useState(false);
+  const [floorMessage, setFloorMessage] = useState('');
 
   useEffect(() => {
     Papa.parse('/data/suburb_plant_density.csv', {
@@ -296,6 +299,45 @@ const KnowYourArea = () => {
     setSearch('');
     setFilteredSuggestions([]);
   };
+  
+  const estimatePollenHeight = (windSpeed) => {
+    if (windSpeed < 1.5) return 3;
+    if (windSpeed < 3) return 7;
+    if (windSpeed < 5) return 15;
+    if (windSpeed < 8) return 30;
+    return 60;
+  };
+  
+  
+  const handleFloorCheck = () => {
+    const floor = parseInt(floorInput);
+    if (isNaN(floor) || floor < 1 || floor > 10) {
+      setFloorMessage("Please enter a valid floor number between 1 and 10.");
+      setShowResultCard(true);
+      return;
+    }
+  
+    if (apiData?.features_used?.off_season) {
+      setFloorMessage("It's currently off-season for pollen. Risk is minimal regardless of floor.");
+    } else {
+      const height = floor * 3;
+      const windSpeed = parseFloat(apiData?.features_used?.wind_speed || 0);
+      const pollenReach = estimatePollenHeight(windSpeed);
+      const riskLevel = apiData?.predicted_pollen_risk;
+  
+      if (riskLevel === 0 || riskLevel === 1) {
+        setFloorMessage(`Pollen risk is currently low. Enjoy fresh air at any height. Keep an eye on updates if you're sensitive.`);
+      } else if (height <= pollenReach) {
+        setFloorMessage(`You live around ${height}m high. Pollen may reach your floor. Keep windows shut during windy hours.`);
+      } else {
+        setFloorMessage(`At ${height}m high, you're likely above pollen reach. Enjoy fresh air, but stay cautious during storms.`);
+      }
+    }
+  
+    setShowResultCard(true);
+  };
+  
+  
 
   const pollenRisk = getRiskLabel(apiData?.predicted_pollen_risk);
   const radarImage =
@@ -472,16 +514,57 @@ const KnowYourArea = () => {
                 </div>
     
                 <div className="card-box small-card">
-                  <h4 className="symptom-header">Symptoms?</h4>
+                  <h4 className="symptom-header">Explore common allergy symptoms and learn how to manage them</h4>
                   <Link to="/symptoms"><button className="risk-btn">Click Here</button></Link>
                 </div>
               </div>
     
-              <div className="card-box">
-                <p className="floor-label">Check pollen effect by floor</p>
-                <input type="number" className="floor-input" placeholder="Enter floor number" />
-                <button className="coming-soon-btn">Coming Soon</button>
+              
+              <div className={`card-box floor-flip-card ${showResultCard ? 'flipped' : ''}`}>
+                {/* Front */}
+                <div className="flip-face front-face">
+                  <h3 className="floor-title">Will pollen reach your floor?</h3>
+                  <p className="floor-hint">Enter your floor number (1–10) and we’ll check how far pollen can travel today based on wind conditions.</p>
+
+                  <div className="floor-check-inline">
+                    <input
+                      type="number"
+                      value={floorInput}
+                      onChange={(e) => setFloorInput(e.target.value)}
+                      className="floor-input"
+                      placeholder="Enter floor number"
+                      max={10}
+                    />
+                    <button className="go-btn" onClick={handleFloorCheck}>Check</button>
+                  </div>
+
+                </div>
+
+
+                {/* Back */}
+                <div className="flip-face back-face split-back">
+                  <div className="back-left">
+                    <Lottie animationData={buildingAnim} loop className="illustration-large" />
+                  </div>
+                  <div className="back-right">
+                    <p className="floor-message">{floorMessage}</p>
+                    <button className="go-btn" onClick={() => setShowResultCard(false)}>Back</button>
+                  </div>
+                </div>
+
+
               </div>
+              
+              <div className="card-box">
+                <p className="alexa-text">
+                Stay ahead of allergies — just say, <strong>“Alexa, what’s the pollen index today?”</strong>
+                </p>
+                <button className="risk-btn1" onClick={() => window.location.href = "/alexa-setup"}>
+                  Set Up with Alexa
+                </button>
+              </div>
+
+              
             </div>
           </div>
         </div>
