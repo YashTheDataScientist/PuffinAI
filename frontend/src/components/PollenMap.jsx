@@ -11,8 +11,9 @@ const PollenMap = () => {
   const map = useRef(null);
   const popup = useRef(new mapboxgl.Popup({ closeButton: false, closeOnClick: false }));
   const hoveredFeatureId = useRef(null);
-  const userMarker = useRef(null); // ✅ NEW: For user location pin
-  const [windArrowVisible, setWindArrowVisible] = useState(false); // 新增风向开关
+  const userMarker = useRef(null);
+  const [windArrowVisible, setWindArrowVisible] = useState(false);
+  const windMarkers = useRef([]); 
 
   useEffect(() => {
     if (map.current) return;
@@ -26,23 +27,18 @@ const PollenMap = () => {
 
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-    // ✅ NEW: Get user's location and add pin
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
 
-        userMarker.current = new mapboxgl.Marker({ color: '#00BFFF' }) // blue pin
+        userMarker.current = new mapboxgl.Marker({ color: '#00BFFF' })
           .setLngLat([longitude, latitude])
           .setPopup(
-            new mapboxgl.Popup({ closeButton: false }) // ✅ disables that "x" button
+            new mapboxgl.Popup({ closeButton: false })
               .setHTML("<strong>You are here</strong>")
           )
-          
           .addTo(map.current)
           .togglePopup();
-
-        // Optionally center on user location
-        // map.current.flyTo({ center: [longitude, latitude], zoom: 10 });
       },
       (error) => {
         console.warn("Geolocation failed:", error);
@@ -69,8 +65,8 @@ const PollenMap = () => {
 
               let treeUPI = 0;
               let grassUPI = 0;
-              let windDirection = null; // 新增风向
-
+              let windDirection = null;
+              let windSpeed = null; 
               try {
                 const response = await axios.get('https://pollen.googleapis.com/v1/forecast:lookup', {
                   params: {
@@ -91,26 +87,35 @@ const PollenMap = () => {
                 console.warn(`API failed for ${lat}, ${lon}`, err);
               }
 
-              // 新增：请求风向
               try {
                 const windRes = await axios.get('https://api.open-meteo.com/v1/forecast', {
                   params: {
                     latitude: lat,
                     longitude: lon,
-                    hourly: 'wind_direction_120m',
+                    hourly: 'wind_direction_120m,wind_speed_120m', 
                     timezone: 'auto',
                   },
                 });
-                // 取最近一小时的风向
                 windDirection = windRes.data.hourly?.wind_direction_120m?.[0] ?? null;
+                windSpeed = windRes.data.hourly?.wind_speed_120m?.[0] ?? null;
               } catch (err) {
                 console.warn(`风向API失败: ${lat}, ${lon}`, err);
               }
 
+              const offsetDistance = 30;
+              let windOffset = [0, 0];
+              if (typeof windDirection === 'number') {
+                const rad = (windDirection - 90) * Math.PI / 180;
+                windOffset = [Math.cos(rad) * offsetDistance, Math.sin(rad) * offsetDistance];
+              }
+              feature.properties.windOffset = windOffset;
+
               feature.properties.treeUPI = treeUPI;
               feature.properties.grassUPI = grassUPI;
               feature.properties.generalUPI = Math.max(treeUPI, grassUPI);
-              feature.properties.windDirection = windDirection; // 存储风向
+              feature.properties.windDirection = windDirection;
+              feature.properties.windSpeed = windSpeed;
+              feature.properties.center = [lon, lat]; 
               feature.id = index;
               return feature;
             })
@@ -122,15 +127,6 @@ const PollenMap = () => {
               type: 'FeatureCollection',
               features: updatedFeatures,
             },
-          });
-
-          // 加载箭头图片
-          map.current.loadImage('/images/arrow.png', (error, image) => {
-            if (error) throw error;
-            if (!map.current.hasImage('arrow-icon')) {
-              map.current.addImage('arrow-icon', image);
-            }
-            // 初始不添加风向图层，由开关控制
           });
 
           map.current.addLayer({
@@ -223,9 +219,7 @@ const PollenMap = () => {
                 <div style="font-size: 13px; font-weight: bold; margin-bottom: 4px;">Pollen Risk Index</div>
                 <div style="font-size: 13px;">Tree 🌳: <strong style="color:#4caf50;">${tree}</strong></div>
                 <div style="font-size: 13px;">Grass 🌾: <strong style="color:#4caf50;">${grass}</strong></div>
-
               `)
-              
               .addTo(map.current);
           });
 
@@ -239,41 +233,53 @@ const PollenMap = () => {
             hoveredFeatureId.current = null;
             popup.current.remove();
           });
+
+          window.districtFeatures = updatedFeatures;
         });
     });
   }, []);
 
-  // 监听windArrowVisible变化，动态添加/移除风向图层
   useEffect(() => {
-    if (!map.current) return;
-    if (!map.current.getSource('forecast-districts')) return;
-    if (!map.current.hasImage('arrow-icon')) return;
-    const layerId = 'wind-arrow';
-    if (windArrowVisible) {
-      if (!map.current.getLayer(layerId)) {
-        map.current.addLayer({
-          id: layerId,
-          type: 'symbol',
-          source: 'forecast-districts',
-          layout: {
-            'icon-image': 'arrow-icon',
-            'icon-size': 0.5,
-            'icon-rotate': ['get', 'windDirection'],
-            'icon-allow-overlap': true,
-          },
-          filter: ['!=', ['get', 'windDirection'], null],
-        });
-      }
-    } else {
-      if (map.current.getLayer(layerId)) {
-        map.current.removeLayer(layerId);
-      }
+    if (!map.current || !map.current.isStyleLoaded()) return;
+    
+    windMarkers.current.forEach(marker => marker.remove());
+    windMarkers.current = [];
+    
+    if (windArrowVisible && window.districtFeatures) {
+      window.districtFeatures.forEach(feature => {
+        const { windDirection, windSpeed, center } = feature.properties;
+        
+        if (windDirection !== null && center) {
+          const el = document.createElement('div');
+          el.className = 'wind-arrow-marker';
+          
+          const animationDuration = windSpeed ? Math.max(3, 8 - windSpeed/2) : 5;
+          
+          el.innerHTML = `
+            <div class="arrow-container" style="transform: rotate(${windDirection}deg)">
+              <div class="arrow-body">
+                <div class="animated-particle" style="animation-duration: ${animationDuration}s"></div>
+                <div class="animated-particle" style="animation-duration: ${animationDuration * 1.5}s; animation-delay: ${animationDuration/3}s"></div>
+              </div>
+            </div>
+          `;
+          
+          const marker = new mapboxgl.Marker({
+            element: el,
+            anchor: 'center',
+          })
+            .setLngLat(center)
+            .addTo(map.current);
+          
+
+          windMarkers.current.push(marker);
+        }
+      });
     }
   }, [windArrowVisible]);
 
   return (
     <div className="map-container">
-      {/* Wind开关按钮 */}
       <div className="wind-switch-container">
         <label className="wind-switch">
           <input
@@ -285,9 +291,7 @@ const PollenMap = () => {
         </label>
         <span className="wind-switch-label">Wind</span>
       </div>
-      {/* 地图主体 */}
       <div ref={mapContainer} className="map" />
-      {/* 图例 */}
       <div className="map-legend">
         <strong>Allergy Risk Index</strong>
         <div><span style={{ background: '#a5d6a7' }}></span> 0 – Very Low</div>
