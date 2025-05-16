@@ -5,7 +5,7 @@ const ROOMS = [
   {
     key: 'bedroom',
     name: 'Bedroom',
-    style: { left: '30%', top: '35%', width: '13%', height: '20%' },
+    style: { left: '30%', top: '42%', width: '13%', height: '20%' },
     tips: [
       'Wash bedding weekly in hot water to reduce dust mites.',
       'Keep windows closed during high pollen seasons.',
@@ -16,7 +16,7 @@ const ROOMS = [
   {
     key: 'study',
     name: 'Study',
-    style: { left: '42%', top: '35%', width: '18%', height: '20%' },
+    style: { left: '42%', top: '42%', width: '18%', height: '20%' },
     tips: [
       'Keep bookshelves and surfaces dust-free.',
       'Ventilate regularly to prevent mold.',
@@ -26,7 +26,7 @@ const ROOMS = [
   {
     key: 'gardens',
     name: 'Garden',
-    style: { left: '59%', top: '35%', width: '14%', height: '15%' },
+    style: { left: '59%', top: '42%', width: '14%', height: '15%' },
     tips: [
       'Wash toys and bedding frequently.',
       'Keep stuffed animals to a minimum.',
@@ -36,7 +36,7 @@ const ROOMS = [
   {
     key: 'living',
     name: 'Living Room',
-    style: { left: '30%', top: '52%', width: '16%', height: '28%' },
+    style: { left: '30%', top: '60%', width: '16%', height: '28%' },
     tips: [
       'Vacuum carpets and sofas often.',
       'Keep indoor plants to a minimum to avoid mold.',
@@ -46,7 +46,7 @@ const ROOMS = [
   {
     key: 'kitchen',
     name: 'Kitchen',
-    style: { left: '45%', top: '52%', width: '15%', height: '28%' },
+    style: { left: '45%', top: '60%', width: '15%', height: '28%' },
     tips: [
       'Clean sinks and counters to prevent mold.',
       'Store food in sealed containers.',
@@ -56,7 +56,7 @@ const ROOMS = [
   {
     key: 'bathroom',
     name: 'Bathroom',
-    style: { left: '59%', top: '49%', width: '12%', height: '18%' },
+    style: { left: '59%', top: '57%', width: '12%', height: '18%' },
     tips: [
       'Use a dehumidifier or exhaust fan to reduce moisture.',
       'Clean tiles and grout to prevent mold.',
@@ -66,7 +66,7 @@ const ROOMS = [
   {
     key: 'garage',
     name: 'Garage',
-    style: { left: '59%', top: '65%', width: '14%', height: '16%' },
+    style: { left: '59%', top: '73%', width: '15%', height: '15%' },
     tips: [
       'Store chemicals and paints in sealed containers.',
       'Keep the area well ventilated.',
@@ -80,6 +80,9 @@ const HouseTips = () => {
 
   return (
     <div className="house-tips-bg">
+      <div className="house-tips-header">
+        Click on a room below to learn which triggers are found where and what you can do about them.
+      </div>
       <img src="/images/house.png" alt="House cross-section" className="house-img" />
       {ROOMS.map(room => (
         <button
