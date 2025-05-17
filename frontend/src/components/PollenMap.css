@@ -205,35 +205,25 @@
   }
   
   .arrow-body:after {
-    content: '';
-    position: absolute;
-    top: -6px;
-    left: -5px;
-    width: 0;
-    height: 0;
-    border-left: 7.5px solid transparent;
-    border-right: 7.5px solid transparent;
-    border-bottom: 10px solid rgba(255, 255, 255, 0.7);
+    display: none;
   }
   
   .animated-particle {
     position: absolute;
-    width: 7px;
-    height: 7px;
-    background-color: rgba(255, 255, 255, 0.8);
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
-    top: 50%;
-    left: -1px;
     transform: translateY(-50%);
     animation-name: moveParticle;
-    animation-timing-function: linear;
+    animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
   }
   
   @keyframes moveParticle {
     0% {
       opacity: 0;
-      transform: translateY(15px);
+      transform: translateY(20px) translateX(0);
     }
     20% {
       opacity: 1;
@@ -243,6 +233,6 @@
     }
     100% {
       opacity: 0;
-      transform: translateY(-15px);
+      transform: translateY(-20px) translateX(5px);
     }
   }
