@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './PlantIdentifier.module.css';
+import { fetchQueryResult } from './Safequery';
 
 const API_URL = 'https://eqysflxgv2.execute-api.ap-southeast-2.amazonaws.com/prod/plant_identify'; 
 
@@ -25,12 +26,13 @@ const PlantIdentifier = () => {
     setLoading(true);
     setResult(null);
     try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ image_base64: base64 }),
-      });
-      const data = await res.json();
+      // const res = await fetch(API_URL, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ image_base64: base64 }),
+      // });
+      // const data = await res.json();
+      const data = await fetchQueryResult('1', { image_base64: base64 });
       setResult(data);
     } catch (error) {
       console.error(error);
