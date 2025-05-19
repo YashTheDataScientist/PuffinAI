@@ -1,0 +1,97 @@
+/* Floating Speaker Button - orangish yellow style */
+.speaker-float-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 90px;
+    width: 54px;
+    height: 54px;
+    background: #f59e0b; /* amber-500 */
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+  }
+  
+  /* Hover color change */
+  .speaker-float-btn:hover {
+    background: #d97706; /* amber-600 */
+  }
+  
+  /* Speaker icon inside the button */
+  .speaker-float-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    pointer-events: none; /* allows tooltip hover without blocking icon */
+  }
+  
+  /* Tooltip Styling */
+  .tooltip-text {
+    position: absolute;
+    bottom: 60px;
+    background-color: #374151; /* dark gray */
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 10000;
+  }
+  
+  /* Show tooltip on hover */
+  .speaker-float-btn:hover .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Toolbar Panel */
+  .accessibility-toolbar {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background: #1f2937;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  /* Buttons inside panel */
+  .accessibility-toolbar button {
+    background: #10b981;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s ease;
+  }
+  
+  /* Hover effect on buttons */
+  .accessibility-toolbar button:hover {
+    background: #059669;
+  }
+  
+  /* Disabled state */
+  .accessibility-toolbar button:disabled {
+    background: #6b7280;
+    cursor: not-allowed;
+  }
+  

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './FeatureLookup.css';
 import { FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import featureIcon from '../assets/feature.png'; // ✅ your custom icon
+import featureIcon from '../assets/feature.png'; // ✅ Your icon here
 
 const features = [
   { title: "Know Your Area", desc: "Get pollen risk and weather info for your suburb.", route: "/know_your_area" },
@@ -20,22 +20,32 @@ const features = [
 const FeatureLookup = () => {
   const [open, setOpen] = useState(false);
   const panelRef = useRef(null);
+  const buttonRef = useRef(null);
   const navigate = useNavigate();
 
+  // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (panelRef.current && !panelRef.current.contains(event.target)) {
+      if (
+        panelRef.current &&
+        !panelRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
         setOpen(false);
       }
     };
+
     if (open) {
       document.addEventListener('mousedown', handleClickOutside);
     }
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [open]);
 
+  // Handle navigation and close
   const handleClick = (route) => {
     setOpen(false);
     navigate(route);
@@ -43,8 +53,11 @@ const FeatureLookup = () => {
 
   return (
     <>
-      <div className="feature-lookup-btn" onClick={() => setOpen(prev => !prev)}>
-
+      <div
+        className="feature-lookup-btn"
+        ref={buttonRef}
+        onClick={() => setOpen(prev => !prev)}
+      >
         <img src={featureIcon} alt="Feature Icon" className="feature-icon-img" />
       </div>
 

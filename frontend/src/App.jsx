@@ -19,6 +19,9 @@ import './App.css'; // ✅ 引入样式
 import Popup from './components/Popup';
 import AllergyGuide from './pages/AllergyGuide';
 import FeatureLookup from './components/FeatureLookup';
+import AccessibilityToolbar from './components/AccessibilityToolbar';
+import VoiceCommand from './components/VoiceCommand';
+
 
 function App() {
   return (
@@ -53,7 +56,9 @@ function App() {
         </Routes>
       </div>
       <FeatureLookup />
-      <Footer /> {/* ✅ 底部固定显示 */}
+      <AccessibilityToolbar />
+      <VoiceCommand />
+      <Footer />
     </div>
   );
 }
