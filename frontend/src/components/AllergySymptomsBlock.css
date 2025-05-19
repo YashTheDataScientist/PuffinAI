@@ -1,0 +1,168 @@
+/* === Global Page Setup === */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.full-page-wrapper {
+  scroll-behavior: smooth;
+}
+
+/* === Robot Viewer Section === */
+.robot-viewer-section {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f8ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+  padding-top: 4.5rem;
+}
+
+.robot-viewer-layout.with-fullside {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: stretch;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.left-info-panel {
+  background-color: #0d4b66;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 2rem;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.6;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.robot-viewer-layout.with-fullside > :nth-child(2) {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin-left: -200px;
+}
+
+.robot-instruction-wrapper {
+  display: none;
+}
+
+/* === Symptom Section (Only Placeholder Now) === */
+.symptom-page {
+  position: relative;
+  background-color: #f8fafc;
+  padding: 2rem;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.symptom-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.symptom-page h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0f172a;
+  margin-bottom: 24px;
+}
+
+.symptom-placeholder {
+  font-size: 1.2rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* === Symptom Popup === */
+.symptom-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.symptom-popup-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  animation: fadeInPopup 0.3s ease;
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #334155;
+}
+
+@keyframes fadeInPopup {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .robot-viewer-layout.with-fullside {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-info-panel {
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 1.5rem;
+  }
+
+  .symptom-popup-card {
+    max-height: 85vh;
+    width: 95%;
+    padding: 1.5rem;
+  }
+}

@@ -1,56 +1,3 @@
-// import SubscribeForm from '../components/SubscribeForm';
-// import MailSVG from '../assets/email-campaign-animate.svg';
-// import './PollenPage.css';
-// import PollenMap from '../components/PollenMap';
-
-// import PollenForecast from "../components/PollenForecast";
-// import TempPollenChart from '../components/TempPollenChart';
-// import HeatPollenmap from '../components/HeatPollenmap';
-// import RainPollenChart from '../components/RainPollenChart';
-
-
-
-// export default function PollenPage() {
-//   return (
-//     <>
-//         <div style={{ marginTop: '120px', color: '#333' }}>
-//         <h1 style={{ textAlign: 'center' }}>Live Pollen Map of Victoria</h1>
-//         <PollenMap />
-//         </div>
-
-//         <div>
-//         <h1 style={{ textAlign: 'center' }}>Live Pollen Map of Victoria</h1>
-//         <PollenForecast />
-//         </div>
-//         <div>
-//           <TempPollenChart />
-//         </div>
-//         <div>
-//           <HeatPollenmap />
-//         </div>
-//         <div>
-//           <RainPollenChart />
-//         </div>
-//         <div className="subscribe-section">
-//         <div className="subscribe-content">
-//             <div className="subscribe-text">
-//             <h2>Want pollen forecasts at your fingertips?</h2>
-//             <p>
-//                 Stay informed with daily updates tailored for Melbourne. Just drop your email
-//                 below and we’ll keep you one step ahead of allergies — every day, no spam.
-//             </p>
-//             <SubscribeForm />
-//             </div>
-//             <div className="subscribe-image">
-//             <img src={MailSVG} alt="Subscribe illustration" />
-//             </div>
-//         </div>
-//         </div>
-//     </>
-//   );
-// }
-
-
 
 import SubscribeForm from '../components/SubscribeForm';
 import MailSVG from '../assets/email-campaign-animate.svg';
@@ -81,27 +28,11 @@ export default function PollenPage() {
 
       <hr className="section-divider" />
 
-      {/* SECTION 2: POLLEN FORECAST */}
-      <div id="forecast-section" className="live-map-wrapper">
-        <div className="map-column">
-          <PollenForecast />
-        </div>
-
-        <div className="map-description scroll-prompt">
-          <h2>Curious why pollen changes?</h2>
-          <p>
-            Scroll down to see how <strong>temperature</strong>, <strong>humidity</strong>, and <strong>wind</strong> influence daily pollen levels.
-          </p>
-          <button className="scroll-button" onClick={() => window.scrollBy({ top: 600, behavior: 'smooth' })}>
-            ⬇ Scroll to Insights
-          </button>
-        </div>
-      </div>
 
      
 
 
-      {/* SECTION 4: HEATMAP */}
+      {/* SECTION 4: HEATMAP
       <div className="map-section">
   <div className="live-map-wrapper">
     <div className="map-column">
@@ -119,13 +50,13 @@ export default function PollenPage() {
       </p>
     </div>
   </div>
-</div>
+</div> */}
 
 
 
 
  {/* SECTION 4: TEMP VS POLLEN */}
-<div className="map-section">
+{/* <div className="map-section">
   <div className="live-map-wrapper">
     <div className="map-column">
       <TempPollenChart />
@@ -141,12 +72,12 @@ export default function PollenPage() {
       </p>
     </div>
   </div>
-</div>
+</div> */}
 
 
 
 {/* SECTION 5: RAINFALL VS POLLEN */}
-<div className="map-section">
+{/* <div className="map-section">
   <div className="live-map-wrapper">
     <div className="map-column">
       <RainPollenChart />
@@ -161,7 +92,7 @@ export default function PollenPage() {
       </p>
     </div>
   </div>
-</div>
+</div> */}
 
 
 

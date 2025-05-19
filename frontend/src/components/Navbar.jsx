@@ -49,7 +49,7 @@ const Navbar = () => {
         <Link to="/know_your_area" className={isActive('/know_your_area') ? 'active' : ''}>Know Your Area</Link>
         <Link to="/pollen_watch" className={isActive('/pollen_watch') ? 'active' : ''}>Pollen Watch</Link>
         <Link to="/know_your_plants" className={isActive('/know_your_plants') ? 'active' : ''}>Know Your Plants</Link>
-        <Link to="/symptoms" className={isActive('/symptoms') ? 'active' : ''}>Symptoms</Link>
+        <Link to="/allergy-guide" className={isActive('/allergy-guide') ? 'active' : ''}>Allergy Guide</Link>
         <Link to="/learn" className={isActive('/learn') ? 'active' : ''}>Learn</Link>
       </div>
 

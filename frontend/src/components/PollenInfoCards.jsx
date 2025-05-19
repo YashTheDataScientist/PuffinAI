@@ -21,7 +21,7 @@ const PollenInfoCards = ({ status = "off-season" }) => {
       </div>
 
       {/* CARD 3: Types of Pollen */}
-      <div className="info-card forecast">
+      {/* <div className="info-card forecast">
   <p>
     Check the 5-day allergy forecast for your current location based on Tree and Grass pollen levels.
   </p>
@@ -31,7 +31,7 @@ const PollenInfoCards = ({ status = "off-season" }) => {
   }}>
     View Forecast
   </button>
-</div>
+</div> */}
 
     </div>
   );

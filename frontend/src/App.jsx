@@ -17,6 +17,7 @@ import KnowYourArea from './pages/KnowYourArea';
 import AsthmaPage from './pages/AsthmaPage';
 import './App.css'; // ✅ 引入样式
 import Popup from './components/Popup';
+import AllergyGuide from './pages/AllergyGuide';
 
 function App() {
   return (
@@ -37,6 +38,17 @@ function App() {
           <Route path="/country/:stateName" element={<ProtectedRoute><StateMap /></ProtectedRoute>} />
           <Route path="/country/:stateName/:cityName" element={<ProtectedRoute><CityMap /></ProtectedRoute>} />
           <Route path="/asthma_info" element={<ProtectedRoute><AsthmaPage /></ProtectedRoute>} />
+
+
+          <Route
+            path="/allergy-guide"
+            element={
+              <ProtectedRoute>
+                <AllergyGuide />
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
       </div>
       <Footer /> {/* ✅ 底部固定显示 */}
