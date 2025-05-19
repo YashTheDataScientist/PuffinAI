@@ -18,6 +18,7 @@ import AsthmaPage from './pages/AsthmaPage';
 import './App.css'; // ✅ 引入样式
 import Popup from './components/Popup';
 import AllergyGuide from './pages/AllergyGuide';
+import FeatureLookup from './components/FeatureLookup';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
 
         </Routes>
       </div>
+      <FeatureLookup />
       <Footer /> {/* ✅ 底部固定显示 */}
     </div>
   );

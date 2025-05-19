@@ -1,0 +1,139 @@
+/* == Floating Button == */
+.feature-lookup-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background: #7c3aed; /* violet-600 */
+    border-radius: 50%;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+  }
+  
+  .feature-lookup-btn:hover {
+    background: #5b21b6; /* violet-800 */
+  }
+  
+  /* == Icon Image == */
+  .feature-icon-img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* makes it white on dark bg */
+  }
+  
+  /* == Tooltip on Hover == */
+  .feature-lookup-btn::after {
+    content: "Quickly go to your desired feature";
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    background: #1f2937; /* dark gray */
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+  
+  .feature-lookup-btn:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* == Slide-up Panel == */
+  .feature-lookup-panel {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 320px;
+    max-height: 80vh;
+    background: #f9fafb;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 9999;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+  }
+  
+  /* == Slide Animation == */
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* == Header == */
+  .feature-lookup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .feature-lookup-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #1f2937;
+  }
+  
+  .close-icon {
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.2s ease;
+  }
+  
+  .close-icon:hover {
+    color: #374151;
+  }
+  
+  /* == List of Features == */
+  .feature-lookup-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .feature-lookup-list li {
+    margin-bottom: 14px;
+    padding: 12px;
+    background: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .feature-lookup-list li:hover {
+    background: #e0e7ff; /* indigo-100 */
+    transform: translateY(-2px);
+  }
+  
+  .feature-lookup-list li strong {
+    display: block;
+    color: #0f172a;
+    font-weight: 600;
+  }
+  
+  .feature-lookup-list li p {
+    margin: 4px 0 0;
+    color: #4b5563;
+    font-size: 0.9rem;
+  }
+  

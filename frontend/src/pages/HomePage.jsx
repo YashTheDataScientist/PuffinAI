@@ -40,9 +40,15 @@ export default function HomePage() {
             <p className="section-subtitle">
               Your quick guide to staying allergy-free in Victoria — track pollen, identify risky plants, and get smart tips to breathe easy all season.
             </p>
+            
+ 
+            {/* <p className="section-subtitle">
+            Our smart system uses your local plants and historical data to predict pollen risk using machine learning — helping you stay ahead of allergies.
+            </p> */}
             <Link to="/know_your_area">
               <button>Know about pollen in your area</button>
             </Link>
+            <p> - Powered by Our Machine Learning Models - </p>
           </div>
         </ParallaxLayer>
 
@@ -88,10 +94,10 @@ export default function HomePage() {
           <div className="text-layer right section3 mobile-section">
             <h1 className="section-title">Track Pollen Levels Near You</h1>
             <p className="section-subtitle">
-              Explore live pollen maps, 5-day forecasts, and key insights on what drive allergy risks in your area.
+              Check pollen risk levels across all Victorian districts and see which areas have low, moderate, or high exposure.
             </p>
             <div className="button-group">
-              <Link to="/pollen_watch"><button>View Pollen Forecast</button></Link>
+              <Link to="/pollen_watch"><button>Vist Pollen Watch</button></Link>
             </div>
           </div>
         </ParallaxLayer>
@@ -129,7 +135,7 @@ export default function HomePage() {
               Get practical, science-backed tips to avoid triggers and protect yourself year-round.
             </p>
             <div className="button-group">
-              <Link to="/learn"><button>Learn about pollen</button></Link>
+              <Link to="/allergy-guide"><button>Understand Pollen Symptoms</button></Link>
             </div>
           </div>
         </ParallaxLayer>

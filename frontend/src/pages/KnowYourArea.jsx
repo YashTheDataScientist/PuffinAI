@@ -140,7 +140,7 @@ const getRiskLabel = (level) => {
   if (level === 1) return 'LOW';
   if (level === 2) return 'MODERATE';
   if (level === 3) return 'HIGH';
-  return 'UNKNOWN';
+  return '-';
 };
 
 const KnowYourArea = () => {
@@ -407,7 +407,7 @@ const KnowYourArea = () => {
               <div className="search-wrapper desktop-search">
                 <input
                   type="text"
-                  placeholder="Search location"
+                  placeholder="Enter Suburb Name"
                   className="search-box"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
