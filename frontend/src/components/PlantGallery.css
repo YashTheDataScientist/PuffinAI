@@ -1,25 +1,39 @@
 /* == MAIN LAYOUT == */
 .plant-layout-wrapper {
-    display: flex;
-    width: 100%;
-    gap: 40px;
-    padding: 40px;
-    align-items: flex-start;
-    background-image: url('../assets/pgbg3.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
+  
+  width: 100%;
+  
+  
+  align-items: center;          /* ✅ center vertically */
+  justify-content: center;      /* ✅ center horizontally */
+  background-image: url('../assets/pgbg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  
+}
 
+
+.gallery-overlay {
+  background: rgba(183, 187, 247, 0.295); /* Semi-transparent black */
+  min-height: 100vh;
+  width: 100%;
+  border-radius: 20px;
+  padding: 40px;
+  gap: 40px;
+  backdrop-filter: blur(6px); /* Optional: glassy effect */
+  display: flex;
+}
   
   .carousel-column {
     flex: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: center;
   }
   
   .details-column {
@@ -36,7 +50,7 @@
   /* == TITLE == */
   .stack-title {
     font-size: 2.4rem;
-    color: #1f1f1f;
+    color: #fcfcfc;
     margin-bottom: 20px;
     font-weight: bold;
   }
@@ -161,14 +175,14 @@
   
   /* == DETAILS SECTION == */
   .details-column h3 {
-    margin-bottom: 10px;
+    
     color: #1f1f1f;
   }
   
   .desc-lines {
     border-top: 1.5px solid #ccc;
     border-bottom: 1.5px solid #ccc;
-    margin-bottom: 20px;
+    
     padding: 12px 0;
   }
   
@@ -183,7 +197,7 @@
     display: flex;
     justify-content: space-between;
     gap: 12px;              /* slightly tighter spacing */
-    margin: 24px 0;
+    
   }
   
   .metric {
@@ -264,6 +278,12 @@
     color:rgb(255, 255, 255);
   }
   
+  .map-popup .leaflet-container {
+    width: 700px;
+    height: 500px;
+    border-radius: 5px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  }
   .map-popup {
     position: fixed;
     top: 50%;
@@ -281,12 +301,7 @@
     
   }
   
-  .map-popup .leaflet-container {
-    width: 700px;
-    height: 500px;
-    border-radius: 5px;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
-  }
+
   
   /* Optional: Style the close button */
   .map-popup button {

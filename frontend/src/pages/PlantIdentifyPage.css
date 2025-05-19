@@ -1,78 +1,166 @@
 .plant-identify-page {
-    font-family: 'Inter', sans-serif;
-  }
-  
-  .top-banner {
-    display: flex;
-    width: 100%;
-    height: 70%;
-  }
-  
-  .panel {
-    flex: 1;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px;
-    box-sizing: border-box;
-  }
-  
-  .left-panel {
-    background-color: #d9eefd;
-  }
-  
-  .right-panel {
-    background-color: #eefaea;
-  }
-  
-  .content {
-    text-align: center;
-    margin-top: 60px;
-    z-index: 2;
-  }
-  
-  .content h2 {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-    max-width: 420px;
-    color: #313030;
-  }
-  
-  .content button {
-    padding: 12px 24px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-  }
-  
-  .left-panel .content button {
-    background-color: white;
-    color: #1a1a1a;
-  }
-  
-  .left-panel .content button:hover {
-    background-color: #cfe6f9;
-  }
-  
-  .right-panel .content button {
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  .right-panel .content button:hover {
-    background-color: #3a8d3a;
-  }
-  
-  .panel-img {
-    width: 80%;
-    max-width: 500px;
-    object-fit: contain;
-    margin-bottom: 30px;
-  }
-  
+  position: relative;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+/* Top Section Layout */
+.top-banner {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 80px);
+  flex-wrap: wrap;
+}
+
+.panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.left-panel {
+  background-color: #d9eefd;
+}
+
+.right-panel {
+  background-color: #eefaea;
+}
+
+.content {
+  text-align: center;
+  z-index: 2;
+}
+
+.content h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  max-width: 420px;
+  color: #313030;
+}
+
+.content button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.left-panel .content button {
+  background-color: rgb(52, 125, 221);
+  color: #ffffff;
+}
+
+.left-panel .content button:hover {
+  background-color: rgb(29, 101, 194);
+}
+
+.right-panel .content button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.right-panel .content button:hover {
+  background-color: #3a8d3a;
+}
+
+.panel-img {
+  width: 60%;
+  max-width: 500px;
+  object-fit: contain;
+  margin-bottom: 30px;
+}
+
+/* Lottie Arrows */
+.identify-down-arrow {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 48px;
+  height: 48px;
+  z-index: 100;
+  cursor: pointer;
+  opacity: 0.95;
+  transition: transform 0.2s ease;
+}
+
+.identify-down-arrow:hover {
+  transform: scale(1.1);
+}
+
+.identify-up-arrow {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  z-index: 100;
+  cursor: pointer;
+  transform: rotate(180deg);
+  opacity: 0.95;
+  transition: transform 0.2s ease;
+}
+
+.identify-up-arrow:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+
+
+.explore-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  padding: 60px 40px;
+  background: #f8f9fa;
+}
+
+.explore-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  width: 320px;
+  max-width: 90vw;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.explore-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.explore-card h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.explore-card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.explore-card button {
+  background-color: #2c82e0;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.explore-card button:hover {
+  background-color: #1f65b8;
+}

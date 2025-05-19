@@ -1,322 +1,3 @@
-// import React, { useState } from 'react';
-// import './PlantGallery.css';
-
-// import ryegrass from '../assets/plants/ryegrass.jpg';
-// import planetree from '../assets/plants/planetree.jpg';
-// import silverbirch from '../assets/plants/silverbirch.jpg';
-// import bermudagrass from '../assets/plants/bermudagrass.jpg';
-// import timothygrass from '../assets/plants/timothygrass.jpg';
-// import mulberry from '../assets/plants/mulberry.jpg';
-// import olivetree from '../assets/plants/olivetree.jpg';
-// import cedar from '../assets/plants/cedar.jpg';
-// import elm from '../assets/plants/elm.jpg';
-// import oak from '../assets/plants/oak.jpg';
-// import pigweed from '../assets/plants/pigweed.jpg';
-// import ragweed from '../assets/plants/ragweed.jpg';
-// import privet from '../assets/plants/privet.jpg';
-// import cocksfootgrass from '../assets/plants/cocksfootgrass.jpg';
-// import paspalumgrass from '../assets/plants/paspalumgrass.jpg';
-
-// const PLANT_LIST = [
-//   { name: 'Ryegrass', img: ryegrass },
-//   { name: 'Plane Tree', img: planetree },
-//   { name: 'Silver Birch', img: silverbirch },
-//   { name: 'Bermuda Grass', img: bermudagrass },
-//   { name: 'Timothy Grass', img: timothygrass },
-//   { name: 'Mulberry', img: mulberry },
-//   { name: 'Olive Tree', img: olivetree },
-//   { name: 'Cedar', img: cedar },
-//   { name: 'Elm', img: elm },
-//   { name: 'Oak', img: oak },
-//   { name: 'Pigweed', img: pigweed },
-//   { name: 'Ragweed', img: ragweed },
-//   { name: 'Privet', img: privet },
-//   { name: 'Cocksfoot Grass', img: cocksfootgrass },
-//   { name: 'Paspalum Grass', img: paspalumgrass },
-// ];
-  
-
-// const PlantStackGallery = () => {
-//   const [centerIndex, setCenterIndex] = useState(7); // center plant
-
-//   const handleNext = () => {
-//     setCenterIndex((prev) => (prev + 1) % PLANT_LIST.length);
-//   };
-
-//   const handlePrev = () => {
-//     setCenterIndex((prev) => (prev - 1 + PLANT_LIST.length) % PLANT_LIST.length);
-//   };
-
-//   return (
-//     <div className="plant-stack-wrapper">
-//       <h2 className="stack-title">Explore Plants</h2>
-//       <div className="stack-gallery">
-//         <button onClick={handlePrev} className="stack-arrow left">{'<'}</button>
-
-//         <div className="stack-container">
-//           {PLANT_LIST.map((plant, index) => {
-//             let offset = index - centerIndex;
-
-//             if (offset > PLANT_LIST.length / 2) offset -= PLANT_LIST.length;
-//             if (offset < -PLANT_LIST.length / 2) offset += PLANT_LIST.length;
-
-//             const maxVisible = 3; // show 7 total (3 left, center, 3 right)
-//             if (Math.abs(offset) > maxVisible) return null;
-
-//             const zIndex = 100 - Math.abs(offset);
-//             const scale = 1 - Math.abs(offset) * 0.05;
-//             const translateX = offset * 75;
-//             const opacity = 1;
-
-//             return (
-//               <div
-//                 key={plant.name}
-//                 className="plant-card"
-//                 style={{
-//                   transform: `translateX(${translateX}px) scale(${scale})`,
-//                   zIndex,
-//                   opacity,
-//                 }}
-//                 onClick={() => setCenterIndex(index)}
-//               >
-//                 <div className="plant-frame">
-//                   <div className="frame-inner">
-//                     <img src={plant.img} alt={plant.name} />
-//                   </div>
-//                   <div className="caption">{plant.name}</div>
-//                 </div>
-//               </div>
-//             );
-//           })}
-//         </div>
-
-//         <button onClick={handleNext} className="stack-arrow right">{'>'}</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PlantStackGallery;
-
-
-// .plant-layout-wrapper {
-//     display: flex;
-//     gap: 40px;
-//     padding: 40px;
-//     align-items: flex-start;
-//     background-color: #f9fdf5;
-//   }
-  
-//   .carousel-column {
-//     flex: 2;
-//   }
-  
-//   .details-column {
-//     flex: 1.3;
-//     background: #fafff8;
-//     padding: 24px;
-//     border-radius: 12px;
-//     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-//   }
-  
-//   .stack-title {
-//     font-size: 2.4rem;
-//     color: #2d5a27;
-//     margin-bottom: 30px;
-//     font-weight: bold;
-//   }
-  
-//   .stack-gallery {
-//     position: relative;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//   }
-  
-//   .stack-container {
-//     position: relative;
-//     width: 100%;
-//     max-width: 800px;
-//     height: 420px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     overflow: visible;
-//   }
-  
-//   .plant-card {
-//     position: absolute;
-//     top: 0;
-//     width: 300px;
-//     height: 420px;
-//     background: transparent;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     transition: all 0.4s ease;
-//     z-index: 1;
-//   }
-  
-//   .plant-frame {
-//     width: 100%;
-//     height: 100%;
-//     background: #e6f3e7;
-//     padding: 16px;
-//     border: 1px solid #cfded1;
-//     border-radius: 10px;
-//     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06), 0 12px 40px rgba(0, 0, 0, 0.12);
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: flex-start;
-//   }
-  
-//   .frame-inner {
-//     width: 100%;
-//     height: 320px;
-//     background: #ffffff;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     border-radius: 6px;
-//   }
-  
-//   .frame-inner img {
-//     width: 100%;
-//     height: 100%;
-//     object-fit: cover;
-//     pointer-events: none;
-//     border-radius: 4px;
-//   }
-  
-//   .caption {
-//     font-size: 1.1rem;
-//     font-weight: 600;
-//     color: #2d372e;
-//     margin-top: 12px;
-//     text-align: center;
-//   }
-  
-//   .plant-card.hidden {
-//     opacity: 0;
-//     pointer-events: none;
-//   }
-  
-//   .plant-card.active {
-//     transform: scale(1);
-//     z-index: 3;
-//   }
-  
-//   .plant-card.prev {
-//     transform: translateX(-80%) scale(0.85);
-//     z-index: 2;
-//     opacity: 0.7;
-//   }
-  
-//   .plant-card.next {
-//     transform: translateX(80%) scale(0.85);
-//     z-index: 2;
-//     opacity: 0.7;
-//   }
-  
-//   .stack-arrow {
-//     position: relative;
-//     font-size: 2.2rem;
-//     background: white;
-//     border-radius: 12px;
-//     border: none;
-//     cursor: pointer;
-//     color: #1e3f1b;
-//     margin: 0 16px;
-//     padding: 10px;
-//     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
-//     transition: all 0.3s ease;
-//   }
-  
-//   .stack-arrow:hover {
-//     background-color: #f0f6ed;
-//   }
-  
-//   .details-column h3 {
-//     margin-bottom: 10px;
-//     color: #1a3e24;
-//   }
-  
-//   .desc-lines {
-//     border-top: 2px solid #134e4a;
-//     border-bottom: 2px solid #134e4a;
-//     margin-bottom: 20px;
-//     padding: 12px 0;
-//   }
-  
-//   .desc-line {
-//     font-size: 0.95rem;
-//     margin: 4px 0;
-//     color: #1f3d29;
-//   }
-  
-//   .metrics-row {
-//     display: flex;
-//     justify-content: space-between;
-//     gap: 16px;
-//     margin: 24px 0;
-//   }
-  
-//   .metric {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//   }
-  
-//   .metric img {
-//     width: 32px;
-//     height: 32px;
-//     margin-bottom: 6px;
-//   }
-  
-//   .metric-label {
-//     font-weight: 600;
-//     font-size: 0.9rem;
-//     color: #1f3f2a;
-//   }
-  
-//   .metric-value {
-//     font-size: 0.95rem;
-//     color: #3d3d3d;
-//   }
-  
-//   .actions-box {
-//     background: #effaf0;
-//     padding: 16px;
-//     border-radius: 8px;
-//     margin-top: 20px;
-//     display: flex;
-//     flex-direction: column;
-//     gap: 16px;
-//   }
-  
-//   .action-info {
-//     font-size: 0.9rem;
-//     color: #1d3c2e;
-//     margin: 0;
-//   }
-  
-//   .main-button {
-//     padding: 10px 16px;
-//     background-color: #1f472e;
-//     color: white;
-//     font-weight: 600;
-//     border: none;
-//     border-radius: 8px;
-//     cursor: pointer;
-//   }
-  
-//   .main-button:hover {
-//     background-color: #193b25;
-//   }
-  
-
-
 import React, { useState, useEffect } from 'react';
 import './PlantGallery.css';
 import Papa from 'papaparse';
@@ -532,7 +213,8 @@ const PLANT_LIST = [
     return (
       <>
         <div className="plant-layout-wrapper">
-          {/* LEFT SECTION */}
+          <div className="gallery-overlay">
+                      {/* LEFT SECTION */}
           <div className="carousel-column">
             <h2 className="stack-title">Explore Plants</h2>
             <div className="stack-gallery">
@@ -577,15 +259,15 @@ const PLANT_LIST = [
 
 
 
-  <div className="stack-arrows">
-    <button onClick={handlePrev} className="stack-arrow">
-      <img src={leftArrowIcon} alt="Left" />
-    </button>
-    <button onClick={handleNext} className="stack-arrow">
-      <img src={rightArrowIcon} alt="Right" />
-    </button>
-  </div>
-</div>
+              <div className="stack-arrows">
+                <button onClick={handlePrev} className="stack-arrow">
+                  <img src={leftArrowIcon} alt="Left" />
+                </button>
+                <button onClick={handleNext} className="stack-arrow">
+                  <img src={rightArrowIcon} alt="Right" />
+                </button>
+              </div>
+            </div>
 
           </div>
   
@@ -632,6 +314,7 @@ const PLANT_LIST = [
 
               </>
             )}
+          </div>
           </div>
         </div>
   
