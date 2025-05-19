@@ -1,114 +1,152 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import SubscribeForm from '../components/SubscribeForm';
 import MailSVG from '../assets/email-campaign-animate.svg';
 import './PollenPage.css';
 import PollenMap from '../components/PollenMap';
-import PollenForecast from "../components/PollenForecast";
-import TempPollenChart from '../components/TempPollenChart';
-import HeatPollenmap from '../components/HeatPollenmap';
-import RainPollenChart from '../components/RainPollenChart';
 import SeasonBanner from '../components/PollenInfoCards';
-
+import alexaImage from '../assets/alexabg.jpeg';
+import Lottie from 'lottie-react';
+import downArrowAnim from '../assets/downanimate1.json';
 
 export default function PollenPage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === '#alexa') {
+      const el = document.getElementById('alexa');
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  // ✅ Scroll to Top
+  useEffect(() => {
+    const upBtn = document.getElementById('scroll-up-btn');
+    if (upBtn) {
+      upBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+    return () => {
+      if (upBtn) upBtn.removeEventListener('click', () => {});
+    };
+  }, []);
+
   return (
     <>
-    
+    <div>
 
-      {/* SECTION 1: LIVE POLLEN MAP */}
-      <div className="live-map-wrapper">
-  <div className="map-column">
- 
-    <h1 className="section-heading">Live Pollen Map of Victoria</h1>
-    <PollenMap />
-    
-  </div>
-  <SeasonBanner status="off-season" />
-</div>
+           {/* SECTION 1: LIVE POLLEN MAP */}
+           <div className="live-map-wrapper">
+        <div className="map-column">
+          <h1 className="section-heading">Live Pollen Map of Victoria</h1>
+          <PollenMap />
+        </div>
+        <SeasonBanner status="off-season" />
+      </div>
 
       <hr className="section-divider" />
 
+      {/* Alexa Section */}
+      <div id="alexa" className="alexa-test-wrapper">
+        <div className="alexa-image-box">
+          <img src={alexaImage} alt="Alexa Devices" />
+        </div>
 
-     
+        <div className="alexa-info-box">
+          <div className="alexa-left-column">
+            <h3>Why it's exciting</h3>
+            <p>
+              Puffin AI is now voice-enabled! Soon, anyone can ask Alexa for real-time pollen risk updates hands-free.
+            </p>
+
+            <h3>Current status</h3>
+            <p>
+              Our Alexa skill is currently being published. You’ll soon find it on all Alexa-enabled devices.
+            </p>
+          </div>
+
+          <div className="alexa-divider"></div>
+
+          <div className="alexa-right-column">
+            <h3>Try it on a test device</h3>
+            <div className="alexa-steps-grid">
+              <div className="alexa-step-card">
+                <div className="step-number">Step 1</div>
+                <p className="step-text">Say: <strong>“Alexa, connect to Puffin AI.”</strong></p>
+              </div>
+              <div className="alexa-step-card">
+                <div className="step-number">Step 2</div>
+                <p className="step-text">Say: <strong>“Tell me the pollen index in my area.”</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Subscribe Section */}
+      <div className="subscribe-content">
+        <div className="subscribe-text">
+          <h2>Want pollen forecasts at your fingertips?</h2>
+          <p>
+            Stay informed with daily updates tailored for Melbourne. Just drop your email
+            below and we’ll keep you one step ahead of allergies — every day, no spam.
+          </p>
+          <SubscribeForm />
+        </div>
+        <div className="subscribe-image">
+          <img src={MailSVG} alt="Subscribe illustration" />
+        </div>
+      </div>
+
+      {/* Floating Decorative Down Arrow */}
+      <div className="floating-down-arrow">
+        <Lottie animationData={downArrowAnim} loop />
+      </div>
+
+      <Lottie
+  animationData={downArrowAnim}
+  loop
+  className="floating-up-arrow"
+  onClick={() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }}
+/>
 
 
-      {/* SECTION 4: HEATMAP
-      <div className="map-section">
-  <div className="live-map-wrapper">
-    <div className="map-column">
-      <div className="map-card">
-        <HeatPollenmap />
+  <div className="explore-section">
+      <div className="explore-card">
+        <h3>Know what's in your air</h3>
+        <p>Check the current pollen levels and environmental risk in your area.</p>
+        <button onClick={() => window.location.href = '/know_your_area'}>
+          Explore Pollen Risk
+        </button>
+      </div>
+      <div className="explore-card">
+        <h3>Understand your body’s reaction</h3>
+        <p>Learn about allergy symptoms and get tips to stay safe and prepared.</p>
+        <button onClick={() => window.location.href = '/allergy-guide'}>
+          Explore Symptoms
+        </button>
+      </div>
+      <div className="explore-card">
+        <h3>Learn how pollen spreads</h3>
+        <p>Discover the different sources of pollen and how it travels through the air.</p>
+        <button onClick={() => window.location.href = '/learn'}>
+          Learn About Pollen
+        </button>
       </div>
     </div>
-    <div className="map-description">
-      <h2>Pollen Heatmap Insights</h2>
-      <p>
-        This heatmap illustrates how pollen levels vary month-to-month across the year.
-        Pollen exposure peaks in October and November, making these the most high-risk periods for allergy sufferers.
-        Levels are lowest during winter (June to August), offering some seasonal relief.
-        These trends help reveal when symptoms are most likely to flare up.
-      </p>
     </div>
-  </div>
-</div> */}
 
 
-
-
- {/* SECTION 4: TEMP VS POLLEN */}
-{/* <div className="map-section">
-  <div className="live-map-wrapper">
-    <div className="map-column">
-      <TempPollenChart />
-    </div>
-    <div className="map-description">
-      <h2>How Temperature Affects Pollen</h2>
-      <p>
-        Warmer temperatures lead to more pollen in the air — but not instantly.
-        In early spring, temperature begins to rise before pollen does. As heat builds up, plants enter their pollination phase, 
-        leading to a sharp spike in pollen levels during October and November.
-        Interestingly, even when temperatures start dropping, pollen may remain high for a while, showing a lag in response. 
-        Understanding this pattern helps predict allergy risks before symptoms begin.
-      </p>
-    </div>
-  </div>
-</div> */}
-
-
-
-{/* SECTION 5: RAINFALL VS POLLEN */}
-{/* <div className="map-section">
-  <div className="live-map-wrapper">
-    <div className="map-column">
-      <RainPollenChart />
-    </div>
-    <div className="map-description">
-      <h2>How Rainfall Influences Pollen</h2>
-      <p>
-        Rain affects pollen in different ways depending on how much and when it falls.
-        In dry months like September and October, pollen levels tend to rise as nothing holds them down.
-        A burst of heavy rain can clear pollen from the air, but light rain or post-rain humidity can actually increase airborne allergens.
-        The relationship is complex — low rainfall months often align with high allergy risk, while brief wet spells may offer short-term relief.
-      </p>
-    </div>
-  </div>
-</div> */}
-
-
-
-<div className="subscribe-content">
-            <div className="subscribe-text">
-            <h2>Want pollen forecasts at your fingertips?</h2>
-            <p>
-                Stay informed with daily updates tailored for Melbourne. Just drop your email
-                below and we’ll keep you one step ahead of allergies — every day, no spam.
-            </p>
-            <SubscribeForm />
-            </div>
-            <div className="subscribe-image">
-            <img src={MailSVG} alt="Subscribe illustration" />
-            </div>
-        </div>
     </>
+
+    
   );
 }

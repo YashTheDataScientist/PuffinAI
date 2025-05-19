@@ -4,86 +4,69 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  max-width: 260px;
+  gap: 1.4rem;
+  max-width: 280px;
 }
 
-/* ========== BASE CARD STYLE ========== */
+/* Shared Base */
 .info-card {
   flex: 1;
-  max-width: 250px;
-  padding: 1rem;
-  border-radius: 16px;
-  background-color: #ffffff;
+  padding: 1.2rem;
+  border-radius: 18px;
+  background: #fff;
   color: #1a1a1a;
-  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15); /* subtle green shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-left: 5px solid #2E7D32; /* same green accent */
+  box-shadow: 0 8px 24px rgba(100, 211, 100, 0.15); /* soft green */
+  transition: all 0.3s ease;
+  position: relative;
 }
 
+/* Hover */
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(98, 235, 98, 0.25);
+}
+
+/* Headings & Text */
 .info-card h3 {
-  font-size: 1rem;
-  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.3px;
-  color: inherit;
 }
 
 .info-card p {
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   line-height: 1.6;
-  color: inherit;
+  color: #333;
 }
 
-/* Hover effect */
-.info-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(46, 125, 50, 0.25);
-}
-
-/* ========== 🌿 OFF-SEASON CARD ========== */
+/* 🌿 Off Season Badge */
 .info-card.off {
-  background-color: #2E7D32;          /* vibrant green */
-  border-left: 5px solid #1B5E20;     /* deeper green accent */
-  color: #ffffff;
-  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
-}
-
-.info-card.off h3,
-.info-card.off p {
-  color: #ffffff;
-}
-
-/* ========== ℹ️ Pollen Index Info Card ========== */
-.info-card.neutral {
-  background-color: #ffffff;
-  border-left: 5px solid #2E7D32;    /* soft gray-blue */
-  color: #111;
-  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
-}
-
-/* ========== 📅 Forecast CTA Card ========== */  
-.info-card.forecast {
- 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: #ffffff;
-  border-left: 5px solid #2E7D32;    /* soft gray-blue */
-  color: #111;
-  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
-}
-
-/* CTA Button */
-.forecast-btn {
-  margin-top: auto;
-  padding: 10px 16px;
-  font-size: 13px;
+  background: #afe497;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 8px 24px rgba(34, 139, 34, 0.3);
   font-weight: 600;
-  background-color: #2E7D32; /* same green as off-season */
+  font-size: 1rem;
+  border-radius: 14px;
+}
+
+/* ℹ️ Pollen Risk Index Card */
+.info-card.neutral {
+  background: #fff;
+  color: #1a1a1a;
+}
+
+/* CTA Button (Forecast Card) */
+.forecast-btn {
+  margin-top: 1rem;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background-color: #2E7D32;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
 }

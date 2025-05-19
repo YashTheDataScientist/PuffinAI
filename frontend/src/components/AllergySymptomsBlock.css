@@ -20,18 +20,29 @@ html, body {
   justify-content: flex-start;
   align-items: flex-start;
   position: relative;
-  overflow: hidden;
+  
   padding-top: 4.5rem;
 }
+
+.symptoms-title {
+  text-align: center;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
 
 .robot-viewer-layout.with-fullside {
   display: flex;
   height: 100%;
   width: 100%;
-  align-items: stretch;
-  justify-content: flex-start;
+  align-items: center;         /* ✅ Vertically center */
+  justify-content: center;     /* ✅ Horizontally center */
   box-sizing: border-box;
 }
+
 
 .left-info-panel {
   background-color: #0d4b66;
@@ -164,5 +175,43 @@ html, body {
     max-height: 85vh;
     width: 95%;
     padding: 1.5rem;
+  }
+}
+
+
+.floating-down-arrow {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  z-index: 99;
+  pointer-events: none; /* purely visual */
+}
+
+.next-step-box {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #1f2937;
+  background: #e6f4ea;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+  animation: fadeInNext 0.6s ease;
+}
+
+@keyframes fadeInNext {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -1,6 +1,7 @@
 
 import './AllergyPreventionBlock.css';
 import React, { useState, useEffect } from "react";
+import seasonsbg from "../assets/seasonsbg.svg";
 
 const seasonTips = {
   spring: {
@@ -52,11 +53,18 @@ const AllergyPreventionBlock  = () => {
   return (
     <div className="seasonal-tips-container">
       {!showMain ? (
-        <div className="seasonal-tips-intro">
-          <h1 className="seasonal-tips-title">Seasonal Allergy Prevention Tips</h1>
-          <p className="seasonal-tips-desc">Discover tips to help you stay allergy-free year-round.</p>
-          <button className="learn-now-btn" onClick={() => setShowMain(true)}>Learn Now</button>
-        </div>
+ <div className="seasonal-tips-intro split-layout">
+ <div className="intro-image-side">
+   <img src={seasonsbg} alt="Seasons Illustration" />
+ </div>
+ <div className="intro-text-side">
+   <h1 className="seasonal-tips-title">Seasonal Allergy Prevention Tips</h1>
+   <p className="seasonal-tips-desc">Discover tips to help you stay allergy-free year-round.</p>
+   <button className="learn-now-btn" onClick={() => setShowMain(true)}>Learn Now</button>
+ </div>
+</div>
+
+
       ) : (
         <>
           <div className="season-buttons">
@@ -89,25 +97,37 @@ const AllergyPreventionBlock  = () => {
               <span>Winter</span>
             </button>
           </div>
-          {activeSeason && (
-            <div className="tips-content tips-flex">
-              <div className="tips-intro">
-                <h2>{activeSeason.charAt(0).toUpperCase() + activeSeason.slice(1)} Allergies</h2>
-                <p>{seasonTips[activeSeason].intro}</p>
-              </div>
-              <div className="tips-list">
-                <h3>Prevention Tips</h3>
-                {seasonTips[activeSeason].tips.map((tip, index) => (
-                  <div key={index} className="tip-item">
-                    {/* <span className="tip-bullet">•</span> */}
-                    <p>{tip}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          {!activeSeason && (
+  <div className="tips-content tips-flex" >
+    <h2>Click on one of the cards to view prevention tips for that season.</h2>
+  </div>
+)}
+
+{activeSeason && (
+  <div className="tips-content tips-flex">
+    <div className="tips-intro">
+      <h2>{activeSeason.charAt(0).toUpperCase() + activeSeason.slice(1)} Allergies</h2>
+      <p>{seasonTips[activeSeason].intro}</p>
+    </div>
+    <div className="tips-list">
+      <h3>Prevention Tips</h3>
+      {seasonTips[activeSeason].tips.map((tip, index) => (
+        <div key={index} className="tip-item">
+          <p>{tip}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
         </>
       )}
+
+
+<div className="next-step-box">
+ <strong>Next:</strong> Click on the pollen icon to explore prevention tips.
+</div>
+
     </div>
   );
 };

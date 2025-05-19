@@ -21,13 +21,14 @@ import AllergyGuide from './pages/AllergyGuide';
 import FeatureLookup from './components/FeatureLookup';
 import AccessibilityToolbar from './components/AccessibilityToolbar';
 import VoiceCommand from './components/VoiceCommand';
-
+import AlexaPopup from './components/AlexaPopup'; 
 
 function App() {
   return (
     <div className="app-container"> {/* ✅ 外层容器布局 */}
       <Navbar />
-      <Popup />
+      
+      <AlexaPopup />
       <div className="main-content"> {/* ✅ 主内容区域 */}
         <Routes>
           <Route path="/auth" element={<PasswordPage />} />

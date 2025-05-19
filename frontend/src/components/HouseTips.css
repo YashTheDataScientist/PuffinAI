@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   min-height: 600px;
-  overflow: hidden;
+  overflow: visible;
   background: #f1f1f1;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@
 }
 
 .house-img {
-  width: 90vw;
+  width: 80vw;
   max-width: 900px;
   height: auto;
   display: block;
@@ -33,7 +33,7 @@
 
 .room-hotspot {
   position: absolute;
-  background: rgba(76, 175, 240, 0.08);
+  background: rgba(181, 114, 236, 0.08);
   border: 2px solid transparent;
   border-radius: 1.2rem;
   cursor: url('/icons/magnifying.png') 16 16, pointer;
@@ -41,9 +41,9 @@
   z-index: 2;
 }
 .room-hotspot:hover {
-  border: 2px solid #4e9ecf;
+  
   box-shadow: 0 0 12px 2px #4e9ecf33;
-  background: rgba(76, 175, 240, 0.18);
+  background: rgba(3, 113, 238, 0.432);
   cursor: url('/icons/magnifying.png') 16 16, pointer;
 }
 

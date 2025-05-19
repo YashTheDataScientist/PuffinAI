@@ -212,13 +212,13 @@ const PollenMap = () => {
 
             const tree = feature.properties.treeUPI || 0;
             const grass = feature.properties.grassUPI || 0;
+            const combined = tree + grass;
 
             popup.current
               .setLngLat(e.lngLat)
               .setHTML(`
                 <div style="font-size: 13px; font-weight: bold; margin-bottom: 4px;">Pollen Risk Index</div>
-                <div style="font-size: 13px;">Tree 🌳: <strong style="color:#4caf50;">${tree}</strong></div>
-                <div style="font-size: 13px;">Grass 🌾: <strong style="color:#4caf50;">${grass}</strong></div>
+                <div style="font-size: 13px;"><strong style="color:#4caf50;">${combined}</strong></div>
               `)
               .addTo(map.current);
           });
@@ -239,49 +239,99 @@ const PollenMap = () => {
     });
   }, []);
 
+  // useEffect(() => {
+  //   if (!map.current || !map.current.isStyleLoaded()) return;
+    
+  //   windMarkers.current.forEach(marker => marker.remove());
+  //   windMarkers.current = [];
+    
+  //   if (windArrowVisible && window.districtFeatures) {
+  //     window.districtFeatures.forEach(feature => {
+  //       const { windDirection, windSpeed, center } = feature.properties;
+  //       if (windDirection !== null && center) {
+  //         const el = document.createElement('div');
+  //         el.className = 'wind-arrow-marker';
+
+  //         const animationDuration = windSpeed ? Math.max(3, 8 - windSpeed/2) : 5;
+  //         el.innerHTML = `
+  //           <div class="arrow-container" style="transform: rotate(${windDirection}deg)">
+  //             <div class="arrow-body" style="background: none; width: 0; height: 0;">
+  //               <div class="animated-particle" style="animation-duration: ${animationDuration}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px;"></div>
+  //               <div class="animated-particle" style="animation-duration: ${animationDuration * 1.2}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/4}s"></div>
+  //               <div class="animated-particle" style="animation-duration: ${animationDuration * 0.8}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/2}s"></div>
+  //               <div class="animated-particle" style="animation-duration: ${animationDuration * 1.5}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/1.5}s"></div>
+  //               <div class="animated-particle" style="animation-duration: ${animationDuration * 1.0}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/4}s"></div>
+  //               <div class="animated-particle" style="animation-duration: ${animationDuration * 1.5}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/1.5}s"></div>
+  //               <div class="animated-particle" style="animation-duration: ${animationDuration * 1.3}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/3}s"></div>
+  //               <div class="animated-particle" style="animation-duration: ${animationDuration * 0.9}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/2.5}s"></div>
+  //               <div class="animated-particle" style="animation-duration: ${animationDuration * 1.4}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/1.8}s"></div>
+  //               <div class="animated-particle" style="animation-duration: ${animationDuration * 1.1}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/3.5}s"></div>
+  //             </div>
+  //           </div>
+  //         `;
+
+  //         const marker = new mapboxgl.Marker({
+  //           element: el,
+  //           anchor: 'center',
+  //         })
+  //           .setLngLat(center)
+  //           .addTo(map.current);
+
+  //         windMarkers.current.push(marker);
+  //       }
+  //     });
+  //   }
+  // }, [windArrowVisible]);
+
+
   useEffect(() => {
     if (!map.current || !map.current.isStyleLoaded()) return;
-    
+  
     windMarkers.current.forEach(marker => marker.remove());
     windMarkers.current = [];
-    
+  
     if (windArrowVisible && window.districtFeatures) {
       window.districtFeatures.forEach(feature => {
         const { windDirection, windSpeed, center } = feature.properties;
         if (windDirection !== null && center) {
           const el = document.createElement('div');
           el.className = 'wind-arrow-marker';
+  
+          const animationDuration = windSpeed ? Math.max(3, 8 - windSpeed / 2) : 5;
+const arrowLength = Math.min(80, 20 + (windSpeed || 0) * 5);
+el.title = `Wind: ${windSpeed?.toFixed(1) ?? '--'} m/s`;
 
-          const animationDuration = windSpeed ? Math.max(3, 8 - windSpeed/2) : 5;
-          el.innerHTML = `
-            <div class="arrow-container" style="transform: rotate(${windDirection}deg)">
-              <div class="arrow-body" style="background: none; width: 0; height: 0;">
-                <div class="animated-particle" style="animation-duration: ${animationDuration}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px;"></div>
-                <div class="animated-particle" style="animation-duration: ${animationDuration * 1.2}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/4}s"></div>
-                <div class="animated-particle" style="animation-duration: ${animationDuration * 0.8}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/2}s"></div>
-                <div class="animated-particle" style="animation-duration: ${animationDuration * 1.5}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/1.5}s"></div>
-                <div class="animated-particle" style="animation-duration: ${animationDuration * 1.0}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/4}s"></div>
-                <div class="animated-particle" style="animation-duration: ${animationDuration * 1.5}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/1.5}s"></div>
-                <div class="animated-particle" style="animation-duration: ${animationDuration * 1.3}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/3}s"></div>
-                <div class="animated-particle" style="animation-duration: ${animationDuration * 0.9}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/2.5}s"></div>
-                <div class="animated-particle" style="animation-duration: ${animationDuration * 1.4}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/1.8}s"></div>
-                <div class="animated-particle" style="animation-duration: ${animationDuration * 1.1}s; left: ${Math.random() * 60}px; top: ${Math.random() * 20 - 10}px; animation-delay: ${animationDuration/3.5}s"></div>
-              </div>
-            </div>
-          `;
+el.innerHTML = `
+  <div class="arrow-container" style="transform: rotate(${windDirection}deg);">
+    <div class="arrow-body-wrapper" style="width: ${arrowLength}px;">
+      <div class="arrow-body"></div>
+      <div class="arrow-head"></div>
+      ${Array.from({ length: 6 }).map(() => {
+        const dur = animationDuration * (0.8 + Math.random() * 0.7);
+        const delay = (animationDuration / 4) + Math.random() * (animationDuration / 2);
+        const left = Math.random() * arrowLength;
+        return `<div class="animated-particle" style="animation-duration: ${dur}s; animation-delay: ${delay}s; left: ${left}px;"></div>`;
+      }).join('')}
+    </div>
+  </div>
+  <div class="wind-speed-label">${windSpeed?.toFixed(1) ?? '--'} m/s</div>
+`;
 
+
+  
           const marker = new mapboxgl.Marker({
             element: el,
             anchor: 'center',
           })
             .setLngLat(center)
             .addTo(map.current);
-
+  
           windMarkers.current.push(marker);
         }
       });
     }
   }, [windArrowVisible]);
+  
 
   return (
     <div className="map-container">

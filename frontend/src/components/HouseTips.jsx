@@ -104,6 +104,8 @@ const HouseTips = () => {
           </div>
         </div>
       )}
+
+      
     </div>
   );
 };

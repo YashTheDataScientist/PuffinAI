@@ -20,7 +20,7 @@ export default function BreathingExercise() {
 
   // 启动节奏 + 动画
   const startBreathingCycle = () => {
-    const phases = ["Breath In", "Hold", "Breath Out", "Hold"];
+    const phases = ["Breathe In", "Hold", "Breathe Out", "Hold"];
     let index = 0;
 
     speak(phases[index]);

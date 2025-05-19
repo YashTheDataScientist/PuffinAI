@@ -24,11 +24,12 @@ const Popup = () => {
         <p>You can now ask: <strong>“Hey Alexa, what's the pollen index today?”</strong></p>
         <p>To set this up, simply click below.</p>
         <button
-          className="setup-btn"
-          onClick={() => window.location.href = "/alexa-setup"} // Replace with actual link
-        >
-          Set Up Now
-        </button>
+  className="setup-btn"
+  onClick={() => window.location.href = "/pollen#alexa"}
+>
+  Set Up Now
+</button>
+
         <button className="close-btn" onClick={() => setClosed(true)}>Close</button>
       </div>
     </div>

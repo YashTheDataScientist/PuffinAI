@@ -4,8 +4,10 @@ import SymptomCard from '../components/SymptomCard';
 import SplineRobotViewer from '../components/robot';
 import TestSymptoms from '../pages/TestSymptoms';
 import HouseTips from '../components/HouseTips'; 
+import downArrowAnim from '../assets/downanimate1.json';
 
 import '../components/AllergySymptomsBlock.css';
+import Lottie from 'lottie-react';
 
 export default function AllergySymptomsBlock() {
   const [symptoms, setSymptoms] = useState([]);
@@ -63,32 +65,19 @@ export default function AllergySymptomsBlock() {
 
   return (
     <div className="full-page-wrapper">
-      {/* === Robot Viewer Section === */}
-      <div className="robot-viewer-section">
-        <div className="robot-viewer-layout with-fullside">
-          <div className="left-info-panel">
-            <p>
-              Understand<br />
-              how pollen<br />
-              can interact<br />
-              with different<br />
-              parts of<br />
-              body and<br />
-              cause<br />
-              allergic<br />
-              reactions.
-            </p>
-          </div>
+    
 
-          <SplineRobotViewer onSymptomSelect={handleSymptomSelect} />
-        </div>
+    <div className="robot-viewer-section">
+      <div className="robot-viewer-layout with-fullside">
+        <SplineRobotViewer onSymptomSelect={handleSymptomSelect} />
       </div>
+    </div>
 
-      <TestSymptoms />
+      {/* <TestSymptoms /> */}
 
 
       {/* === Popup Modal for Symptom === */}
-      {selectedSymptom && (
+      {/* {selectedSymptom && (
         <div className="symptom-popup-overlay" onClick={() => setSelectedSymptom(null)}>
           <div className="symptom-popup-card" onClick={(e) => e.stopPropagation()}>
             <button className="popup-close-btn" onClick={() => setSelectedSymptom(null)}>×</button>
@@ -99,10 +88,22 @@ export default function AllergySymptomsBlock() {
               ))}
           </div>
         </div>
-      )}
+      )} */}
 
 <HouseTips />
+
+<div className="floating-down-arrow">
+        <Lottie animationData={downArrowAnim} loop />
+      </div>
+
+      <div className="next-step-box">
+ <strong>Next:</strong> Click on the pollen icon to explore prevention tips.
+</div>
+
     </div>
+
+
+
   );
 }
 

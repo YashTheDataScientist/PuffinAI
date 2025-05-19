@@ -8,6 +8,8 @@ import downArrowAnim from '../assets/downanimate1.json';
 import scanPhotoImg from '../assets/scanphotobg.svg';
 import plantGalleryImg from '../assets/plantgallerybg.svg';
 
+
+
 import './PlantIdentifyPage.css';
 
 const PlantIdentifyPage = () => {

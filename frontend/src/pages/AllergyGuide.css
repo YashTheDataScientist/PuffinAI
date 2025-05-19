@@ -1,132 +1,165 @@
 .allergy-guide-wrapper {
-    padding: 2rem;
-    min-height: 100vh;
-    background: linear-gradient(to top, #fefcea, #f1da36);
-    box-sizing: border-box;
-    position: relative;
+               /* ✅ Optional: remove side padding */
+  min-height: 100vh;
+  background: #f0f8ff;
+  box-sizing: border-box;
+  position: relative;
+  overflow-x: visible;           /* ✅ Allow horizontal overflow */
+  overflow-y: auto;
+}
+
+
+.guide-content {
+  width: 100%;
+  height: 100%;
+}
+
+.full-screen-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2rem 4rem;
+  gap: 3rem;
+}
+
+/* 40% width for image */
+.left-side-image {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-side-image img {
+  max-width: 100%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
+/* 60% width for text */
+.right-side-text {
+  width: 60%;
+  text-align: center;
+}
+
+.right-side-text h1 {
+  font-size: 3rem;
+  color: #2c1d63;
+  margin-bottom: 1.5rem;
+}
+
+.right-side-text p {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+/* Pollen icon */
+.pollen-icon {
+  position: fixed;
+  right: 20px;
+  top: 155px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 999;
+  transition: transform 0.2s ease;
+}
+
+.pollen-icon.rotate {
+  animation: rotateOnce 0.5s ease-in-out;
+}
+
+.pollen-tooltip1 {
+  position: fixed;
+  right: 20px;
+  top: 110px;
+  background: #2c1d63;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  max-width: 300px;         /* ✅ Controls width */
+  white-space: normal;      /* ✅ Allows wrapping */
+  line-height: 1.4;         /* ✅ Improves readability */
+}
+
+.pollen-options {
+  position: fixed;
+  right: 20px;
+  top: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 998;
+  animation: slideUp 0.3s ease;
+}
+
+.pollen-options button {
+  background-color: #fff;
+  color: #2c1d63;
+  font-weight: 600;
+  border: 2px solid #2c1d63;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.pollen-options button:hover {
+  background-color: #2c1d63;
+  color: #fff;
+}
+
+@keyframes rotateOnce {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .guide-content {
-    display: flex;
-    justify-content: center;
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px); /* Start higher */
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);   /* Slide down into place */
+    opacity: 1;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .full-screen-layout {
     flex-direction: column;
-    align-items: center;
-  }
-  
-  /* INTRO SECTION */
-  .intro-section {
+    padding: 2rem;
     text-align: center;
-    max-width: 750px;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
-    animation: fadeIn 0.5s ease;
   }
-  
-  .intro-section h1 {
-    font-size: 2.4rem;
-    color: #2c1d63;
-    margin-bottom: 1rem;
+
+  .left-side-image,
+  .right-side-text {
+    width: 100%;
   }
-  
-  .intro-section p {
-    font-size: 1.15rem;
-    color: #444;
-    margin-bottom: 1rem;
-    line-height: 1.6;
+
+  .right-side-text h1 {
+    font-size: 2.2rem;
   }
-  
-  /* POLLEN ICON */
+
+  .right-side-text p {
+    font-size: 1.2rem;
+  }
+
   .pollen-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    z-index: 999;
-    transition: transform 0.2s ease;
+    width: 50px;
+    height: 50px;
   }
-  
-  /* Rotate once on click */
-  .pollen-icon.rotate {
-    animation: rotateOnce 0.5s ease-in-out;
-  }
-  
-  /* Tooltip */
-  .pollen-tooltip {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    background: #2c1d63;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    z-index: 999;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Option buttons */
-  .pollen-options {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 998;
-    animation: slideUp 0.3s ease;
-  }
-  
-  .pollen-options button {
-    background-color: #fff;
-    color: #2c1d63;
-    font-weight: 600;
-    border: 2px solid #2c1d63;
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.2s ease;
-    font-size: 1rem;
-  }
-  
-  .pollen-options button:hover {
-    background-color: #2c1d63;
-    color: #fff;
-  }
-  
-  /* Animations */
-  @keyframes rotateOnce {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes slideUp {
-    from {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0px);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.96);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
+}
