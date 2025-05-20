@@ -5,17 +5,29 @@
 
 .breathing-layout {
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* 左中右分布 */
   align-items: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* 不换行 */
   gap: 40px;
-  max-width: 1200px;
+  width: 100%;
+  max-width: none; /* 删除最大宽度限制 */
   margin: 0 auto;
+  padding: 0 40px; /* 防止贴边 */
+  box-sizing: border-box;
 }
 
+/* 左右两边信息栏 */
+.breathing-info {
+  flex: 1;
+  max-width: none; /* 删除最大宽度限制 */
+  text-align: left;
+}
+
+/* 中间呼吸动画和按钮 */
 .breathing-center {
+  flex: 1;
+  max-width: none;
   text-align: center;
-  max-width: 300px;
 }
 
 .breathing-text {
@@ -29,10 +41,11 @@
   font-size: 1rem;
 }
 
-.breathing-info {
-  flex: 1;
-  max-width: 300px;
-  text-align: left;
+/* 图片大小自适应 */
+.info-image {
+  width: 100%;
+  max-width: 250px; /* 可按需要设定 */
+  margin-bottom: 12px;
 }
 
 .breathing-info h3 {
@@ -44,10 +57,4 @@
   font-size: 1rem;
   color: #444;
   line-height: 1.6;
-}
-
-.info-image {
-  width: 100%;
-  max-width: 200px;
-  margin-bottom: 12px;
 }

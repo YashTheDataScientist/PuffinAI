@@ -1,130 +1,143 @@
-/* 整个页面容器样式 */
-.asthma-container {
-    background-color: #f5f7fa;
-    padding: 40px 20px;
-    padding-top: 100px; /* ✅ 加这个：给导航栏腾出空间 */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    min-height: 100vh;
-    color: #222;
-  }
+/* ✅ 背景动画样式：覆盖整页，随滚动保持固定 */
+.asthma-bg-animation {
+  position: fixed;         /* ✅ 保持在页面背后，即使滚动也不动 */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;             /* ✅ 确保在内容层下方 */
+  opacity: 0.25;           /* ✅ 可根据喜好调节 */
+  pointer-events: none;    /* ✅ 不阻挡用户点击操作 */
+}
 
-  /* 顶部介绍区域 */
-  .asthma-intro {
-    max-width: 800px;
-    margin: 0 auto 50px;
-    text-align: center;
-  }
-  
-  .asthma-intro h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #111;
-  }
-  
-  .asthma-intro p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 0.5rem;
-    color: #333;
-  }
-  
-  .asthma-image {
-    width: 100%;
-    max-width: 600px;
-    margin-top: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* 卡片区域 */
-  .asthma-cards {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .asthma-cards h2 {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #111;
-  }
-  
+/* ✅ 页面主容器 */
+.asthma-container {
+  position: relative;
+  overflow: hidden;
+  padding: 40px 20px;
+  padding-top: 100px; /* 留出导航栏空间 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  background-color: #f5f7fa; /* ✅ 防止动画透明背景下闪白 */
+  color: #222;
+}
+
+/* 顶部介绍区域 */
+.asthma-intro {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.asthma-intro h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+.asthma-intro p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.asthma-image {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 卡片区域 */
+.asthma-cards {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.asthma-cards h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #111;
+}
+
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* ✅ 明确 4 列 */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
-  
-  /* 卡片样式 */
-  .info-card {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .info-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .info-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: #111;
-  }
-  
-  .info-card p {
-    font-size: 0.95rem;
-    color: #444;
-    line-height: 1.5;
-  }
-  /* 诱因图标模块 */
+/* 单张卡片 */
+.info-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+.info-card p {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* 诱因图标模块 */
 .trigger-bar-container {
-    margin-top: 50px;
-    text-align: center;
-  }
-  
-  .trigger-bar {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);  /* 👈 横向固定5列 */
-    gap: 30px;
-    padding: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-    justify-items: center;
-  }
-  
-  .trigger-item {
-    width: 100px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    text-align: center;
-  }
-  
-  .trigger-item:hover {
-    transform: scale(1.05);
-  }
-  
-  .trigger-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 10px;
-  }
-  
-  /* 呼吸练习模块样式 */
+  margin-top: 50px;
+  text-align: center;
+}
+
+.trigger-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.trigger-item {
+  width: 100px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-align: center;
+}
+
+.trigger-item:hover {
+  transform: scale(1.05);
+}
+
+.trigger-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px;
+}
+
+/* 呼吸练习模块 */
 .breathing-section {
-    text-align: center;
-    margin: 60px auto;
-    padding: 20px;
-  }
-  
-  .breathing-text {
-    font-size: 1.2rem;
-    margin-top: 20px;
-    color: #444;
-  }
-  
+  text-align: center;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.breathing-text {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  color: #444;
+}

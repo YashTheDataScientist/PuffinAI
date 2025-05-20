@@ -77,7 +77,7 @@ export default function BreathingExercise() {
             animationData={breathingAnim}
             loop
             autoplay={false}
-            style={{ width: 250, height: 250, margin: "0 auto" }}
+            style={{ width: 500, height: 500, margin: "0 auto" }}
           />
           <p className="breathing-text">{phase}</p>
           <div className="breathing-controls">
