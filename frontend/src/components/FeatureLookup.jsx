@@ -7,13 +7,13 @@ import featureIcon from '../assets/feature.png'; // ✅ Your icon here
 const features = [
   { title: "Know Your Area", desc: "Get pollen risk and weather info for your suburb.", route: "/know_your_area" },
   { title: "Pollen Watch", desc: "View pollen levels across all Victorian districts.", route: "/pollen_watch" },
-  { title: "Subscribe", desc: "Get email alerts on pollen and weather updates.", route: "/subscribe" },
-  { title: "Alexa", desc: "Just ask: 'Alexa, what's the pollen index today?'", route: "/alexa" },
+  { title: "Subscribe", desc: "Get email alerts on pollen and weather updates.", route: "/pollen_watch" },
+  { title: "Alexa", desc: "Just ask: 'Alexa, what's the pollen index today?'", route: "/pollen_watch" },
   { title: "Scan Plant", desc: "Identify any plant using your photo.", route: "/plant_identify" },
   { title: "View Common Plants", desc: "See local allergenic plants in your area.", route: "/know_your_plants" },
-  { title: "Common Symptoms", desc: "Learn typical allergy symptoms by severity.", route: "/symptoms" },
+  { title: "Common Symptoms", desc: "Learn typical allergy symptoms by severity.", route: "/allergy-guide" },
   { title: "Preventive Tips", desc: "Explore tips to reduce pollen exposure.", route: "/allergy-guide" },
-  { title: "Asthma Tips", desc: "Stay safe with pollen-smart tips for asthma.", route: "/asthma_info" },
+  { title: "Asthma Tips", desc: "Stay safe with pollen-smart tips for asthma.", route: "/allergy-guide" },
   { title: "Learn", desc: "Understand pollen, how it spreads, and who it affects.", route: "/learn" }
 ];
 
