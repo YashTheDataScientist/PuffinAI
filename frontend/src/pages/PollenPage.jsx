@@ -78,7 +78,7 @@ export default function PollenPage() {
             <div className="alexa-steps-grid">
               <div className="alexa-step-card">
                 <div className="step-number">Step 1</div>
-                <p className="step-text">Say: <strong>“Alexa, connect to Puffin AI.”</strong></p>
+                <p className="step-text">Say: <strong>“Alexa, connect to Pollen Checker.”</strong></p>
               </div>
               <div className="alexa-step-card">
                 <div className="step-number">Step 2</div>
@@ -120,13 +120,8 @@ export default function PollenPage() {
 
 
   <div className="explore-section">
-      <div className="explore-card">
-        <h3>Know what's in your air</h3>
-        <p>Check the current pollen levels and environmental risk in your area.</p>
-        <button onClick={() => window.location.href = '/know_your_area'}>
-          Explore Pollen Risk
-        </button>
-      </div>
+    <h3>Next Steps!</h3>
+ 
       <div className="explore-card">
         <h3>Understand your body’s reaction</h3>
         <p>Learn about allergy symptoms and get tips to stay safe and prepared.</p>

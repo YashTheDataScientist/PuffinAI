@@ -523,8 +523,12 @@ const KnowYourArea = () => {
               <div className={`card-box floor-flip-card ${showResultCard ? 'flipped' : ''}`}>
                 {/* Front */}
                 <div className="flip-face front-face">
-                  <h3 className="floor-title">Will pollen reach your floor?</h3>
-                  <p className="floor-hint">Enter your floor number (1–10) and we’ll check how far pollen can travel today based on wind conditions.</p>
+                <h3 className="floor-title">Will pollen reach your floor?</h3>
+<p className="floor-hint">
+  Enter your floor number (1–10) and we’ll check how far pollen can travel today based on wind conditions.<br />
+  <strong>Note:</strong> Pollen usually doesn’t reach above the 10th floor.
+</p>
+
 
                   <div className="floor-check-inline">
                     <input
@@ -559,7 +563,7 @@ const KnowYourArea = () => {
                 <p className="alexa-text">
                 Stay ahead of allergies — just say, <strong>“Alexa, what’s the pollen index today?”</strong>
                 </p>
-                <button className="risk-btn1" onClick={() => window.location.href = "/alexa-setup"}>
+                <button className="risk-btn1" onClick={() => window.location.href = "/pollen_watch"}>
                   Set Up with Alexa
                 </button>
               </div>

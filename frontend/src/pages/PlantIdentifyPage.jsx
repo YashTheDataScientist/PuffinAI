@@ -87,13 +87,8 @@ const PlantIdentifyPage = () => {
 
     
     <div className="explore-section">
-      <div className="explore-card">
-        <h3>Know what's in your air</h3>
-        <p>Check the current pollen levels and environmental risk in your area.</p>
-        <button onClick={() => window.location.href = '/know_your_area'}>
-          Explore Pollen Risk
-        </button>
-      </div>
+    <h3>Next Steps!</h3>
+
       <div className="explore-card">
         <h3>Understand your body’s reaction</h3>
         <p>Learn about allergy symptoms and get tips to stay safe and prepared.</p>

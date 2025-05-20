@@ -48,7 +48,7 @@ export default function AlexaPopup() {
               <div className="alexa-steps-grid">
                 <div className="alexa-step-card">
                   <div className="step-number">STEP 1</div>
-                  <p className="step-text">Say: <strong>“Alexa, connect to Puffin AI.”</strong></p>
+                  <p className="step-text">Say: <strong>“Alexa, connect to Pollen Checker.”</strong></p>
                 </div>
                 <div className="alexa-step-card">
                   <div className="step-number">STEP 2</div>

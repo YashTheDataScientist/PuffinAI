@@ -10,7 +10,7 @@
 /* 🌼 Fixed Pollen Button */
 .pollen-fixed-wrapper {
   position: fixed;
-  bottom: 50px;
+  top: 120px;
   right: 50px;
   z-index: 25;
   cursor: pointer;
@@ -25,7 +25,7 @@
 /* 💬 Tooltip */
 .pollen-tooltip {
   position: fixed;
-  bottom: 100px;
+  top: 120px;
   right: 100px;
   z-index: 30;
   background-color: #3a2b5c;
