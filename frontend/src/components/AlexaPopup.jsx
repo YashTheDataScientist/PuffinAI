@@ -12,9 +12,10 @@ export default function AlexaPopup() {
         setShow(true);
       }
     }, 12000);
-
+  
     return () => clearTimeout(timer);
-  }, [closed]);
+  }, []); // empty dependency array = run only once
+  
 
   if (!show || closed) return null;
 
@@ -48,11 +49,11 @@ export default function AlexaPopup() {
               <div className="alexa-steps-grid">
                 <div className="alexa-step-card">
                   <div className="step-number">STEP 1</div>
-                  <p className="step-text">Say: <strong>“Alexa, connect to Pollen Checker.”</strong></p>
+                  <p className="step-text">Say: <strong>“Alexa, Open Pollen Checker.”</strong></p>
                 </div>
                 <div className="alexa-step-card">
                   <div className="step-number">STEP 2</div>
-                  <p className="step-text">Say: <strong>“Tell me the pollen index in my area.”</strong></p>
+                  <p className="step-text">Say: <strong>“what is the pollen risk in (suburb name)”</strong></p>
                 </div>
               </div>
             </div>

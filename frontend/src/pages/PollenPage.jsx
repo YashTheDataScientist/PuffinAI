@@ -78,11 +78,11 @@ export default function PollenPage() {
             <div className="alexa-steps-grid">
               <div className="alexa-step-card">
                 <div className="step-number">Step 1</div>
-                <p className="step-text">Say: <strong>“Alexa, connect to Pollen Checker.”</strong></p>
+                <p className="step-text">Say: <strong>“Alexa, open Pollen Checker.”</strong></p>
               </div>
               <div className="alexa-step-card">
                 <div className="step-number">Step 2</div>
-                <p className="step-text">Say: <strong>“Tell me the pollen index in my area.”</strong></p>
+                <p className="step-text">Say: <strong>“what is the pollen risk in {suburb}”</strong></p>
               </div>
             </div>
           </div>
