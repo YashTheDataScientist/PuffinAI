@@ -117,7 +117,7 @@ const SectionPollenTravel = () => {
       Curious to explore actual species and their impact?
       Visit our pollen gallery to see what grows around you and when it’s active.
     </p>
-    <button className="find-out-button">Find Out</button>
+    <button className="find-out-button" onClick={() => window.location.href = "/know_your_plants"}>Find Out</button>
   </div>
 </div>
 <div className="down-arrow">
