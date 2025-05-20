@@ -41,7 +41,13 @@ const PlantIdentifier = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
+  
+    // ✅ Check file type
+    if (!file.type.startsWith("image/")) {
+      alert("Please upload a valid image file (jpg, png, etc.)");
+      return;
+    }
+  
     const reader = new FileReader();
     reader.onloadend = () => {
       const base64 = reader.result.split(',')[1];
@@ -50,6 +56,7 @@ const PlantIdentifier = () => {
     };
     reader.readAsDataURL(file);
   };
+  
 
   const captureFromWebcam = () => {
     const imageSrc = webcamRef.current.getScreenshot();
