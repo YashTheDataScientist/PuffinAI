@@ -77,7 +77,7 @@ export default function AllergySymptomsBlock() {
 
 
       {/* === Popup Modal for Symptom === */}
-      {/* {selectedSymptom && (
+      {selectedSymptom && (
         <div className="symptom-popup-overlay" onClick={() => setSelectedSymptom(null)}>
           <div className="symptom-popup-card" onClick={(e) => e.stopPropagation()}>
             <button className="popup-close-btn" onClick={() => setSelectedSymptom(null)}>×</button>
@@ -88,7 +88,7 @@ export default function AllergySymptomsBlock() {
               ))}
           </div>
         </div>
-      )} */}
+      )}
 
 <HouseTips />
 

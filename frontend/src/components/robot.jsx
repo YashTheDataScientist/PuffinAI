@@ -148,12 +148,17 @@ const RobotViewer = ({ onSymptomSelect }) => {
   const [selectedPart, setSelectedPart] = useState(null);
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => document.body.removeChild(script);
+    if (!window.customElements.get('lottie-player')) {
+      const script = document.createElement('script');
+      script.src = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
+      script.async = true;
+      document.body.appendChild(script);
+      return () => {
+        // Optional: don't remove to avoid re-defining
+      };
+    }
   }, []);
+  
 
   const bodyParts = {
     eyes: {
