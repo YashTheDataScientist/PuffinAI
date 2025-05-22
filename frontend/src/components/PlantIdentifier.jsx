@@ -154,7 +154,7 @@ const PlantIdentifier = () => {
           </>
         ) : (
             <div className="result-wrapper">
-              <h3 className="result-title">Here’s what we found!</h3>
+              <h3 className="result-title">Here’s what we found</h3>
 
               <div className="result-view">
                 <div className="upload-left-panel">

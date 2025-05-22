@@ -238,7 +238,7 @@ const RobotViewer = ({ onSymptomSelect }) => {
           {/* Always show speech bubble */}
           <div className="speech-bubble">
             <p>
-              👋 Hi there!<br />
+              👋 Hi there.<br />
               Hover near the red dots or click them<br />
               to see what symptoms pollen can trigger.
             </p>

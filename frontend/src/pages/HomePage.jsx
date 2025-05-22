@@ -68,14 +68,14 @@ export default function HomePage() {
             <div className="insight-cards">
               <div className="insight-card">
                 <h2>1st</h2>
-                <p>Victoria has the highest number of hayfever cases — followed by NSW and Queensland.</p>
+                <p>Victoria has the highest number of hay fever cases — followed by NSW and Queensland.</p>
               </div>
               <div className="insight-card">
                 <h2>{inView && <CountUp end={26.1} decimals={1} suffix="%" duration={2.5} />}</h2>
                 <p>of Victorians suffer from hay fever — that's more than 1 in 4 people.</p>
               </div>
               <div className="insight-card">
-                <h2>{inView && <CountUp end={24} suffix=" yrs" duration={2.5} />}</h2>
+                <h2>{inView && <CountUp end={24} suffix=" years" duration={2.5} />}</h2>
                 <p>Young adults aged 15–24 report the highest allergy rates in Australia.</p>
               </div>
             </div>
@@ -97,7 +97,7 @@ export default function HomePage() {
               Check pollen risk levels across all Victorian districts and see which areas have low, moderate, or high exposure.
             </p>
             <div className="button-group">
-              <Link to="/pollen_watch"><button>Vist Pollen Watch</button></Link>
+              <Link to="/pollen_watch"><button>Visit Pollen Watch</button></Link>
             </div>
           </div>
         </ParallaxLayer>

@@ -30,7 +30,7 @@ import buildingAnim from '../assets/building.json';
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend);
 
 const precautionTips = {
-  1: { text: "Low risk. Enjoy your day outside!", icon: lowIcon },
+  1: { text: "Low risk. Enjoy your day outside.", icon: lowIcon },
   2: { text: "Moderate risk. A mask might be a good idea.", icon: medIcon },
   3: { text: "High risk. Best to stay indoors if you can.", icon: highIcon },
 };
@@ -515,7 +515,7 @@ const KnowYourArea = () => {
     
                 <div className="card-box small-card">
                   <h4 className="symptom-header">Explore common allergy symptoms and learn how to manage them</h4>
-                  <Link to="/symptoms"><button className="risk-btn">Click Here</button></Link>
+                  <Link to="/symptoms"><button className="risk-btn">Learn More</button></Link>
                 </div>
               </div>
     

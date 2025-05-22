@@ -87,7 +87,7 @@ const PlantIdentifyPage = () => {
 
     
     <div className="explore-section">
-    <h3>Next Steps!</h3>
+    <h3>Next Steps</h3>
 
       <div className="explore-card">
         <h3>Understand your body’s reaction</h3>

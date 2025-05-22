@@ -303,12 +303,12 @@ const PLANT_LIST = [
                 <div className="actions-box">
                     <div className="action-item">
                         <p className="action-info">Want to know which areas in Victoria have this plant</p>
-                        <button className="main-button" onClick={() => setShowMap(true)}>Locate Plants!</button>
+                        <button className="main-button" onClick={() => setShowMap(true)}>Locate Plants</button>
                     </div>
 
                     <div className="action-item">
                         <p className="action-info">Some plants look familiar but are pollen safe.</p>
-                        <button className="main-button" onClick={() => setShowRecommend(true)}>View Similar!</button>
+                        <button className="main-button" onClick={() => setShowRecommend(true)}>View Similar</button>
                     </div>
                     </div>
 
