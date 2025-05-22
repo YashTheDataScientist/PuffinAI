@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SymptomCard from '../components/SymptomCard';
 import SplineRobotViewer from '../components/robot';
-import TestSymptoms from '../pages/TestSymptoms';
+import TestSymptoms from '../pages/AllSymptoms';
 import HouseTips from '../components/HouseTips'; 
 import downArrowAnim from '../assets/downanimate1.json';
 

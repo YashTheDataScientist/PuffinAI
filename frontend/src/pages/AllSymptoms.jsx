@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './TestSymptoms.css';
+import './AllSymptoms.css';
 
 const severityColors = {
     Mild: '#1e3a2f',       // deep green
