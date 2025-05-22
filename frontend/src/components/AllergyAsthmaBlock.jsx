@@ -1,12 +1,12 @@
 import React from 'react';
 import '../components/AllergyAsthmaBlock.css';
 import TriggerBar from '../components/TriggerBar';
-import BreathingExercise from '../components/BreathingExercise'; // ✅ 引入呼吸练习组件
+import BreathingExercise from '../components/BreathingExercise'; 
 
 export default function AllergyAsthmaBlock() {
   return (
     <div className="asthma-container">
-      {/* 顶部介绍区 */}
+      {}
       <section className="asthma-intro">
         <h1>What is Asthma?</h1>
         <p>
@@ -15,7 +15,7 @@ export default function AllergyAsthmaBlock() {
         </p>
       </section>
 
-      {/* 卡片区域 */}
+      {}
       <section className="asthma-cards">
         <h2>Key Facts about Asthma</h2>
 
@@ -50,10 +50,10 @@ export default function AllergyAsthmaBlock() {
         </div>
       </section>
 
-      {/* 哮喘诱因图标动画条 */}
+      {}
       <TriggerBar />
 
-      {/* 呼吸训练动画区域 */}
+      {}
       <BreathingExercise />
     </div>
   );

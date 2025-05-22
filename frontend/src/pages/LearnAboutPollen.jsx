@@ -38,7 +38,7 @@ const LearnAboutPollen = () => {
 
   return (
     <div className="learn-page">
-      {/* 🌼 Fixed Clickable Pollen Button */}
+      {/*  Fixed Clickable Pollen Button */}
       <div
         className="pollen-fixed-wrapper"
         onClick={() => {
@@ -55,14 +55,14 @@ const LearnAboutPollen = () => {
         />
       </div>
 
-      {/* 💬 Tooltip */}
+      {/*  Tooltip */}
       {showTooltip && (
         <div className="pollen-tooltip">
-          💡 Click on the pollen to quickly navigate through chapters
+           Click on the pollen to quickly navigate through chapters
         </div>
       )}
 
-      {/* 🧭 Dropdown Menu */}
+      {/*  Dropdown Menu */}
       {menuOpen && (
         <div className="pollen-menu">
           <button onClick={() => scrollTo("home")}>Back To Top</button>
@@ -74,7 +74,7 @@ const LearnAboutPollen = () => {
         </div>
       )}
 
-      {/* 📘 Section Blocks */}
+      {/*  Section Blocks */}
       <div id="home">
       <div className="intro-box purple-bg">
   <div className="intro-left">

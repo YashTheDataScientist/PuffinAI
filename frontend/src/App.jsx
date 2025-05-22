@@ -1,9 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer'; // ✅ 导入 Footer
+import Footer from './components/Footer'; 
 import HomePage from './pages/HomePage';
 import PollenPage from './pages/PollenPage';
-import TestPage from './pages/TestPage';
 import PlantPage from './pages/PlantIdentifyPage';
 import PasswordPage from './pages/PasswordPage';
 import TestPlantIdentifyPage from './pages/PlantIdentifyPage';
@@ -15,7 +14,7 @@ import SymptomsPage from './pages/SymptomPage';
 import LearnAboutPollen from './pages/LearnAboutPollen';
 import KnowYourArea from './pages/KnowYourArea';
 import AsthmaPage from './pages/AsthmaPage';
-import './App.css'; // ✅ 引入样式
+import './App.css'; 
 import Popup from './components/Popup';
 import AllergyGuide from './pages/AllergyGuide';
 import FeatureLookup from './components/FeatureLookup';
@@ -25,11 +24,11 @@ import AlexaPopup from './components/AlexaPopup';
 
 function App() {
   return (
-    <div className="app-container"> {/* ✅ 外层容器布局 */}
+    <div className="app-container"> {}
       <Navbar />
       
       <AlexaPopup />
-      <div className="main-content"> {/* ✅ 主内容区域 */}
+      <div className="main-content"> {}
         <Routes>
           <Route path="/auth" element={<PasswordPage />} />
           <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />

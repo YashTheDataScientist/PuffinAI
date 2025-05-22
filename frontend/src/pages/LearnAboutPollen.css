@@ -7,7 +7,7 @@
   position: relative;
 }
 
-/* 🌼 Fixed Pollen Button */
+/*  Fixed Pollen Button */
 .pollen-fixed-wrapper {
   position: fixed;
   top: 120px;
@@ -22,7 +22,7 @@
   transition: transform 0.3s ease;
 }
 
-/* 💬 Tooltip */
+/*  Tooltip */
 .pollen-tooltip {
   position: fixed;
   top: 120px;
@@ -49,7 +49,7 @@
   }
 }
 
-/* 🧭 Dropdown Menu */
+/*  Dropdown Menu */
 .pollen-menu {
   position: fixed;
   bottom: 100px;
@@ -79,7 +79,7 @@
   background: #d2c4ed;
 }
 
-/* 📘 Intro Section */
+/*  Intro Section */
 .intro-box {
   height: 100vh;
   width: 100%;
@@ -104,7 +104,7 @@
   color: white;
 }
 
-/* 🔮 Purple background image */
+/*  Purple background image */
 .purple-bg {
   background-image: url('../assets/purple-bg.jpg');
   background-size: cover;
@@ -112,7 +112,7 @@
   background-repeat: no-repeat;
 }
 
-/* 📝 Intro text styles */
+/*  Intro text styles */
 .intro-left {
   flex: 1;
   display: flex;
@@ -145,7 +145,7 @@
 }
 
 
-/* 📍 Section Layouts */
+/*  Section Layouts */
 .allergy-map-row {
   display: flex;
   justify-content: space-between;

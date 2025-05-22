@@ -351,7 +351,7 @@ const KnowYourArea = () => {
       <div className="know-area-wrapper" ref={wrapperRef}>
         <div className="know-card">
     
-          {/* ✅ Mobile Search Bar (top of page) */}
+          {/*  Mobile Search Bar (top of page) */}
           <div className="search-wrapper mobile-search">
             <input
               type="text"
@@ -403,7 +403,7 @@ const KnowYourArea = () => {
             {/* MIDDLE COLUMN */}
             <div className="middle-column">
               
-              {/* ✅ Desktop Search Bar (in middle column) */}
+              {/*  Desktop Search Bar (in middle column) */}
               <div className="search-wrapper desktop-search">
                 <input
                   type="text"

@@ -1,28 +1,27 @@
-/* ✅ 背景动画样式：覆盖整页，随滚动保持固定 */
 .asthma-bg-animation {
-  position: fixed;         /* ✅ 保持在页面背后，即使滚动也不动 */
+  position: fixed;         
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;             /* ✅ 确保在内容层下方 */
-  opacity: 0.25;           /* ✅ 可根据喜好调节 */
-  pointer-events: none;    /* ✅ 不阻挡用户点击操作 */
+  z-index: -1;            
+  opacity: 0.25;           
+  pointer-events: none;    
 }
 
-/* ✅ 页面主容器 */
+
 .asthma-container {
   position: relative;
   overflow: hidden;
   padding: 40px 20px;
-  padding-top: 100px; /* 留出导航栏空间 */
+  padding-top: 100px; 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   min-height: 100vh;
-  background-color: #f5f7fa; /* ✅ 防止动画透明背景下闪白 */
+  background-color: #f5f7fa; 
   color: #222;
 }
 
-/* 顶部介绍区域 */
+
 .asthma-intro {
   max-width: 800px;
   margin: 0 auto 50px;
@@ -50,7 +49,7 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* 卡片区域 */
+
 .asthma-cards {
   max-width: 1000px;
   margin: 0 auto;
@@ -69,7 +68,7 @@
   gap: 20px;
 }
 
-/* 单张卡片 */
+
 .info-card {
   background: #ffffff;
   padding: 20px;
@@ -96,7 +95,7 @@
   line-height: 1.5;
 }
 
-/* 诱因图标模块 */
+
 .trigger-bar-container {
   margin-top: 50px;
   text-align: center;
@@ -129,7 +128,7 @@
   margin: 0 auto 10px;
 }
 
-/* 呼吸练习模块 */
+
 .breathing-section {
   text-align: center;
   margin: 60px auto;

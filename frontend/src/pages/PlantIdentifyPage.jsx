@@ -68,7 +68,7 @@ const PlantIdentifyPage = () => {
         <PlantGallery />
       </div>
 
-      {/* 🔽 Down arrow */}
+      {/*  Down arrow */}
       <Lottie
         animationData={downArrowAnim}
         loop
@@ -76,7 +76,7 @@ const PlantIdentifyPage = () => {
         onClick={scrollToNextSection}
       />
 
-      {/* 🔼 Always show up arrow */}
+      {/*  Always show up arrow */}
       <Lottie
         animationData={downArrowAnim}
         loop

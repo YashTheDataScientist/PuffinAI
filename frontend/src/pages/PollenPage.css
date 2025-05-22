@@ -133,7 +133,7 @@ body {
   }
 }
 
-/* 🖤 Clean All-Black Scroll Prompt */
+/*  Clean All-Black Scroll Prompt */
 .scroll-prompt {
   background: #0b0b0b;
   border-radius: 14px;
@@ -160,7 +160,7 @@ body {
   line-height: 1.6;
 }
 
-/* 🔘 Clean black button with glow */
+/*  Clean black button with glow */
 .scroll-button {
   margin-top: 1.2rem;
   padding: 0.7rem 1.6rem;
@@ -193,7 +193,7 @@ body {
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   margin: 60px auto;
-  max-width: 1300px; /* ⬅️ increased from 1100 */
+  max-width: 1300px; /*  increased from 1100 */
   flex-wrap: wrap;
   width: 95%;
 }

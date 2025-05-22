@@ -24,7 +24,7 @@ export default function PollenPage() {
     }
   }, [location]);
 
-  // ✅ Scroll to Top
+  // Scroll to Top
   useEffect(() => {
     const upBtn = document.getElementById('scroll-up-btn');
     if (upBtn) {
