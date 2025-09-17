@@ -30,7 +30,7 @@ function App() {
       <AlexaPopup />
       <div className="main-content"> {}
         <Routes>
-          <Route path="/auth" element={<HomePage />} />
+          {/* <Route path="/auth" element={<HomePage />} />
           <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/pollen_watch" element={<ProtectedRoute><PollenPage /></ProtectedRoute>} />
           <Route path="/know_your_plants" element={<ProtectedRoute><PlantPage /></ProtectedRoute>} />
@@ -41,7 +41,21 @@ function App() {
           <Route path="/country" element={<ProtectedRoute><Country /></ProtectedRoute>} />
           <Route path="/country/:stateName" element={<ProtectedRoute><StateMap /></ProtectedRoute>} />
           <Route path="/country/:stateName/:cityName" element={<ProtectedRoute><CityMap /></ProtectedRoute>} />
-          <Route path="/asthma_info" element={<ProtectedRoute><AsthmaPage /></ProtectedRoute>} />
+          <Route path="/asthma_info" element={<ProtectedRoute><AsthmaPage /></ProtectedRoute>} /> */}
+
+          <Route path="/auth" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/pollen_watch" element={<PollenPage />} />
+          <Route path="/know_your_plants" element={<PlantPage />} />
+          <Route path="/know_your_area" element={<KnowYourArea />} />
+          <Route path="/learn" element={<LearnAboutPollen />} />
+          <Route path="/plant_identify" element={<TestPlantIdentifyPage />} />
+          <Route path="/symptoms" element={<SymptomsPage />} />
+          <Route path="/country" element={<Country />} />
+          <Route path="/country/:stateName" element={<StateMap />} />
+          <Route path="/country/:stateName/:cityName" element={<CityMap />} />
+          <Route path="/asthma_info" element={<AsthmaPage />} />
+
 
 
           <Route
